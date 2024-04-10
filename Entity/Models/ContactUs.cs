@@ -17,6 +17,11 @@ namespace Entity.Models
         public string Title { get; set; }
 
         public string Description { get; set; }
+        /// <summary>
+        /// Bu hissədə admin gələn mesajlara adminpaneldən baxanda status true olan kimi oxunanlar səhifəsinə transfer olacaq.
+        /// </summary>
+        public bool Viewed { get; set; } = false;
+
 
        
     }

@@ -1,12 +1,13 @@
-﻿using System;
+﻿using DAL.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.DAL
+namespace Bussiness.Services
 {
-    public interface IGenericDAL<T> where T : class
+    public interface IGenericService<T> where T : class
     {
         void Create(T t);
         void Update(T t);
@@ -15,5 +16,4 @@ namespace DAL.DAL
         public List<T> GetList();
 
     }
-
 }
