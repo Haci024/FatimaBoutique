@@ -10,9 +10,9 @@ namespace Data.DAL
 {
     public interface ISliderDAL:IGenericDAL<Slider>
     {
-        public List<Slider> ActiveSliderList { get; set; }
+        public List<Slider> ActiveSliderList();
 
-        public List<Slider> DeactiveSliderList { get; set; }
+        public List<Slider> DeactiveSliderList();
 
         
     }

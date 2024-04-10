@@ -19,8 +19,7 @@ namespace Entity.Models
         
         public int ForgetPasswordCode { get; set; } = 000000;
 
-      
-
+        public List<Orders> Orders { get; set; }
 
     }
 }

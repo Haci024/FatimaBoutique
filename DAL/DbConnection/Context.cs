@@ -39,6 +39,10 @@ namespace DAL.DbConnection
 
         public DbSet<SocialMedia> SocialMedia { get; set; }
 
+       
+
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<BlogImages>()

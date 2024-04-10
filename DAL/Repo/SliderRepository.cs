@@ -18,6 +18,14 @@ namespace Data.Repo
         {
             _db = db;
         }
-        
+
+        public List<Slider> ActiveSliderList()
+        {
+            return _db.Slider.Where(x=>x.Status==true).ToList();
+        }
+        public List<Slider> DeactiveSliderList()
+        {
+            return _db.Slider.Where(x=>x.Status==false).ToList();
+        }
     }
 }
