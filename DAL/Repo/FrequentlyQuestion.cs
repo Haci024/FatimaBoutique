@@ -1,5 +1,4 @@
-﻿using DAL.DAL;
-using Data.DAL;
+﻿using Data.DAL;
 using Data.Repositories;
 using Entity.Models;
 using System;
@@ -10,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace Data.Repo
 {
-    public class AboutUsRepository:GenericRepository<AboutUs>,IAboutUsDAL
+    public class FrequentlyQuestionRepository:GenericRepository<FrequentlyQuestions>,IFrequentlyQuestionDAL
     {
+
     }
 }

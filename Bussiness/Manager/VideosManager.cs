@@ -9,36 +9,34 @@ using System.Threading.Tasks;
 
 namespace Bussiness.Manager
 {
-    public class BlogManager : IBlogService
+    public class VideosManager : IVideoService
     {
-        private readonly IBlogDAL _dal;
-        public BlogManager(IBlogDAL dal)
+        private readonly IVideoDAL _dal;
+        public VideosManager(IVideoDAL dal)
         {
-
-            _dal = dal;
-
+            _dal= dal;
         }
-        public void Create(Blogs t)
+        public void Create(Videos t)
         {
-            _dal.Create(t);
+            _dal.Create(t); 
         }
 
-        public void Delete(Blogs t)
+        public void Delete(Videos t)
         {
             _dal.Delete(t);
         }
 
-        public Blogs GetById(int id)
+        public Videos GetById(int id)
         {
             return _dal.GetById(id);
         }
 
-        public List<Blogs> GetList()
+        public List<Videos> GetList()
         {
             return _dal.GetList();
         }
 
-        public void Update(Blogs t)
+        public void Update(Videos t)
         {
             _dal.Update(t);
         }

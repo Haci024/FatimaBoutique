@@ -10,5 +10,6 @@ namespace Data.DAL
 {
     public interface IFrequentlyQuestionDAL:IGenericDAL<FrequentlyQuestions>
     {
+
     }
 }

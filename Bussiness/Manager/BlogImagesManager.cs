@@ -9,14 +9,12 @@ using System.Threading.Tasks;
 
 namespace Bussiness.Manager
 {
-    public class BlogManager : IBlogService
+    public class BlogImagesManager : IBlogService
     {
         private readonly IBlogDAL _dal;
-        public BlogManager(IBlogDAL dal)
+        public BlogImagesManager(IBlogDAL dal)
         {
-
-            _dal = dal;
-
+            _dal= dal;
         }
         public void Create(Blogs t)
         {

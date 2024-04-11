@@ -10,9 +10,9 @@ namespace Data.DAL
 {
     public interface IVideoDAL:IGenericDAL<Videos>
     {
-        public List<Videos> GetActiveCategoryList();
+        public List<Videos> GetActiveVideoList();
 
-        public List<Videos> DeactiveCategoryList();
+        public List<Videos> DeactiveVideoList();
 
 
     }

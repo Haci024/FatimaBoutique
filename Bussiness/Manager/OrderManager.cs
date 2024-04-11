@@ -9,36 +9,35 @@ using System.Threading.Tasks;
 
 namespace Bussiness.Manager
 {
-    public class BlogManager : IBlogService
+    public class OrderManager : IOrdersService
     {
-        private readonly IBlogDAL _dal;
-        public BlogManager(IBlogDAL dal)
+        private readonly IOrderDAL _dal;
+        public OrderManager(IOrderDAL dal)
         {
-
             _dal = dal;
-
         }
-        public void Create(Blogs t)
+
+        public void Create(Orders t)
         {
-            _dal.Create(t);
+           _dal.Create(t);
         }
 
-        public void Delete(Blogs t)
+        public void Delete(Orders t)
         {
             _dal.Delete(t);
         }
 
-        public Blogs GetById(int id)
+        public Orders GetById(int id)
         {
             return _dal.GetById(id);
         }
 
-        public List<Blogs> GetList()
+        public List<Orders> GetList()
         {
             return _dal.GetList();
         }
 
-        public void Update(Blogs t)
+        public void Update(Orders t)
         {
             _dal.Update(t);
         }

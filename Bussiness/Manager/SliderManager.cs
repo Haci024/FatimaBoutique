@@ -9,36 +9,35 @@ using System.Threading.Tasks;
 
 namespace Bussiness.Manager
 {
-    public class BlogManager : IBlogService
+    public class SLiderManager:ISliderService
     {
-        private readonly IBlogDAL _dal;
-        public BlogManager(IBlogDAL dal)
+        private readonly ISliderDAL _dal;
+        public SLiderManager(ISliderDAL dal)
         {
-
             _dal = dal;
-
         }
-        public void Create(Blogs t)
+
+        public void Create(Slider t)
         {
             _dal.Create(t);
         }
 
-        public void Delete(Blogs t)
+        public void Delete(Slider t)
         {
             _dal.Delete(t);
         }
 
-        public Blogs GetById(int id)
+        public Slider GetById(int id)
         {
-            return _dal.GetById(id);
+            return _dal.GetById(id);    
         }
 
-        public List<Blogs> GetList()
+        public List<Slider> GetList()
         {
             return _dal.GetList();
         }
 
-        public void Update(Blogs t)
+        public void Update(Slider t)
         {
             _dal.Update(t);
         }

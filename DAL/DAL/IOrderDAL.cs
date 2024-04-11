@@ -8,11 +8,7 @@ using System.Threading.Tasks;
 
 namespace Data.DAL
 {
-    public interface ISliderDAL:IGenericDAL<Slider>
+    public interface IOrderDAL:IGenericDAL<Orders>
     {
-        public List<Slider> ActiveSliderList();
-
-        public List<Slider> DeactiveSliderList();
-
     }
 }

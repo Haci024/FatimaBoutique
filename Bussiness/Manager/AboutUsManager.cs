@@ -1,6 +1,7 @@
 ﻿using Bussiness.Services;
 using Data.DAL;
 using Entity.Models;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,38 +10,38 @@ using System.Threading.Tasks;
 
 namespace Bussiness.Manager
 {
-    public class BlogManager : IBlogService
+    public class AboutUsManager:IAboutUsService
     {
-        private readonly IBlogDAL _dal;
-        public BlogManager(IBlogDAL dal)
+        private readonly IAboutUsDAL _dal;
+        
+        public AboutUsManager(IAboutUsDAL dal)
         {
-
             _dal = dal;
-
         }
-        public void Create(Blogs t)
+
+        public void Create(AboutUs t)
         {
             _dal.Create(t);
         }
 
-        public void Delete(Blogs t)
+        public void Delete(AboutUs t)
         {
             _dal.Delete(t);
         }
 
-        public Blogs GetById(int id)
+        public AboutUs GetById(int id)
         {
-            return _dal.GetById(id);
+           return _dal.GetById(id);
         }
 
-        public List<Blogs> GetList()
+        public List<AboutUs> GetList()
         {
             return _dal.GetList();
         }
 
-        public void Update(Blogs t)
+        public void Update(AboutUs t)
         {
-            _dal.Update(t);
+             _dal.Update(t);
         }
     }
 }
