@@ -20,7 +20,6 @@ namespace DAL.DbConnection
            
         }
 
-
         public DbSet<ContactUs> ContactUs { get; set; }
 
         public DbSet<FrequentlyQuestions> FrequentlyQuestions { get; set; }
@@ -39,7 +38,11 @@ namespace DAL.DbConnection
 
         public DbSet<SocialMedia> SocialMedia { get; set; }
 
-       
+        public DbSet<Basket> Basket { get; set; }
+
+        public DbSet<Orders> Orders { get; set; }
+
+
 
 
 
