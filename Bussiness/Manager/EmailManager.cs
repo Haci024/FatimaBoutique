@@ -23,6 +23,28 @@ namespace Bussiness.Manager
             
         }
 
+        public void ForgetPasswordEmail(AppUser appUser,string Email, int accessCode)
+        {
+            MimeMessage mimeMessage = new MimeMessage();
+            MailboxAddress ConfirmAddressFrom = new MailboxAddress(appUser.FullName, "example@gmail.com");
+            MailboxAddress ConfirmAdressTo = new MailboxAddress("Yeni Sifariş", appUser.Email);
+
+            mimeMessage.From.Add(ConfirmAddressFrom);
+            mimeMessage.To.Add(ConfirmAdressTo);
+            var bodyBuilder = new BodyBuilder();
+            bodyBuilder.TextBody = $"Təsdiq şifrəniz :{accessCode}";
+
+            mimeMessage.Body = bodyBuilder.ToMessageBody();
+
+
+            SmtpClient client = new SmtpClient();
+
+            //client.Connect("smtp.gmail.com", 587, false);
+            //client.Authenticate("example@gmail.com", "voxryimidhytyjot");
+            //client.Send(mimeMessage);
+            //client.Disconnect(true);
+        }
+
         public void SendOrderEmailToAdmin(AppUser appUser)
         {
             MimeMessage mimeMessage = new MimeMessage();

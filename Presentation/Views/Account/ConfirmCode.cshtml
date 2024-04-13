@@ -1,0 +1,83 @@
+﻿@model DTO.UserDTO.ConfirmCodeDTO
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+<!-- Mirrored from themes.pixelstrap.com/voxo/back-end/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Sep 2023 18:53:05 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+          content="Cuba admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+    <meta name="keywords"
+          content="admin template, Cuba admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="~/back-end/assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="~/back-end/assets/images/favicon.png" type="image/x-icon">
+    <title>Fatimah-Boutique</title>
+
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&amp;family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&amp;display=swap"
+          rel="stylesheet">
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="~/back-end/assets/css/vendors/bootstrap.css">
+
+    <!-- App css -->
+    <link rel="stylesheet" type="text/css" href="~/back-end/assets/css/style.css">
+
+    <!-- Responsive css -->
+    <link rel="stylesheet" type="text/css" href="~/back-end/~/back-end/assets/css/responsive.css">
+</head>
+
+<body>
+    <!-- login page start-->
+    <div class="container-fluid p-0">
+        <div class="row m-0">
+            <div class="col-12 p-0">
+                <form method="post">
+                    <div class="login-section">
+                        <div class="materialContainer">
+                            <div class="box">
+                                <div class="login-title">
+                                    <h2>Təsdiq kodu!</h2>
+                                </div>
+                                <div class="input">
+                                    <label for="name">Təsdiq kodu</label>
+                                    <input type="number" asp-for="ConfirmCode" name="name" id="name">
+                                    <span class="spin"></span>
+                                </div>
+                                <div asp-validation-summary="ModelOnly" style="color:red"></div>
+                                <div class="button login">
+                                    <button type="submit">
+                                        Gönder!
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <!-- latest jquery-->
+        <script src="~/back-end/assets/js/jquery-3.6.0.min.js"></script>
+
+        <!-- Bootstrap js-->
+        <script src="~/back-end/assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+
+        <!-- Theme js-->
+        <script src="~/back-end/assets/js/script.js"></script>
+    </div>
+</body>
+
+
+<!-- Mirrored from themes.pixelstrap.com/voxo/back-end/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Sep 2023 18:53:06 GMT -->
+</html>

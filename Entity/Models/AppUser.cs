@@ -21,5 +21,7 @@ namespace Entity.Models
 
         public List<Orders> Orders { get; set; }
 
+        public string PhoneNumber { get; set; }
+
     }
 }

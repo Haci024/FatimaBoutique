@@ -1,10 +1,15 @@
-using Bussiness.Manager;
+﻿using Bussiness.Manager;
 using Bussiness.Services;
 using DAL.DbConnection;
 using Data.DAL;
 using Data.Repo;
+using Entity.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using Validation.AppUserVal;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Context>();
+
 builder.Services.AddScoped<IOrdersService, OrderManager>();
 builder.Services.AddScoped<IOrderDAL, OrderRepository>();
 
@@ -42,6 +48,42 @@ builder.Services.AddScoped<IFrequentlyQuestionDAL, FrequentlyQuestionRepository>
 builder.Services.AddScoped<ISliderService, SLiderManager>();
 builder.Services.AddScoped<ISliderDAL, SliderRepository>();
 
+builder.Services.AddScoped<IEmailService, EmailManager>();
+
+builder.Services.AddScoped<IBasketDAL, BasketRepository>();
+builder.Services.AddScoped<IBasketService,BasketManager>();
+
+
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromDays(1);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+})
+.AddCookie(options =>
+{
+    options.ExpireTimeSpan = TimeSpan.FromDays(1);
+    options.LoginPath = "/Account/Login";
+    options.AccessDeniedPath = "/Account/AccessDenied";
+});
+
+builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
+{
+    options.Password.RequireUppercase = true;
+    options.Password.RequiredLength =8;
+    options.Password.RequireLowercase = true;
+    options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuöğıəşçvwxyzABCDEFGHIJŞÖĞIƏKLMNOPÇQRSTUVWXYZ0123456789";
+
+
+}).AddEntityFrameworkStores<Context>().AddErrorDescriber<CustomIdentityValidator>();
+
 var app = builder.Build();
 
 
@@ -66,6 +108,6 @@ app.MapControllerRoute(
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();

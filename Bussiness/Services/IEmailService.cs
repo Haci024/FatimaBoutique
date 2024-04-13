@@ -13,5 +13,7 @@ namespace Bussiness.Services
         public void SendOrderEmailToCustomer(OrderEmailDTO orderEmailDTO, AppUser appUser);
 
         public void SendOrderEmailToAdmin(AppUser appUser);
+
+        public void ForgetPasswordEmail(AppUser appUser,string email, int accessCode);
     }
 }
