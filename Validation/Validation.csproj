@@ -14,4 +14,8 @@
     <ProjectReference Include="..\DTO\DTO.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Testfilwvalidtor\" />
+  </ItemGroup>
+
 </Project>
