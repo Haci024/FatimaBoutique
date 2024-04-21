@@ -1,49 +1,696 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Presentation</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Presentation.styles.css" asp-append-version="true" />
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="~/assets/images/favicon/4.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="~/assets/images/favicon/4.png">
+    <meta name="theme-color" content="#e87316">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="~/assets/images/favicon/4.png">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="~/assets/images/favicon/4.png" type="image/x-icon">
+    <title>@ViewBag.Title</title>
+
+    <!-- CSS -->
+    @RenderSection("styles", required: false)
+
+    <!-- JS -->
+    @RenderSection("scripts", required: false)
+
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Presentation</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+
+<body class="theme-color4 light ltr">
+
+    <!-- header start -->
+    <header class="header-style-2" id="home">
+        <div class="main-header navbar-searchbar">
+            <div class="container-fluid-lg">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="main-menu">
+                            <div class="menu-left">
+                                <div class="brand-logo">
+                                    <a href="index.html">
+                                        <svg class="svg-icon">
+                                            <use class="fill-color" xlink:href="~assets/svg/icons.svg#logo"></use>
+                                        </svg>
+                                        <img src="~/assets/images/logo.png" class="img-fluid blur-up lazyload" alt="logo">
+                                    </a>
+                                </div>
+                                <div class="category-menu">
+                                    <div class="category-dropdown">
+                                        <div class="close-btn d-xl-none">
+                                            Category List
+                                            <span class="back-category">
+                                                <i class="fa fa-angle-left"></i>
+                                            </span>
+                                        </div>
+                                        <ul>
+                                            <li class="submenu">
+                                                <a href="javascript:void(0)">watches</a>
+                                                <ul class="category-mega-menu">
+                                                    <li>
+                                                        <div class="row">
+                                                            <div class="col-xl-3">
+                                                                <div class="category-childmenu">
+                                                                    <div class="title-category">
+                                                                        <h6>Watch Brands</h6>
+                                                                    </div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="javascript:void(0)">Coros</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="javascript:void(0)">Titan</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="javascript:void(0)">Citizen</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="javascript:void(0)">Casio</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="javascript:void(0)">Movado</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="javascript:void(0)">Tissot</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-3">
+                                                                <div class="category-childmenu">
+                                                                    <div class="title-category">
+                                                                        <h6>Watch Display</h6>
+                                                                    </div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="javascript:void(0)">Analog</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="javascript:void(0)">Digital</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="javascript:void(0)">Hybrid</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="javascript:void(0)">Tactile</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="javascript:void(0)">Touchscreen</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-3">
+                                                                <div class="category-childmenu">
+                                                                    <div class="title-category">
+                                                                        <h6>Watch Style</h6>
+                                                                    </div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="javascript:void(0)">Casual</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="javascript:void(0)">Dress</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="javascript:void(0)">Fashion</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="javascript:void(0)">Luxury</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-3">
+                                                                <div class="category-banner">
+                                                                    <img src="~/assets/images/electronics/banner/4.jpg"
+                                                                         class="img-fluid blur-up lazyload" alt="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">footwear</a>
+                                            </li>
+
+                                            <li class="submenu">
+                                                <a href="javascript:void(0)">clothing</a>
+                                                <ul class="category-mega-menu">
+                                                    <li>
+                                                        <div class="row">
+                                                            <div class="col-xl-3">
+                                                                <div class="category-childmenu">
+                                                                    <div class="title-category">
+                                                                        <h6>Women's fashion</h6>
+                                                                    </div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="shop-left-sidebar.html">Dress</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="shop-left-sidebar.html">Skirts</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="shop-left-sidebar.html">
+                                                                                Western
+                                                                                wear
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="shop-left-sidebar.html">
+                                                                                Etahnic
+                                                                                wear
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="shop-left-sidebar.html">
+                                                                                Sports
+                                                                                wear
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-3">
+                                                                <div class="category-childmenu">
+                                                                    <div class="title-category">
+                                                                        <h6>Men's fashion</h6>
+                                                                    </div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="shop-left-sidebar.html">
+                                                                                Sports
+                                                                                wear
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="shop-left-sidebar.html">
+                                                                                Etahnic
+                                                                                wear
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="shop-left-sidebar.html">
+                                                                                Western
+                                                                                wear
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-3">
+                                                                <div class="category-childmenu">
+                                                                    <div class="title-category">
+                                                                        <h6>Accesories</h6>
+                                                                    </div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="shop-left-sidebar.html">earrings</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="shop-left-sidebar.html">
+                                                                                fashion
+                                                                                jewellery
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="shop-left-sidebar.html">ties</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="shop-left-sidebar.html">
+                                                                                caps and
+                                                                                hats
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="shop-left-sidebar.html">cufflinks</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="shop-left-sidebar.html">
+                                                                                precious
+                                                                                jewellery
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="shop-left-sidebar.html">necklaces</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-3">
+                                                                <div class="category-banner">
+                                                                    <img src="~/assets/images/banner/1.jpg"
+                                                                         class="img-fluid blur-up lazyload" alt="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">Accessories</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">Home &amp; decor</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">Bags</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">Kitchan</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <nav>
+                                <div class="main-navbar">
+                                    <div id="mainnav">
+                                        <div class="toggle-nav">
+                                            <i class="fa fa-bars sidebar-bar"></i>
+                                        </div>
+                                        <ul class="nav-menu">
+                                            <li class="back-btn d-xl-none">
+                                                <div class="close-btn">
+                                                    Menu
+                                                    <span class="mobile-back">
+                                                        <i class="fa fa-angle-left"></i>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                            <li class="mega-menu dropdown home-menu">
+                                                <a href="./index.html" class="nav-link">home</a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a href="./shop.html" class="nav-link">shop</a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a href="./product.html" class="nav-link">product</a>
+                                            </li>
+                                            <li class="mega-menu dropdown ratio_40">
+                                                <a href="./about-us.html" class="nav-link">
+                                                    <div class="gradient-title">about us</div>
+                                                </a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a href="./contact-us.html" class="nav-link">contact</a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a href="./blogs.html" class="nav-link">blogs</a>
+                                            </li>
+                                            <li class="mobile-poster d-flex d-xl-none">
+                                                <img src="~/assets/images/pwa.png" class="img-fluid" alt="">
+                                                <div class="mobile-contain">
+                                                    <h5>Enjoy app-like experience</h5>
+                                                    <p class="font-light">
+                                                        With this Screen option you can use Website
+                                                        like an App.
+                                                    </p>
+                                                    <a href="javascript:void(0)" id="installApp"
+                                                       class="btn btn-solid-default btn-spacing w-100">
+                                                        ADD TO
+                                                        HOMESCREEN
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav>
+                            <div class="menu-right">
+                                <ul>
+                                    <li>
+                                        <div class="search-box theme-bg-color">
+                                            <i data-feather="search"></i>
+                                        </div>
+                                    </li>
+                                    <li class="onhover-dropdown">
+                                        <div class="cart-media">
+                                            <i data-feather="user"></i>
+                                        </div>
+                                        <div class="onhover-div profile-dropdown">
+                                            <ul>
+                                                <li>
+                                                    <a href="log-in.html" class="d-block">Login</a>
+                                                </li>
+                                                <li>
+                                                    <a href="sign-up.html" class="d-block">Register</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="onhover-dropdown cart-dropdown">
+                                        <button type="button" class="btn btn-solid-default btn-spacing">
+                                            <i data-feather="shopping-cart" class="pe-2"></i>
+                                            <span>$5686.25</span>
+                                        </button>
+                                        <div class="onhover-div">
+                                            <div class="cart-menu">
+                                                <div class="cart-title">
+                                                    <h6>
+                                                        <i data-feather="shopping-bag"></i>
+                                                        <span class="label label-theme rounded-pill">5</span>
+                                                    </h6>
+                                                    <span class="d-md-none d-block">
+                                                        <i class="fas fa-arrow-right back-cart"></i>
+                                                    </span>
+                                                </div>
+                                                <ul class="custom-scroll">
+                                                    <li>
+                                                        <div class="media">
+                                                            <img src="~/assets/images/fashion/product/front/1.jpg"
+                                                                 class="img-fluid blur-up lazyload" alt="">
+                                                            <div class="media-body">
+                                                                <h6>Slim Fit Plastic Coat</h6>
+                                                                <div class="qty-with-price">
+                                                                    <span>$78.00</span>
+                                                                    <span>
+                                                                        <input type="number" class="form-control"
+                                                                               value="1">
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <button type="button" class="btn-close d-block d-md-none"
+                                                                    aria-label="Close">
+                                                                <i class="fas fa-times"></i>
+                                                            </button>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="media">
+                                                            <img src="~/assets/images/fashion/product/front/7.jpg"
+                                                                 class="img-fluid blur-up lazyload" alt="">
+                                                            <div class="media-body">
+                                                                <h6>Womens Stylish Jacket</h6>
+                                                                <div class="qty-with-price">
+                                                                    <span>$24.00</span>
+                                                                    <span>
+                                                                        <input type="number" class="form-control"
+                                                                               value="1">
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <button type="button" class="btn-close d-block d-md-none"
+                                                                    aria-label="Close">
+                                                                <i class="fas fa-times"></i>
+                                                            </button>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="cart-btn">
+                                                <h6 class="cart-total">
+                                                    <span class="font-light">Total:</span> $
+                                                    542.00
+                                                </h6>
+                                                <button onclick="location.href = 'cart.html';" type="button"
+                                                        class="btn btn-solid-default btn-block">
+                                                    Proceed to payment
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="search-full">
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i data-feather="search" class="font-light"></i>
+                                    </span>
+                                    <input type="text" class="form-control search-type" placeholder="Search here..">
+                                    <span class="input-group-text close-search">
+                                        <i data-feather="x" class="font-light"></i>
+                                    </span>
+                                </div>
+                                <div class="search-suggestion">
+                                    <ul class="custom-scroll">
+                                        <li>
+                                            <div class="product-cart media">
+                                                <img src="~/assets/images/electronics/product/1.jpg"
+                                                     class="img-fluid blur-up lazyload" alt="">
+                                                <div class="media-body">
+                                                    <a href="javascript:void(0)">
+                                                        <h6 class="mb-1">New Smart Watch 4 ERT2</h6>
+                                                    </a>
+                                                    <ul class="rating">
+                                                        <li>
+                                                            <i class="fas fa-star theme-color"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star theme-color"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star theme-color"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star"></i>
+                                                        </li>
+                                                    </ul>
+                                                    <p class="mb-0 mt-1">$28.00</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="product-cart media">
+                                                <img src="~/assets/images/electronics/product/5.jpg"
+                                                     class="img-fluid blur-up lazyload" alt="">
+                                                <div class="media-body">
+                                                    <a href="javascript:void(0)">
+                                                        <h6 class="mb-1">Powermatic 900 W Juicer</h6>
+                                                    </a>
+                                                    <ul class="rating">
+                                                        <li>
+                                                            <i class="fas fa-star theme-color"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star theme-color"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star theme-color"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star theme-color"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-star theme-color"></i>
+                                                        </li>
+                                                    </ul>
+                                                    <p class="mb-0 mt-1">$35.00</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
+        </div>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    <!-- header end -->
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - Presentation - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <!-- mobile fix menu start -->
+    <div class="mobile-menu d-sm-none">
+        <ul>
+            <li>
+                <a href="demo3.html" class="active">
+                    <i data-feather="home"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" class="toggle-category">
+                    <i data-feather="align-justify"></i>
+                    <span>Category</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)">
+                    <i data-feather="shopping-bag"></i>
+                    <span>Cart</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)">
+                    <i data-feather="heart"></i>
+                    <span>Wishlist</span>
+                </a>
+            </li>
+            <li>
+                <a href="user-dashboard.html">
+                    <i data-feather="user"></i>
+                    <span>Account</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- mobile fix menu end -->
+
+    @RenderBody()
+
+    <!-- footer start -->
+    <footer class="footer-sm-space">
+        <div class="main-footer">
+            <div class="container">
+                <div class="row gy-4">
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="footer-contact">
+                            <div class="brand-logo">
+                                <a href="index.html" class="footer-logo">
+                                    <svg class="svg-icon">
+                                        <use class="fill-color" xlink:href="~assets/svg/icons.svg#logo"></use>
+                                    </svg>
+                                    <img src="~/assets/images/logo.png" class="img-fluid blur-up lazyload" alt="logo">
+                                </a>
+                            </div>
+                            <ul class="contact-lists">
+                                <li>
+                                    <span><b>phone:</b> <span class="font-light"> + 185659635</span></span>
+
+                                </li>
+                                <li>
+                                    <span>
+                                        <b>Address:</b><span class="font-light">
+                                            1418 Riverwood Drive, Suite 3245
+                                            Cottonwood, CA 96052, United States
+                                        </span>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span><b>Email:</b><span class="font-light"> Voxo123@gmail.com</span></span>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6">
+                        <div class="footer-links">
+                            <div class="footer-title">
+                                <h3>About us</h3>
+                            </div>
+                            <div class="footer-content">
+                                <ul>
+                                    <li>
+                                        <a href="./index.html" class="font-dark">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="./shop.html" class="font-dark">Shop</a>
+                                    </li>
+                                    <li>
+                                        <a href="./about-us.html" class="font-dark">About Us</a>
+                                    </li>
+                                    <li>
+                                        <a href="./blogs.html" class="font-dark">Blog</a>
+                                    </li>
+                                    <li>
+                                        <a href="./contact-us.html" class="font-dark">Contact</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                        <div class="footer-links">
+                            <div class="footer-title">
+                                <h3>New Categories</h3>
+                            </div>
+                            <div class="footer-content">
+                                <ul>
+                                    <li>
+                                        <a href="shop-left-sidebar.html" class="font-dark">Latest Shoes</a>
+                                    </li>
+                                    <li>
+                                        <a href="shop-left-sidebar.html" class="font-dark">Branded Jeans</a>
+                                    </li>
+                                    <li>
+                                        <a href="shop-left-sidebar.html" class="font-dark">New Jackets</a>
+                                    </li>
+                                    <li>
+                                        <a href="shop-left-sidebar.html" class="font-dark">Colorfull Hoodies</a>
+                                    </li>
+                                    <li>
+                                        <a href="shop-left-sidebar.html" class="font-dark">Shiner Goggles</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                        <div class="footer-links">
+                            <div class="footer-title">
+                                <h3>Get Help</h3>
+                            </div>
+                            <div class="footer-content">
+                                <ul>
+                                    <li>
+                                        <a href="./profile.html" class="font-dark">Your Account</a>
+                                    </li>
+                                    <li>
+                                        <a href="./faq.html" class="font-dark">Shopping FAQs</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-sm-6 d-none d-sm-block">
+                        <div class="footer-newsletter">
+                            <h3>Let’s stay in touch</h3>
+                            <div class="form-newsletter">
+                                <div class="input-group mb-4">
+                                    <input type="text" class="form-control color-4" placeholder="Your Email Address">
+                                    <span class="input-group-text" id="basic-addon4">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </span>
+                                </div>
+                                <p class="font-dark mb-0">
+                                    Keep up to date with our latest news and special offers.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sub-footer">
+            <div class="container">
+                <div class="row gy-3">
+                    <div class="col-md-6">
+                        <p class="mb-0 font-dark">© 2024, Fatimah Boutique. </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    <!-- footer end -->
+
+    @RenderSection("modals", required: false)
+    @Html.Partial("_TapToTopStartPartial")
+
+    <!-- bg overlay start -->
+    <div class="bg-overlay"></div>
+    <!-- bg overlay end -->
+
+    <script>
+        $(function () {
+            $('[data-bs-toggle="tooltip"]').tooltip()
+        });
+    </script>
+
 </body>
+
 </html>

@@ -17,7 +17,7 @@ namespace DAL.DbConnection
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             {
             
-            optionsBuilder.UseSqlServer("server=77.45.159.27\\MSSQLSERVER2019;initial catalog=FatimahBoutique;user=FatimahAdmin;password=6!3dRpp48;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("server=77.245.159.27\\MSSQLSERVER2019;initial catalog=FatimahBoutique;user=FatimahAdmin;password=6!3dRpp48;TrustServerCertificate=True");
         }
         //server hissesine 77.45.159.27 bu ip yaz mssql de.Istifadeci ve password da yuxaridaki baglantida var.Ordan goture bilersen.
 

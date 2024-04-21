@@ -198,9 +198,12 @@ namespace Presentation.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Register(RegisterUserDTO registerUserDTO)
         {
-
-
             return RedirectToAction("Login","Account");
+        }
+
+        public IActionResult Profile()
+        {
+            return View();
         }
     }
 }

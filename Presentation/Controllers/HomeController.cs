@@ -18,9 +18,27 @@ namespace Presentation.Controllers
         }
         public IActionResult Error()
         {
-
             return View();
         }
 
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
+
+        public IActionResult ContactUs()
+        {
+            return View();
+        }
+
+        public IActionResult Blogs()
+        {
+            return View();
+        }
+
+        public IActionResult Faq()
+        {
+            return View();
+        }
     }
 }
