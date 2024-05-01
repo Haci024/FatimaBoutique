@@ -9,21 +9,23 @@ using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
+using SmtpClient = MailKit.Net.Smtp.SmtpClient;
+
 
 namespace Bussiness.Manager
 {
     public class EmailManager : IEmailService
     {
-        
+
         private readonly Context _db;
 
         public EmailManager(Context context)
         {
             _db = context;
-            
+
         }
 
-        public void ForgetPasswordEmail(AppUser appUser,string Email, int accessCode)
+        public void ForgetPasswordEmail(AppUser appUser, string Email, int accessCode)
         {
             MimeMessage mimeMessage = new MimeMessage();
             MailboxAddress ConfirmAddressFrom = new MailboxAddress(appUser.FullName, "example@gmail.com");
@@ -39,10 +41,32 @@ namespace Bussiness.Manager
 
             SmtpClient client = new SmtpClient();
 
-            //client.Connect("smtp.gmail.com", 587, false);
-            //client.Authenticate("example@gmail.com", "voxryimidhytyjot");
-            //client.Send(mimeMessage);
-            //client.Disconnect(true);
+            client.Connect("smtp.gmail.com", 587, false);
+            client.Authenticate("example@gmail.com", "voxryimidhytyjot");
+            client.Send(mimeMessage);
+            client.Disconnect(true);
+        }
+
+        public void SendActivateAccountCode(AppUser appUser)
+        {
+            MimeMessage mimeMessage = new MimeMessage();
+            MailboxAddress ConfirmAddressFrom = new MailboxAddress(appUser.FullName, "example@gmail.com");
+            MailboxAddress ConfirmAdressTo = new MailboxAddress("Hesab aktivləşdirmə", appUser.Email);
+
+            mimeMessage.From.Add(ConfirmAddressFrom);
+            mimeMessage.To.Add(ConfirmAdressTo);
+            var bodyBuilder = new BodyBuilder();
+            bodyBuilder.TextBody = "Hesabınızı aktivləşdirmək üçün bu kodunuz:" + " " + appUser.ConfirmationCode;
+
+            mimeMessage.Body = bodyBuilder.ToMessageBody();
+            using (SmtpClient client = new SmtpClient())
+            {
+                client.Connect("smtp.gmail.com", 587, false);
+                client.Authenticate("example@gmail.com", "voxryimidhytyjot");
+
+                client.Send(mimeMessage);
+            }
+
         }
 
         public void SendOrderEmailToAdmin(AppUser appUser)
@@ -57,17 +81,17 @@ namespace Bussiness.Manager
             bodyBuilder.TextBody = "Yeni sifarişiniz var!";
 
             mimeMessage.Body = bodyBuilder.ToMessageBody();
-            
+
 
             SmtpClient client = new SmtpClient();
 
-            //client.Connect("smtp.gmail.com", 587, false);
-            //client.Authenticate("example@gmail.com", "voxryimidhytyjot");
-            //client.Send(mimeMessage);
-            //client.Disconnect(true);
+            client.Connect("smtp.gmail.com", 587, false);
+            client.Authenticate("example@gmail.com", "voxryimidhytyjot");
+            client.Send(mimeMessage);
+            client.Disconnect(true);
         }
 
-        public void SendOrderEmailToCustomer(OrderEmailDTO orderEmailDTO,AppUser appUser)
+        public void SendOrderEmailToCustomer(OrderEmailDTO orderEmailDTO, AppUser appUser)
         {
             MimeMessage mimeMessage = new MimeMessage();
             MailboxAddress ConfirmAddressFrom = new MailboxAddress("Hörmətli" + " " + appUser.FullName, "example@gmail.com");
@@ -76,17 +100,17 @@ namespace Bussiness.Manager
             mimeMessage.From.Add(ConfirmAddressFrom);
             mimeMessage.To.Add(ConfirmAdressTo);
             var bodyBuilder = new BodyBuilder();
-            bodyBuilder.TextBody = $"Sifarişiniz qeydə alıdı.Ən qısa zamanda sizinlə əlaqə saxlanılacaq.Əgər sizə geri dönüş edilməsə bizimlə əlaqə səhifəsindən bizə müraciət edə bilərsiniz! Sifari {orderEmailDTO.OrderDate}";
+            bodyBuilder.TextBody = $"Sifarişiniz qeydə alındı. Ən qısa zamanda sizinlə əlaqə saxlanılacaq.Əgər sizə geri dönüş edilməsə bizimlə əlaqə səhifəsindən bizə müraciət edə bilərsiniz! Sifari {orderEmailDTO.OrderDate}";
 
             mimeMessage.Body = bodyBuilder.ToMessageBody();
-            mimeMessage.Subject ="Sifariş";
+            mimeMessage.Subject = "Sifariş";
 
             SmtpClient client = new SmtpClient();
 
-            //client.Connect("smtp.gmail.com", 587, false);
-            //client.Authenticate("example@gmail.com", "voxryimidhytyjot");
-            //client.Send(mimeMessage);
-            //client.Disconnect(true);
+            client.Connect("smtp.gmail.com", 587, false);
+            client.Authenticate("example@gmail.com", "voxryimidhytyjot");
+            client.Send(mimeMessage);
+            client.Disconnect(true);
         }
     }
 }

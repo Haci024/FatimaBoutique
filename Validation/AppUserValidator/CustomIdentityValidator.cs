@@ -44,12 +44,27 @@ namespace Validation.AppUserVal
 				Description = "Minimum 1 simvol olmalıdır!"
 			};
 		}
-		
-
-	}
+        public override IdentityError DuplicateEmail(string email)
+        {
+            return new IdentityError
+            {
+                Code = "DuplicateEmail",
+                Description = $"{email} adlı elektron ünvan artıq qeydiyyatdan keçib!"
+            };
+        }
+        public override IdentityError DuplicateUserName(string userName)
+        {
+            return new IdentityError
+            {
+                Code = "DuplicateUserName",
+                Description = $"{userName} adlı istifadəçi  artıq qeydiyyatdan keçib!"
+            };
+        }   
+    }
+}
 
 	/*Qeydiyyat zamanı gələn xətalar Azərbaycan dilinə çevirmək üçün model yaratdıq.Model İdentityErrorDescriber-dan
 	miras alır və metodlarından istifadə edir*/
 	//Suallar
 	//Override nədir?
-}
+

@@ -6,6 +6,8 @@ using Data.Repo;
 using Entity.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using Validation.AppUserVal;
@@ -74,18 +76,23 @@ builder.Services.AddAuthentication(options =>
     options.AccessDeniedPath = "/Account/AccessDenied";
 });
 
+
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 {
     options.Password.RequireUppercase = true;
-    options.Password.RequiredLength =8;
+    options.Password.RequiredLength = 8;
     options.Password.RequireLowercase = true;
-    options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuöğıəşçvwxyzABCDEFGHIJŞÖĞIƏKLMNOPÇQRSTUVWXYZ0123456789";
+    options.User.RequireUniqueEmail = true;
+    options.User = null;
+})
+   
 
+  
 
-}).AddEntityFrameworkStores<Context>().AddErrorDescriber<CustomIdentityValidator>();
+.AddEntityFrameworkStores<Context>().AddErrorDescriber<CustomIdentityValidator>()
+.AddDefaultTokenProviders();
 
 var app = builder.Build();
-
 
 if (!app.Environment.IsDevelopment())
 {
@@ -100,7 +107,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
+app.UseAuthentication();
 app.MapControllerRoute(
     name: "Admin",
     pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
@@ -108,6 +115,6 @@ app.MapControllerRoute(
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Account}/{action=Login}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

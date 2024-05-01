@@ -1,70 +1,50 @@
 ﻿@model DTO.UserDTO.LoginUserDTO
 @{
-    ViewBag.Title = "Login | Fatimah Boutique";
+    ViewBag.Title = "Giriş | Fatimah Boutique";
     Layout = "~/Views/Shared/_LayoutNoFooterHeader.cshtml";
 }
 
 <!-- Log In Section Start -->
-<div class="login-section">
+<form class="login-section" method="post">
     <div class="materialContainer">
         <div class="box">
             <div class="login-title">
-                <h2>Login</h2>
+                <h2>Giriş</h2>
             </div>
             <div class="input">
-                <label for="name">Username</label>
-                <input type="text" name="name" id="name" required>
+                <label for="name">Elektron ünvan</label>
+                <input type="email" asp-for="Email" name="Email" id="name" required>
                 <span class="spin"></span>
                 <div class="valid-feedback">
-                    Please fill the name
+                    
                 </div>
             </div>
 
             <div class="input">
-                <label for="pass">Password</label>
-                <input type="password" name="pass" id="pass">
+                <label for="pass">Şifrə</label>
+                <input type="password" asp-for="Password" name="Password" id="pass">
                 <span class="spin"></span>
             </div>
-
-            <a href="forgot.html" class="pass-forgot">Forgot your password?</a>
+            <div asp-validation-summary="ModelOnly" style="color:red"></div>
+            <a asp-action="ForgetPassword" class="pass-forgot">Şifrəni unutmusan?</a>
 
             <div class="button login">
-                <button onclick="location.href = 'index.html';" type="submit">
-                    <span>Log In</span>
-                    <i class="fa fa-check"></i>
+                <button  type="submit">
+                    <span>Daxil ol</span>
+                   
                 </button>
             </div>
+            
 
-            <p class="sign-category">
-                <span>Or sign in with</span>
-            </p>
+         
 
-            <div class="row gx-md-3 gy-3">
-                <div class="col-md-6">
-                    <a href="www.facebook.html">
-                        <div class="social-media fb-media">
-                            <img src="~/assets/images/inner-page/facebook.png" class="img-fluid blur-up lazyload"
-                                 alt="">
-                            <h6>Facebook</h6>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-6">
-                    <a href="www.gmail.html">
-                        <div class="social-media google-media">
-                            <img src="~/assets/images/inner-page/google.png" class="img-fluid blur-up lazyload"
-                                 alt="">
-                            <h6>Google</h6>
-                        </div>
-                    </a>
-                </div>
-            </div>
+         
 
-            <p>Not a member? <a href="sign-up.html" class="theme-color">Sign up now</a></p>
+            <p>Hesabınız yoxdur? <a asp-action="Register" class="theme-color">Qeydiyyatdan keç </a></p>
 
         </div>
     </div>
-</div>
+</form>
 <!-- Log In Section End -->
 
 @section styles{

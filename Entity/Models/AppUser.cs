@@ -8,11 +8,8 @@ using System.Threading.Tasks;
 
 namespace Entity.Models
 {
-    public class AppUser:IdentityUser<string>
+    public class AppUser:IdentityUser
     {
-       
-        public string Gmail {  get; set; }
-
         public string FullName { get; set; }
 
         public bool Status { get; set; }
@@ -22,6 +19,8 @@ namespace Entity.Models
         public List<Orders> Orders { get; set; }
 
         public string PhoneNumber { get; set; }
+
+        public int ConfirmationCode { get; set; }
 
     }
 }

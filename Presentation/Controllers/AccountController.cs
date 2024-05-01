@@ -5,6 +5,11 @@ using Entity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
+using MimeKit;
+using System.Net.Mail;
+using System.Net.WebSockets;
+using Validation.AppUserVal;
+using Validation.AppUserValidator;
 
 namespace Presentation.Controllers
 {
@@ -14,8 +19,17 @@ namespace Presentation.Controllers
         private readonly Context _db;
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IEmailService _emailService;
 
+        public AccountController(Context db, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager, IEmailService emailService)
+        {
+            _db = db;
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _roleManager = roleManager;
+            _emailService = emailService;
+        }
 
         [HttpGet]
         public IActionResult Login()
@@ -26,17 +40,57 @@ namespace Presentation.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Login(LoginUserDTO dto)
+        public async Task<IActionResult> Login(LoginUserDTO dto)
         {
+            if (dto.Email == null && dto.Password == null)
+            {
+                ModelState.AddModelError("", "Elektron ünvanınızı və şifrənizi daxil edin!");
 
-            return View();
+                return View(dto);
+            }
+            AppUser user = await _userManager.FindByEmailAsync(dto.Email);
+            if (user!=null)
+            {
+                var result = await _signInManager.PasswordSignInAsync(user.UserName, dto.Password, false, true);
+
+                if (result.IsLockedOut)
+                {
+                    ModelState.AddModelError("", "Şifrəni 5 dəfə səhv yazdığınız üçün müvəqqəti olaraq bloklandı");
+
+                    return View(dto);
+                }
+                if (result.Succeeded)
+                {
+
+                    if (User.IsInRole("Admin"))
+                    {
+                        return RedirectToAction("Profile", "Account");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Dashboard");
+                    }
+
+                }
+            }
+
+            else
+            {
+                ModelState.AddModelError("", "Elektron ünvan və ya şifrə yalnışdır!");
+
+                return View(dto);
+            }
+               
+            return View(dto);
+           
         }
-    
+
         [HttpGet]
         public IActionResult ForgetPassword()
         {
             EmailForResetPasswordDTO forResetPasswordDTO= new EmailForResetPasswordDTO();
-            return View();
+           
+            return View(forResetPasswordDTO);
         }
         [HttpPost]
         public async Task<IActionResult> ForgetPassword(EmailForResetPasswordDTO dto)
@@ -108,9 +162,11 @@ namespace Presentation.Controllers
             else
             {
                 ModelState.AddModelError("", "Daxil edilən təsdiq kodu yalnışdır. Zəhmət olmasa kodu  düzgün daxil edin!");
+
+                return View();
             }
 
-            return View();
+           
         }
         [HttpGet]
         public async Task<IActionResult> NewPassword(string email)
@@ -141,9 +197,9 @@ namespace Presentation.Controllers
             }
             if (user != null)
             {
-                if (DTO.Password.Length < 6)
+                if (DTO.Password.Length < 8)
                 {
-                    ModelState.AddModelError("", "Şifrə ən az 6 simvol uzunluğunda olmalıdır.");
+                    ModelState.AddModelError("", "Şifrə ən az 8 simvol uzunluğunda olmalıdır.");
                     return View();
                 }
                 if (!DTO.Password.Any(char.IsNumber))
@@ -196,10 +252,96 @@ namespace Presentation.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Register(RegisterUserDTO registerUserDTO)
+        public async Task<IActionResult> Register(RegisterUserDTO dto)
         {
-            return RedirectToAction("Login","Account");
+            var validator = new RegisterValidator();
+            var validationResult = await validator.ValidateAsync(dto);
+            if (!validationResult.IsValid)
+            {
+                foreach (var error in validationResult.Errors)
+                {
+                    ModelState.AddModelError("", error.ErrorMessage);
+
+                    return View(dto);
+                }
+
+            }
+            Random random=new Random();
+            int confirmCode = random.Next(100000, 999999);
+            AppUser appUser = new AppUser()
+            {
+                FullName = dto.FullName,
+                Email = dto.Email,
+                PhoneNumber = dto.PhoneNumber,
+                ConfirmationCode= confirmCode,
+                UserName=null
+              
+            };
+           
+            var result = await _userManager.CreateAsync(appUser, dto.Password);
+           
+            if(result.Succeeded)
+            {
+                _emailService.SendActivateAccountCode(appUser);
+                return RedirectToAction("ConfirmMail", "Account", new { appUser.Email });
+            }
+            else
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+                return View(dto);
+            }
         }
+        [HttpGet]
+        public IActionResult ConfirmMail(string email)
+        {
+            if (email == null)
+            {
+                return View("Error");
+            }
+            var User=_userManager.FindByEmailAsync(email);
+            if (User ==null) { 
+              
+                return View("Error");
+            }
+            ConfirmCodeDTO dto = new ConfirmCodeDTO();
+
+            return View(dto);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ConfirmMail(string email,ConfirmCodeDTO dto)
+        {
+            if (email == null)
+            {
+                return View("Error");
+            }
+            AppUser User =await _userManager.FindByEmailAsync(email);
+            if (User == null)
+            {
+
+                return View("Error");
+            }
+            if (User.ConfirmationCode==dto.ConfirmCode)
+            {
+                _userManager.UpdateAsync(User);
+              
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Daxil etdiyiniz kod düzgün deyil!");
+                
+                return View(dto);
+            }
+         
+            
+
+           
+        }
+
 
         public IActionResult Profile()
         {
