@@ -11,7 +11,6 @@ namespace Data.DAL
 {
     public interface IAboutUsDAL : IGenericDAL<AboutUs>
     {
-       
      
     }
 }

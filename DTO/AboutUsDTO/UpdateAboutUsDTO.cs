@@ -8,10 +8,14 @@ namespace DTO.AboutUsDTO
 {
     public class UpdateAboutUsDTO
     {
-        public string Title { get; set; }
+        public List<UpdateAboutUsLanguageDTO> Languages { get; set; }
+    }
 
+    public class UpdateAboutUsLanguageDTO
+    {
+        public int LanguageId { get; set; }
+        public string FirstTitle { get; set; }
+        public string SecondTitle { get; set; }
         public string Description { get; set; }
-
-
     }
 }

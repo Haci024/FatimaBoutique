@@ -37,6 +37,7 @@ namespace DAL.DbConnection
         public DbSet<BlogImages> BlogsImages { get; set; }
 
         public DbSet<AboutUs> AboutUs { get; set; }
+        public DbSet<AboutUsLanguage> AboutUsLanguages { get; set; }
 
         public DbSet<SocialMedia> SocialMedia { get; set; }
 
@@ -44,7 +45,7 @@ namespace DAL.DbConnection
 
         public DbSet<Orders> Orders { get; set; }
 
-
+        public DbSet<Language> Languages { get; set; }
 
 
 
@@ -61,7 +62,6 @@ namespace DAL.DbConnection
                WithMany(y => y.Blogs).
                HasForeignKey(x => x.CategoryId).
                OnDelete(DeleteBehavior.ClientSetNull);
-
 
 
             base.OnModelCreating(modelBuilder);
