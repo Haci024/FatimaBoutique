@@ -10,7 +10,6 @@ namespace Entity.Models
 {
     public class AppUser:IdentityUser
     {
-        public string FullName { get; set; }
 
         public bool Status { get; set; }
         
@@ -21,6 +20,8 @@ namespace Entity.Models
         public string PhoneNumber { get; set; }
 
         public int ConfirmationCode { get; set; }
+
+        public bool ActivateBonus { get; set; }
 
     }
 }

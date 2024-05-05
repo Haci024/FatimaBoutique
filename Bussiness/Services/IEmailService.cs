@@ -14,7 +14,7 @@ namespace Bussiness.Services
 
         public void SendOrderEmailToAdmin(AppUser appUser);
 
-        public void ForgetPasswordEmail(AppUser appUser,string email, int accessCode);
+        public void ForgetPasswordEmail(AppUser appUser);
 
         public void SendActivateAccountCode(AppUser appUser);
     }

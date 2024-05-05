@@ -25,16 +25,16 @@ namespace Bussiness.Manager
 
         }
 
-        public void ForgetPasswordEmail(AppUser appUser, string Email, int accessCode)
+        public void ForgetPasswordEmail(AppUser appUser)
         {
             MimeMessage mimeMessage = new MimeMessage();
-            MailboxAddress ConfirmAddressFrom = new MailboxAddress(appUser.FullName, "example@gmail.com");
-            MailboxAddress ConfirmAdressTo = new MailboxAddress("Yeni Sifariş", appUser.Email);
+            MailboxAddress ConfirmAddressFrom = new MailboxAddress(appUser.UserName, "odisseybanks024@gmail.com");
+            MailboxAddress ConfirmAdressTo = new MailboxAddress("FatimahBoutiqueForgetPassword", appUser.Email);
 
             mimeMessage.From.Add(ConfirmAddressFrom);
             mimeMessage.To.Add(ConfirmAdressTo);
             var bodyBuilder = new BodyBuilder();
-            bodyBuilder.TextBody = $"Təsdiq şifrəniz :{accessCode}";
+            bodyBuilder.TextBody = $"Hörmətli {appUser.UserName} yeni şifrə yaratmaq üçün bu təsdiq şifrəniz :{appUser.ForgetPasswordCode}";
 
             mimeMessage.Body = bodyBuilder.ToMessageBody();
 
@@ -42,7 +42,7 @@ namespace Bussiness.Manager
             SmtpClient client = new SmtpClient();
 
             client.Connect("smtp.gmail.com", 587, false);
-            client.Authenticate("example@gmail.com", "voxryimidhytyjot");
+            client.Authenticate("odisseybanks024@gmail.com", "voxryimidhytyjot");
             client.Send(mimeMessage);
             client.Disconnect(true);
         }
@@ -50,19 +50,20 @@ namespace Bussiness.Manager
         public void SendActivateAccountCode(AppUser appUser)
         {
             MimeMessage mimeMessage = new MimeMessage();
-            MailboxAddress ConfirmAddressFrom = new MailboxAddress(appUser.FullName, "example@gmail.com");
+            MailboxAddress ConfirmAddressFrom = new MailboxAddress(appUser.UserName, "odisseybanks024@gmail.com");
             MailboxAddress ConfirmAdressTo = new MailboxAddress("Hesab aktivləşdirmə", appUser.Email);
 
             mimeMessage.From.Add(ConfirmAddressFrom);
             mimeMessage.To.Add(ConfirmAdressTo);
             var bodyBuilder = new BodyBuilder();
+            
             bodyBuilder.TextBody = "Hesabınızı aktivləşdirmək üçün bu kodunuz:" + " " + appUser.ConfirmationCode;
 
             mimeMessage.Body = bodyBuilder.ToMessageBody();
             using (SmtpClient client = new SmtpClient())
             {
                 client.Connect("smtp.gmail.com", 587, false);
-                client.Authenticate("example@gmail.com", "voxryimidhytyjot");
+                client.Authenticate("odisseybanks024@gmail.com", "voxryimidhytyjot");
 
                 client.Send(mimeMessage);
             }
@@ -72,7 +73,7 @@ namespace Bussiness.Manager
         public void SendOrderEmailToAdmin(AppUser appUser)
         {
             MimeMessage mimeMessage = new MimeMessage();
-            MailboxAddress ConfirmAddressFrom = new MailboxAddress(appUser.FullName, "example@gmail.com");
+            MailboxAddress ConfirmAddressFrom = new MailboxAddress(appUser.UserName, "odisseybanks024@gmail.com");
             MailboxAddress ConfirmAdressTo = new MailboxAddress("Yeni Sifariş", appUser.Email);
 
             mimeMessage.From.Add(ConfirmAddressFrom);
@@ -86,7 +87,7 @@ namespace Bussiness.Manager
             SmtpClient client = new SmtpClient();
 
             client.Connect("smtp.gmail.com", 587, false);
-            client.Authenticate("example@gmail.com", "voxryimidhytyjot");
+            client.Authenticate("odisseybanks024@gmail.com", "voxryimidhytyjot");
             client.Send(mimeMessage);
             client.Disconnect(true);
         }
@@ -94,7 +95,7 @@ namespace Bussiness.Manager
         public void SendOrderEmailToCustomer(OrderEmailDTO orderEmailDTO, AppUser appUser)
         {
             MimeMessage mimeMessage = new MimeMessage();
-            MailboxAddress ConfirmAddressFrom = new MailboxAddress("Hörmətli" + " " + appUser.FullName, "example@gmail.com");
+            MailboxAddress ConfirmAddressFrom = new MailboxAddress("Hörmətli"+ appUser.UserName, "odisseybanks024@gmail.com");
             MailboxAddress ConfirmAdressTo = new MailboxAddress("Sifariş", appUser.Email);
 
             mimeMessage.From.Add(ConfirmAddressFrom);
@@ -108,7 +109,7 @@ namespace Bussiness.Manager
             SmtpClient client = new SmtpClient();
 
             client.Connect("smtp.gmail.com", 587, false);
-            client.Authenticate("example@gmail.com", "voxryimidhytyjot");
+            client.Authenticate("odisseybanks024@gmail.com", "voxryimidhytyjot");
             client.Send(mimeMessage);
             client.Disconnect(true);
         }

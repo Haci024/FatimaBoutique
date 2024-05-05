@@ -15,7 +15,7 @@ namespace Validation.AppUserValidator
             RuleFor(x => x.Password).NotEmpty().WithMessage("Şifrə təyin edin!");
             RuleFor(x => x.ConfirmPassword).NotEmpty().WithMessage("Şifrə təkrarı boş ola bilməz!").Equal(x => x.Password).WithMessage("Şifrələr eyni deyil!");
             RuleFor(x=>x.Email).NotEmpty().WithMessage("Elektron ünvanınızı daxil edin...");
-            RuleFor(x => x.FullName).NotEmpty().WithMessage("Alış-veriş zamanı sizə müraciət etməyimiz üçün adınızı daxil edin ...");
+            RuleFor(x => x.UserName).NotEmpty().WithMessage("Alış-veriş zamanı sizə müraciət etməyimiz üçün adınızı daxil edin ...");
             RuleFor(x => x.PhoneNumber).NotEmpty().WithMessage("Telefon nömrənizi  daxil edin...");
         }
     }

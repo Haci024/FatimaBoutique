@@ -52,15 +52,15 @@ namespace Validation.AppUserVal
                 Description = $"{email} adlı elektron ünvan artıq qeydiyyatdan keçib!"
             };
         }
-        public override IdentityError DuplicateUserName(string userName)
-        {
-            return new IdentityError
-            {
-                Code = "DuplicateUserName",
-                Description = $"{userName} adlı istifadəçi  artıq qeydiyyatdan keçib!"
-            };
-        }   
-    }
+		public override IdentityError DuplicateUserName(string userName)
+		{
+			return new IdentityError
+			{
+				Code = "DuplicateUserName",
+				Description = $"{userName} adlı istifadəçi  artıq qeydiyyatdan keçib!"
+			};
+		}
+	}
 }
 
 	/*Qeydiyyat zamanı gələn xətalar Azərbaycan dilinə çevirmək üçün model yaratdıq.Model İdentityErrorDescriber-dan
