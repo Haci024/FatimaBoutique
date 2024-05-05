@@ -1,6 +1,8 @@
-﻿@{
+﻿@model DTO.ContactUsDTO.AddContactUsDTO
+@{
     ViewBag.Title = "Contact Us | Fatimah Boutique";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    bool send = ViewBag.IsExsist;
 }
 
 <!-- Breadcrumb section start -->
@@ -20,7 +22,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h3>Contact Us</h3>
+                <h3>Bizimlə əlaqə</h3>
                 <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
@@ -39,75 +41,71 @@
 <!-- Contact Section Start -->
 <section class="contact-section">
     <div class="container">
+        <form method="post">
+
+        </form>
         <div class="row g-4">
             <div class="col-lg-7">
-                <div class="materialContainer">
-                    <div class="material-details">
-                        <div class="title title1 title-effect mb-1 title-left">
-                            <h2>Contact Us</h2>
-                            <p class="ms-0 w-100">
-                                Your email address will not be published. Required fields are
-                                marked *
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row g-4 mt-md-1 mt-2">
-                        <div class="col-md-6">
-                            <label for="first" class="form-label">First Name</label>
-                            <input type="text" class="form-control" id="first" placeholder="Enter Your First Name"
-                                   required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="last" class="form-label">Last Name</label>
-                            <input type="text" class="form-control" id="last" placeholder="Enter Your Last Name"
-                                   required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email"
-                                   placeholder="Enter Your Email Address" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="email2" class="form-label">Confirm Email</label>
-                            <input type="email" class="form-control" id="email2"
-                                   placeholder="Enter Your Confirm Email Address" required>
+                <form method="post">
+                    <div class="materialContainer">
+                        <div class="material-details">
+                            <div class="title title1 title-effect mb-1 title-left">
+                                <h2>Bizimlə əlaqə</h2>
+                                <p class="ms-0 w-100">
+                                    <div asp-validation-summary="ModelOnly" sstyle="color:red"></div>
+                                </p>
+                            </div>
                         </div>
 
-                        <div class="col-12">
-                            <label for="comment" class="form-label">Comment</label>
-                            <textarea class="form-control" id="comment" rows="5" required></textarea>
-                        </div>
+                        <div class="row g-4 mt-md-1 mt-2">
+                            <div class="col-md-6">
+                                <label for="first" class="form-label">Adınız</label>
+                                <input type="text" class="form-control" asp-for="FullName" name="FullName" id="first" placeholder="Adınızı daxil edin ...">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="last" class="form-label">Telefon nömrəsi</label>
+                                <input type="text" class="form-control" asp-for="PhoneNumber" name="PhoneNumber" id="phone" placeholder="Telefon nömrəsi">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="email" class="form-label">Elekteon ünvan</label>
+                                <input type="email" class="form-control" asp-for="Gmail" name="Gmail"  id="email"
+                                       placeholder="Elektron ünvanınızı daxil edin...">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="email2" class="form-label">Başlıq</label>
+                                <input type="text" asp-for="Title" class="form-control" name="Title" id="email2"
+                                       placeholder="Nə ilə bağlı müraciət edirsiniz?...">
+                            </div>
 
-                        <div class="col-auto">
-                            <button class="btn btn-solid-default" type="submit">Submit</button>
+                            <div class="col-12">
+                                <label for="comment" class="form-label">Mətn</label>
+                                <textarea class="form-control" asp-for="Description" name="Description" id="comment" placeholder="Mövzu..." rows="6"></textarea>
+                            </div>
+
+                            <div class="col-auto">
+                                <button class="btn btn-solid-default" type="submit">Göndər</button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
+             
             </div>
 
             <div class="col-lg-5">
                 <div class="contact-details">
                     <div>
                         <h2>Let's get in touch</h2>
-                        <h5 class="font-light">We're open for any suggestion or just to have a chat</h5>
-                        <div class="contact-box">
-                            <div class="contact-icon">
-                                <i data-feather="map-pin"></i>
-                            </div>
-                            <div class="contact-title">
-                                <h4>Address :</h4>
-                                <p>1418 Riverwood Drive, Suite 3245 Cottonwood, CA 96052, United States</p>
-                            </div>
-                        </div>
+                        <h5 class="font-light">7/24 bizimlə əlaqə saxlaya bilərsiniz</h5>
+                      
 
                         <div class="contact-box">
                             <div class="contact-icon">
                                 <i data-feather="phone"></i>
                             </div>
                             <div class="contact-title">
-                                <h4>Phone Number :</h4>
-                                <p>+ 185659635</p>
-                                <p>+ 658651167</p>
+                                <h4>Telefon nömrəsi :</h4>
+                                <p>+994 099-999-99-99</p>
+                                <p>+994 011-111-11-11</p>
                             </div>
                         </div>
 
@@ -116,9 +114,9 @@
                                 <i data-feather="mail"></i>
                             </div>
                             <div class="contact-title">
-                                <h4>Email Address :</h4>
-                                <p>voxo123@gmail.com</p>
-                                <p>voxo987@gmail.com</p>
+                                <h4>Elektron ünvan:</h4>
+                                <p>contactUs1@fatimah-boutique.com</p>
+                                <p>contactUs2@fatimah-boutique.com</p>
                             </div>
                         </div>
                     </div>
@@ -142,32 +140,7 @@
     </div>
 </section>
 <!-- Map Section End -->
-<!-- Subscribe Section Start -->
-<section class="subscribe-section section-b-space">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-6">
-                <div class="subscribe-details">
-                    <h2 class="mb-3">Subscribe Our News</h2>
-                    <h6 class="font-light">
-                        Subscribe and receive our newsletters to follow the news about our fresh
-                        and fantastic Products.
-                    </h6>
-                </div>
-            </div>
 
-            <div class="col-lg-4 col-md-6 mt-md-0 mt-3">
-                <div class="subsribe-input">
-                    <div class="input-group">
-                        <input type="text" class="form-control subscribe-input" placeholder="Your Email Address">
-                        <button class="btn btn-solid-default" type="button">Button</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Subscribe Section End -->
 
 @section styles{
     <!-- Google font -->
@@ -176,6 +149,7 @@
 
     <!-- bootstrap css -->
     <link id="rtl-link" rel="stylesheet" type="text/css" href="~/assets/css/vendors/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- font-awesome css -->
     <link rel="stylesheet" type="text/css" href="~/assets/css/vendors/font-awesome.css">
@@ -224,6 +198,70 @@
     <!-- script js -->
     <script src="~/assets/js/theme-setting.js" defer></script>
     <script src="~/assets/js/script.js" defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var inputElement = document.getElementById('phone');
+            inputElement.addEventListener('input', function (e) {
+                var input = e.target;
+                if (input.value.length <= 23) {
+                    var formatted = formatTelefon(input.value);
+                    input.value = formatted;
+                } else {
+                    input.value = input.value.slice(0, 23);
+                }
+            });
+        });
+
+        function formatTelefon(numara) {
+            var cleaned = ('' + numara).replace(/\D/g, '');
+
+            var formatted = cleaned.replace(/(\d{0,3})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/, function (regex, grup1, grup2, grup3, grup4, grup5) {
+                var formattedNumara = '';
+                if (grup1) {
+                    formattedNumara += '(' + grup1;
+                }
+                if (grup2) {
+                    formattedNumara += ') ' + grup2;
+                }
+                if (grup3) {
+                    formattedNumara += '-' + grup3;
+                }
+                if (grup4) {
+                    formattedNumara += '-' + grup4;
+                }
+                if (grup5) {
+                    formattedNumara += '-' + grup5;
+                }
+                return formattedNumara;
+            });
+            return formatted;
+        }
+    </script>
+}
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <script>
+        Swal.fire({
+            icon: 'warning',
+            title: 'Xəbərdarlıq!',
+            text: 'Zəhmət olmasa müraciət formunu tam doldurun!'
+        });
+    </script>
+
+}
+@if (send)
+{
+
+    <script>
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Göndərildi!',
+            text: 'Sizin müraciətiniz qeydə alındı ən qısa zamanda sizinlə əlaqə saxlanılacaq.Bizi izləmədə qalın!'
+        });
+    </script>
+
 }
 
 @section modals{

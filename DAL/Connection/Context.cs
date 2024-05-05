@@ -37,7 +37,8 @@ namespace DAL.DbConnection
         public DbSet<BlogImages> BlogsImages { get; set; }
 
         public DbSet<AboutUs> AboutUs { get; set; }
-        public DbSet<AboutUsLanguage> AboutUsLanguages { get; set; }
+      
+      //  public DbSet<AboutUsLanguage> AboutUsLanguages { get; set; }
 
         public DbSet<SocialMedia> SocialMedia { get; set; }
 

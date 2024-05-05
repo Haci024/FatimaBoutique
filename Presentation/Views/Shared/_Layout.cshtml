@@ -47,7 +47,7 @@
                                 <div class="category-menu">
                                     <div class="category-dropdown">
                                         <div class="close-btn d-xl-none">
-                                            Category List
+                                            Kateqoriyalar
                                             <span class="back-category">
                                                 <i class="fa fa-angle-left"></i>
                                             </span>
@@ -293,7 +293,7 @@
                                                 <a asp-controller="Home" asp-action="Index" class="nav-link">Əsas </a>
                                             </li>
                                             <li class="dropdown">
-                                                <a asp-controller="Shop" asp-action="Index" class="nav-link">Aksesuarlar</a>
+                                                <a asp-controller="Shop" asp-action="Index" class="nav-link">Məhsullar</a>
                                             </li>
                                            
                                             <li class="mega-menu dropdown ratio_40">
@@ -302,7 +302,7 @@
                                                 </a>
                                             </li>
                                             <li class="dropdown">
-                                                <a href="./contact-us.html" class="nav-link">Bizimlə əlaqə</a>
+                                                <a asp-controller="Home" asp-action="ContactUs" class="nav-link">Bizimlə əlaqə</a>
                                             </li>
                                          
                                             <li class="mobile-poster d-flex d-xl-none">
@@ -504,33 +504,28 @@
     <div class="mobile-menu d-sm-none">
         <ul>
             <li>
-                <a href="demo3.html" class="active">
+                <a asp-controller="Home" asp-action="Index" class="active">
                     <i data-feather="home"></i>
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="javascript:void(0)" class="toggle-category">
+                <a asp-controller="Shop" asp-action="Index" class="toggle-category">
                     <i data-feather="align-justify"></i>
                     <span>Category</span>
                 </a>
             </li>
             <li>
-                <a href="javascript:void(0)">
+                <a asp-controller="Shop" asp-action="Basket">
                     <i data-feather="shopping-bag"></i>
-                    <span>Cart</span>
+                    <span>Səbət</span>
                 </a>
             </li>
+       
             <li>
-                <a href="javascript:void(0)">
-                    <i data-feather="heart"></i>
-                    <span>Wishlist</span>
-                </a>
-            </li>
-            <li>
-                <a href="user-dashboard.html">
+                <a asp-controller="Account" asp-action="Profile">
                     <i data-feather="user"></i>
-                    <span>Account</span>
+                    <span>Profilim</span>
                 </a>
             </li>
         </ul>
@@ -568,7 +563,7 @@
                                     </span>
                                 </li>
                                 <li>
-                                    <span><b>Email:</b><span class="font-light"> Voxo123@gmail.com</span></span>
+                                    <span><b>Elektron ünvan:</b><span class="font-light"> Voxo123@gmail.com</span></span>
 
                                 </li>
                             </ul>
@@ -577,24 +572,24 @@
                     <div class="col-lg-2 col-md-4 col-sm-6">
                         <div class="footer-links">
                             <div class="footer-title">
-                                <h3>About us</h3>
+                                <h3>Səhifələr</h3>
                             </div>
                             <div class="footer-content">
                                 <ul>
                                     <li>
-                                        <a href="./index.html" class="font-dark">Home</a>
+                                        <a asp-controller="Home" asp-action="Index" class="font-dark">Əsas səhifə</a>
                                     </li>
                                     <li>
-                                        <a href="./shop.html" class="font-dark">Shop</a>
+                                        <a asp-controller="Shop" asp-action="Index" class="font-dark">Məhsullar</a>
                                     </li>
                                     <li>
-                                        <a href="./about-us.html" class="font-dark">About Us</a>
+                                        <a asp-controller="Home" asp-action="Index" class="font-dark">Haqqımızda</a>
                                     </li>
                                     <li>
-                                        <a href="./blogs.html" class="font-dark">Blog</a>
+                                        <a asp-controller="Home" asp-action="Faq" class="font-dark">Tez-tez verilən suallar</a>
                                     </li>
                                     <li>
-                                        <a href="./contact-us.html" class="font-dark">Contact</a>
+                                        <a asp-controller="Home" asp-action="ContactUs" class="font-dark">Bizimlə əlaqə</a>
                                     </li>
                                 </ul>
                             </div>

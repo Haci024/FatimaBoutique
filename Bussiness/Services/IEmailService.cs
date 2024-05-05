@@ -1,4 +1,5 @@
-﻿using DTO.EmailDTO;
+﻿using DTO.ContactUsDTO;
+using DTO.EmailDTO;
 using Entity.Models;
 using System;
 using System.Collections.Generic;
@@ -17,5 +18,7 @@ namespace Bussiness.Services
         public void ForgetPasswordEmail(AppUser appUser);
 
         public void SendActivateAccountCode(AppUser appUser);
+
+        public void ContactUsAvtoMessageForUser(AddContactUsDTO contactUsDTO);
     }
 }
