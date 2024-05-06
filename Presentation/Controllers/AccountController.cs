@@ -165,7 +165,7 @@ namespace Presentation.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ConfirmMail(string email, ConfirmCodeDTO dto)
+        public async Task<IActionResult> ConfirmMailAsync(string email, ConfirmCodeDTO dto)
         {
             if (email == null)
             {
@@ -180,7 +180,7 @@ namespace Presentation.Controllers
             if (User.ConfirmationCode == dto.ConfirmCode)
             {
                 User.EmailConfirmed = true;
-                _userManager.UpdateAsync(User);
+                await _userManager.UpdateAsync(User);
 
                 return RedirectToAction("Login", "Account");
             }

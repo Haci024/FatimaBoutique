@@ -10,6 +10,8 @@ namespace Data.DAL
 {
     public interface IFrequentlyQuestionDAL:IGenericDAL<FrequentlyQuestions>
     {
+        public IEnumerable<FrequentlyQuestions> ActiveFaqList();
 
+        public IEnumerable<FrequentlyQuestions> DeactiveFaqList();
     }
 }

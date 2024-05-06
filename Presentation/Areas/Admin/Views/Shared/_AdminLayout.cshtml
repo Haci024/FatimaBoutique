@@ -1,44 +1,400 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
+
+
+<!-- Mirrored from themes.pixelstrap.com/voxo/back-end/list-page.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Sep 2023 18:53:05 GMT -->
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Presentation</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Presentation.styles.css" asp-append-version="true" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+          content="Voxo admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+    <meta name="keywords"
+          content="admin template, Voxo admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="~/admin/assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="~/admin/assets/images/favicon.png" type="image/x-icon">
+    <title>Voxo - List Page</title>
+
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&amp;family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&amp;display=swap"
+          rel="stylesheet">
+
+    <!-- Fontawesome css -->
+    <link rel="stylesheet" type="text/css" href="~/admin/assets/css/vendors/font-awesome.css">
+
+    <!-- Linear Icon css -->
+    <link rel="stylesheet" href="~/admin/assets/css/linearicon.css">
+
+    <!-- Themify icon css -->
+    <link rel="stylesheet" type="text/css" href="~/admin/assets/css/vendors/themify.css">
+
+    <!-- Feather icon css -->
+    <link rel="stylesheet" type="text/css" href="~/admin/assets/css/vendors/feather-icon.css">
+
+    <!-- Plugins css -->
+    <link rel="stylesheet" type="text/css" href="~/admin/assets/css/vendors/scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="~/admin/assets/css/vendors/animate.css">
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="~/admin/assets/css/vendors/bootstrap.css">
+
+    <!-- App css -->
+    <link rel="stylesheet" type="text/css" href="~/admin/assets/css/style.css">
+
+    <!-- Responsive css -->
+    <link rel="stylesheet" type="text/css" href="~/admin/assets/css/responsive.css">
 </head>
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Presentation</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-           
+    <!-- tap on top start -->
+    <div class="tap-top">
+        <span class="lnr lnr-chevron-up"></span>
+    </div>
+    <!-- tap on tap end -->
+    <!-- page-wrapper Start -->
+    <div class="page-wrapper compact-wrapper dark-sidebar" id="pageWrapper">
+        <!-- Page Header Start -->
+        <div class="page-header">
+            <div class="header-wrapper row m-0">
+                <div class="header-logo-wrapper col-auto p-0">
+                    <div class="logo-wrapper">
+                        <a href="index.html">
+                            <img class="img-fluid main-logo" src="~/admin/assets/images/logo/logo.png" alt="logo">
+                            <img class="img-fluid white-logo" src="~/admin/assets/images/logo/logo-white.png" alt="logo">
+                        </a>
+                    </div>
+                    <div class="toggle-sidebar">
+                        <i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i>
+                    </div>
+                </div>
+
+                <form class="form-inline search-full col" action="#" method="get">
+                    <div class="form-group w-100">
+                        <div class="Typeahead Typeahead--twitterUsers">
+                            <div class="u-posRelative">
+                                <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text"
+                                       placeholder="Search Voxo .." name="q" title="" autofocus>
+                                <i class="close-search" data-feather="x"></i>
+                                <div class="spinner-border Typeahead-spinner" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                            <div class="Typeahead-menu"></div>
+                        </div>
+                    </div>
+                </form>
+                <div class="nav-right col-4 pull-right right-header p-0">
+                    <ul class="nav-menus">
+                        <li>
+                            <span class="header-search">
+                                <span class="lnr lnr-magnifier"></span>
+                            </span>
+                        </li>
+                        <li class="onhover-dropdown">
+                            <div class="notification-box">
+                                <span class="lnr lnr-alarm"></span>
+                                <span class="badge rounded-pill badge-theme">4</span>
+                            </div>
+                            <ul class="notification-dropdown onhover-show-div">
+                                <li>
+                                    <span class="lnr lnr-alarm"></span>
+                                    <h6 class="f-18 mb-0">Notitications</h6>
+                                </li>
+                                <li>
+                                    <p>
+                                        <i class="fa fa-circle-o me-3 font-primary"></i>Delivery processing <span class="pull-right">
+                                            10
+                                            min.
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        <i class="fa fa-circle-o me-3 font-success"></i>Order Complete<span class="pull-right">1 hr</span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        <i class="fa fa-circle-o me-3 font-info"></i>Tickets Generated<span class="pull-right">3 hr</span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        <i class="fa fa-circle-o me-3 font-danger"></i>Delivery Complete<span class="pull-right">
+                                            6
+                                            hr
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <a class="btn btn-primary" href="javascript:void(0)">Check all notification</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <div class="mode">
+                                <span class="lnr lnr-moon"></span>
+                            </div>
+                        </li>
+                        <li class="maximize">
+                            <a class="text-dark" href="javascript:void(0)" onclick="javascript:toggleFullScreen()">
+                                <span class="lnr lnr-frame-expand"></span>
+                            </a>
+                        </li>
+                        <li class="profile-nav onhover-dropdown pe-0 me-0">
+                            <div class="media profile-media">
+                                <img class="user-profile rounded-circle" src="~/admin/assets/images/users/4.jpg"
+                                     alt="profile-picture">
+                                <div class="user-name-hide media-body">
+                                    <span>Orxan Aslan</span>
+
+                                    <p class="mb-0 font-roboto">Admin<i class="middle fa fa-angle-down"></i></p>
+                                </div>
+                            </div>
+                            <ul class="profile-dropdown onhover-show-div">
+                                <li>
+                                    <a asp-controller="Users" asp-action="MyProfile">
+                                        <i data-feather="users"></i>
+                                        <span>Hesab məlumatlarım</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Users" asp-action="UpdatePassword">
+                                        <i data-feather="key"></i>
+                                        <span>Şifrəni dəyiş</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Users" asp-action="Logout" data-bs-target="#staticBackdrop">
+                                        <i data-feather="log-out"></i>
+                                        <span>Hesabdan çıxış</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - Presentation - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+        <!-- Page Header End -->
+        <!-- Page Body Start -->
+        <div class="page-body-wrapper">
+            <!-- Page Sidebar Start-->
+            <div class="sidebar-wrapper">
+                <div>
+                    <div class="logo-wrapper logo-wrapper-center">
+                        <a href="index.html" data-bs-original-title="" title="">
+                            <img class="img-fluid for-dark" src="~/admin/assets/images/logo/logo-white.png" alt="">
+                        </a>
+                        <div class="back-btn">
+                            <i class="fa fa-angle-left"></i>
+                        </div>
+                        <div class="toggle-sidebar">
+                            <i class="status_toggle middle sidebar-toggle" data-feather="grid"></i>
+                        </div>
+                    </div>
+                    <div class="logo-icon-wrapper">
+                        <a href="index.html">
+                            <img class="img-fluid main-logo" src="~/admin/assets/images/logo/logo.png" alt="logo">
+                        </a>
+                    </div>
+                    <nav class="sidebar-main">
+                        <div class="left-arrow" id="left-arrow">
+                            <i data-feather="arrow-left"></i>
+                        </div>
+
+                        <div id="sidebar-menu">
+                            <ul class="sidebar-links" id="simple-bar">
+
+                                <li class="back-btn"></li>
+                              
+
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" asp-controller="Dashboard" asp-action="Index">
+                                        <i data-feather="home"></i>
+                                        <span>Əsas səhifə</span>
+                                    </a>
+                                </li>
+
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title">
+                                        <i data-feather="users"></i>
+                                        <span>Müştərilər</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a asp-controller="Users" asp-action="Index">Müştərilər</a>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="Users" asp-action="Index">Hesab təsdiq etməyənlər</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i data-feather="archive"></i>
+                                        <span>Aksesuar kateqoriyaları</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a asp-controller="Category">Yeni əsas kateqoriya</a>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="Category">Yeni əsas kateqoriya</a>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="Category">Əsas kateqoriyalar</a>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="Category">Alt kateqoriyalar</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i data-feather="users"></i>
+                                        <span>Paylaşımlar</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a asp-controller="Blogs"asp-action="DiscountBlogs">Endirimdə olan məhsullar</a>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="Blogs" asp-action="SimpleBlogList">Məhsullar</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i data-feather="box"></i>
+                                        <span>Sifarişlər</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a asp-controller="Orders" asp-action="ActiveOrders">Gözləmədə olan sifarişlər</a>
+                                        </li>
+
+                                        <li>
+                                            <a asp-controller="Orders" asp-action="SuccesfullyOrderList">Tamamlanmış sifarişlər</a>
+                                        </li>
+
+                                        <li>
+                                            <a asp-controller="Orders" asp-action="InjectionOrderList">İmtina edilmiş sifarişlər</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i data-feather="box"></i>
+                                        <span>Mesajlar</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a asp-controller="SecondPages" asp-action="UnReadContactMessageList">Oxunmamış mesajlar</a>
+                                        </li>
+
+                                        <li>
+                                            <a asp-controller="SecondPages" asp-action="ReadContactMessageList">Oxunan mesajlar</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                              
+
+                                <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i data-feather="tag"></i>
+                                        <span>Abunələr</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a asp-controller="SecondPages" asp-action="SubscribersList">Bütün abunələr</a>
+                                        </li>  
+                                    </ul>
+                                </li>
+                                <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i data-feather="align-left"></i>
+                                        <span>Digər</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a asp-controller="SecondPages" asp-action="FaqList">Tez-tez verilən suallar</a>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="SecondPages" asp-action="UpdateMedia">Sosial Media</a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            
+
+            @RenderBody()
+        </div>
+        <!-- Page Body End -->
+        <!-- Modal start -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+            <div class="modal-dialog  modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h5 class="modal-title" id="staticBackdropLabel">Logging Out</h5>
+                        <p>Are you sure you want to log out?</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <div class="button-box">
+                            <button type="button" class="btn btn--no " data-bs-dismiss="modal">No</button>
+                            <button type="button" class="btn  btn--yes btn-primary">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal End -->
+    </div>
+    <!-- page-wrapper End -->
+    <!-- latest js -->
+    <script src="~/admin/assets/js/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap js -->
+    <script src="~/admin/assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- feather icon js -->
+    <script src="~/admin/assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="~/admin/assets/js/icons/feather-icon/feather-icon.js"></script>
+
+    <!-- scrollbar simplebar js -->
+    <script src="~/admin/assets/js/scrollbar/simplebar.js"></script>
+    <script src="~/admin/assets/js/scrollbar/custom.js"></script>
+
+    <!-- customizer js -->
+    <script src="~/admin/assets/js/customizer.js"></script>
+
+    <!-- Sidebar js -->
+    <script src="~/admin/assets/js/config.js"></script>
+
+    <!-- Plugins js -->
+    <script src="~/admin/assets/js/sidebar-menu.js"></script>
+    <script src="~/admin/assets/js/notify/bootstrap-notify.min.js"></script>
+    <script src="~/admin/assets/js/notify/index.js"></script>
+
+    <!-- all checkbox select js -->
+    <script src="~/admin/assets/js/checkbox-all-check.js"></script>
+
+    <!-- Theme js -->
+    <script src="~/admin/assets/js/script.js"></script>
 </body>
+
+
+<!-- Mirrored from themes.pixelstrap.com/voxo/back-end/list-page.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Sep 2023 18:53:05 GMT -->
 </html>
