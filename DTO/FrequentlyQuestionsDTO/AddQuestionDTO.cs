@@ -8,8 +8,13 @@ namespace DTO.FrequentlyQuestionsDTO
 {
     public class AddQuestionDTO
     {
-        public string Question {get; set;}
+        public List<AddQuestionLanguageDTO> Languages {  get; set; }
+    }
 
-        public string Answer {get; set; }
+    public class AddQuestionLanguageDTO
+    {
+        public int LanguageId { get; set; }
+        public string Question { get; set; }
+        public string Answer { get; set; }
     }
 }

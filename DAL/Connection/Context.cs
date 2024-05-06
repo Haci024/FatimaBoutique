@@ -29,6 +29,7 @@ namespace DAL.DbConnection
         public DbSet<Categories> Categories { get; set; }
 
         public DbSet<Slider> Slider { get; set; }
+        public DbSet<SliderLanguage> SliderLanguages { get; set; }
 
         public DbSet<Videos> Videos { get; set; }
 
@@ -37,8 +38,7 @@ namespace DAL.DbConnection
         public DbSet<BlogImages> BlogsImages { get; set; }
 
         public DbSet<AboutUs> AboutUs { get; set; }
-      
-       public DbSet<AboutUsLanguage> AboutUsLanguages { get; set; }
+        public DbSet<AboutUsLanguage> AboutUsLanguages { get; set; }
 
         public DbSet<SocialMedia> SocialMedia { get; set; }
 

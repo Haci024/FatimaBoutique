@@ -20,6 +20,7 @@ namespace Entity.Models
         public string FirstTitle { get; set; }
         public string SecondTitle { get; set; }
         public string Description { get; set; }
+
         public Language Language { get; set; }
         public AboutUs AboutUs { get; set; }
     }

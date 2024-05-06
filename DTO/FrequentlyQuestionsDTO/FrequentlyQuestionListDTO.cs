@@ -10,9 +10,5 @@ namespace DTO.FrequentlyQuestionsDTO
     public class FrequentlyQuestionListDTO
     {
         public IEnumerable<FrequentlyQuestions> FrequentlyQuestions { get;set; }
-
-
-
-      
     }
 }

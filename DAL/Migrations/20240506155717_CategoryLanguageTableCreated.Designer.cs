@@ -4,6 +4,7 @@ using DAL.DbConnection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20240506155717_CategoryLanguageTableCreated")]
+    partial class CategoryLanguageTableCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -347,46 +350,20 @@ namespace Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Answer")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Question")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
 
                     b.ToTable("FrequentlyQuestions");
-                });
-
-            modelBuilder.Entity("Entity.Models.FrequentlyQuestionsLanguage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Answer")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("FaqId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FrequentlyQuestionsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LanguageId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Question")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FrequentlyQuestionsId");
-
-                    b.HasIndex("LanguageId");
-
-                    b.ToTable("FrequentlyQuestionsLanguage");
                 });
 
             modelBuilder.Entity("Entity.Models.Language", b =>
@@ -410,36 +387,6 @@ namespace Data.Migrations
                     b.ToTable("Languages");
                 });
 
-            modelBuilder.Entity("Entity.Models.OrderLanguage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("LanguageId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrdersId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LanguageId");
-
-                    b.HasIndex("OrdersId");
-
-                    b.ToTable("OrderLanguage");
-                });
-
             modelBuilder.Entity("Entity.Models.Orders", b =>
                 {
                     b.Property<int>("Id")
@@ -453,6 +400,10 @@ namespace Data.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("count")
                         .HasColumnType("int");
@@ -816,44 +767,6 @@ namespace Data.Migrations
                     b.Navigation("Language");
                 });
 
-            modelBuilder.Entity("Entity.Models.FrequentlyQuestionsLanguage", b =>
-                {
-                    b.HasOne("Entity.Models.FrequentlyQuestions", "FrequentlyQuestions")
-                        .WithMany("FaqLanguages")
-                        .HasForeignKey("FrequentlyQuestionsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entity.Models.Language", "Language")
-                        .WithMany()
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("FrequentlyQuestions");
-
-                    b.Navigation("Language");
-                });
-
-            modelBuilder.Entity("Entity.Models.OrderLanguage", b =>
-                {
-                    b.HasOne("Entity.Models.Language", "Language")
-                        .WithMany()
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entity.Models.Orders", "Orders")
-                        .WithMany("OrderLanguages")
-                        .HasForeignKey("OrdersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Language");
-
-                    b.Navigation("Orders");
-                });
-
             modelBuilder.Entity("Entity.Models.Orders", b =>
                 {
                     b.HasOne("Entity.Models.AppUser", null)
@@ -953,16 +866,6 @@ namespace Data.Migrations
                     b.Navigation("CategoryLanguages");
 
                     b.Navigation("ChildCategories");
-                });
-
-            modelBuilder.Entity("Entity.Models.FrequentlyQuestions", b =>
-                {
-                    b.Navigation("FaqLanguages");
-                });
-
-            modelBuilder.Entity("Entity.Models.Orders", b =>
-                {
-                    b.Navigation("OrderLanguages");
                 });
 
             modelBuilder.Entity("Entity.Models.Slider", b =>

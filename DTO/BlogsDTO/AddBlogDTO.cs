@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DTO.BlogsDTO
+{
+    public class AddBlogDTO
+    {
+        public decimal Price { get; set; }
+        public bool SalesStatus { get; set; }
+        public decimal SalesPrice { get; set; }
+        public bool Status { get; set; }
+        public int CategoryId { get; set; }
+        public List<AddBlogLanguageDTO> Languages { get; set; }
+    }
+
+    public class AddBlogLanguageDTO
+    {
+        public int LanguageId { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+    }
+}

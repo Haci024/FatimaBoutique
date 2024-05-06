@@ -51,7 +51,7 @@ namespace Presentation.Areas.Admin.Controllers
         public IActionResult AddMainCategory(MainCategoryDTO mainCategory)
         {
             Categories categories = new Categories();
-            categories.CategoryName = mainCategory.CategoryName;
+            //categories.CategoryName = mainCategory.CategoryName;
             categories.MainCategoryId = null;
             categories.Status = false;
             if (!ModelState.IsValid)
@@ -84,7 +84,7 @@ namespace Presentation.Areas.Admin.Controllers
                 return View(mainCategory);
             }
             Categories categories = new Categories();
-            categories.CategoryName = mainCategory.CatgegoryName;
+            //categories.CategoryName = mainCategory.CatgegoryName;
             categories.MainCategoryId = mainCategory.MainCategoryId;
             categories.Status = false;
            
@@ -109,7 +109,7 @@ namespace Presentation.Areas.Admin.Controllers
             Categories categories=_category.GetById(categoryId);
             DTO.Categories = _db.Categories.Include(x => x.MainCategory).Where(x => x.MainCategoryId == null && x.Status==false).ToList();
             DTO.MainCategoryId =(int)categories.MainCategoryId;
-            DTO.CategoriesName = categories.CategoryName;
+            //DTO.CategoriesName = categories.CategoryName;
 
             return View(DTO);
         }
@@ -120,8 +120,8 @@ namespace Presentation.Areas.Admin.Controllers
             updateDTO.Categories = _db.Categories.Include(x => x.MainCategory).Where(x=>x.MainCategoryId==null && x.Status==false).ToList();
             
             Categories categories = _category.GetById(categoryId);
-           categories.MainCategoryId= updateDTO.MainCategoryId;
-            categories.CategoryName= updateDTO.CategoriesName;
+            categories.MainCategoryId= updateDTO.MainCategoryId;
+            //categories.CategoryName= updateDTO.CategoriesName;
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("", "Məlumatları tam doldurun!");
@@ -138,8 +138,7 @@ namespace Presentation.Areas.Admin.Controllers
             UpdateMainCategoryDTO DTO = new UpdateMainCategoryDTO();
             Categories categories = _category.GetById(categoryId);
            
-          
-            DTO.CategoriesName = categories.CategoryName;
+            //DTO.CategoriesName = categories.CategoryName;
 
             return View(DTO);
         }
@@ -147,10 +146,8 @@ namespace Presentation.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UpdateMainCategory(UpdateMainCategoryDTO DTO, int categoryId)
         {
-           
-            
             Categories categories = _category.GetById(categoryId);
-            categories.CategoryName = DTO.CategoriesName;
+            //categories.CategoryName = DTO.CategoriesName;
 
             if (!ModelState.IsValid)
             {

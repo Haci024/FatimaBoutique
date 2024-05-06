@@ -22,6 +22,5 @@ namespace Entity.Models
 
         public string Email { get; set; }   
 
-
     }
 }

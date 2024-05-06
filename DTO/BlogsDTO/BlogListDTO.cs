@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DTO.CustomerListDTO
+namespace DTO.BlogsDTO
 {
-    public class CustomerListDTO
+    public class BlogListDTO
     {
-        public List<AppUser> Users { get; set; }
+        public IEnumerable<Blogs> Blogs { get; set; }
     }
 }

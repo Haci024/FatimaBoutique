@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DTO.CustomerListDTO
+namespace DTO.SliderDTO
 {
-    public class CustomerListDTO
+    public class SliderListDTO
     {
-        public List<AppUser> Users { get; set; }
+        public IEnumerable<Slider> Sliders { get; set; }
     }
 }

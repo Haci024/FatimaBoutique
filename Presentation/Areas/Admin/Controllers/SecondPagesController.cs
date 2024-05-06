@@ -65,8 +65,8 @@ namespace Presentation.Areas.Admin.Controllers
                 return View(dto);
             }
             FrequentlyQuestions entity= new FrequentlyQuestions();
-            entity.Question=dto.Question;
-            entity.Answer=dto.Answer;
+            //entity.Question=dto.Question;
+            //entity.Answer=dto.Answer;
             entity.Status = false;
             _questionService.Create(entity);
             return RedirectToAction("ActiveFaqList");
@@ -76,9 +76,9 @@ namespace Presentation.Areas.Admin.Controllers
         {
             FrequentlyQuestions frequentlyQuestions = _questionService.GetById(Id);
             UpdateQuestionDTO dto= new UpdateQuestionDTO();
-            dto.Id= frequentlyQuestions.Id;
-            dto.Answer= frequentlyQuestions.Answer;
-            dto.Question= frequentlyQuestions.Question;
+            //dto.Id= frequentlyQuestions.Id;
+            //dto.Answer= frequentlyQuestions.Answer;
+            //dto.Question= frequentlyQuestions.Question;
             return View(dto);
         }
         
@@ -91,10 +91,10 @@ namespace Presentation.Areas.Admin.Controllers
 
                 return View("Error");
             }
-            FrequentlyQuestions entiy = _questionService.GetById(dto.Id);
-            entiy.Question= dto.Question;
-            entiy.Answer= dto.Answer;
-            _questionService.Update(entiy);
+            //FrequentlyQuestions entiy = _questionService.GetById(dto.Id);
+            //entiy.Question= dto.Question;
+            //entiy.Answer= dto.Answer;
+            //_questionService.Update(entiy);
             return RedirectToAction("ActiveFaqList");
         }
         [HttpGet]
@@ -135,39 +135,39 @@ namespace Presentation.Areas.Admin.Controllers
           
             ReadContactUsDTO dto=new ReadContactUsDTO();
             ContactUs newContact = _contactUsService.GetById(Id);
-            dto.Id= newContact.Id; 
-            dto.PhoneNumber= newContact.PhoneNumber;
-            dto.FullName= newContact.FullName;
-            dto.Description= newContact.Description;
-            dto.Title= newContact.Title;
-            dto.Gmail= newContact.Gmail;
-            dto.Status = newContact.Viewed;
+            //dto.Id= newContact.Id; 
+            //dto.PhoneNumber= newContact.PhoneNumber;
+            //dto.FullName= newContact.FullName;
+            //dto.Description= newContact.Description;
+            //dto.Title= newContact.Title;
+            //dto.Gmail= newContact.Gmail;
+            //dto.Status = newContact.Viewed;
 
 
             return View(dto);
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult ReadMessage(ReadContactUsDTO dto)
-        {
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult ReadMessage(ReadContactUsDTO dto)
+        //{
             
-           ContactUs contactUs=_contactUsService.GetById(dto.Id);
-            if (dto.Status)
-            {
+        //   ContactUs contactUs=_contactUsService.GetById(dto.Id);
+        //    //if (dto.Status)
+        //    //{
               
-                contactUs.Viewed = true;
-                _contactUsService.Update(contactUs);
-                return RedirectToAction("ReadContactMessageList");
-            }
-            else
-            {
-                contactUs.Viewed = false;
-                _contactUsService.Update(contactUs);
-                return RedirectToAction("UnReadContactMessageList");
-            }
+        //    //    contactUs.Viewed = true;
+        //    //    _contactUsService.Update(contactUs);
+        //    //    return RedirectToAction("ReadContactMessageList");
+        //    //}
+        //    //else
+        //    //{
+        //    //    contactUs.Viewed = false;
+        //    //    _contactUsService.Update(contactUs);
+        //    //    return RedirectToAction("UnReadContactMessageList");
+        //    //}
 
            
-        }
+        //}
 
 
         #endregion
