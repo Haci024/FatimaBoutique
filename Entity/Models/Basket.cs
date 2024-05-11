@@ -12,11 +12,11 @@ namespace Entity.Models
 
         public Orders Orders { get; set; }
 
-        public int OrderId { get; set; }
+        public int OrdersId { get; set; }
 
         public Blogs Blogs { get; set; }
 
-        public int  BlogId { get; set; }
+        public int  BlogsId { get; set; }
 
         public string CustomerName { get; set; }
 

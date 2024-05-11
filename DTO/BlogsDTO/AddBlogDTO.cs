@@ -13,13 +13,15 @@ namespace DTO.BlogsDTO
         public decimal SalesPrice { get; set; }
         public bool Status { get; set; }
         public int CategoryId { get; set; }
-        public List<AddBlogLanguageDTO> Languages { get; set; }
+        public string Title_az { get; set; }
+        public string Title_tr { get; set; }
+        public string Title_en { get; set; }
+        public string Title_ru { get; set; }
+        public string Description_az { get; set; }
+        public string Description_tr { get; set; }
+        public string Description_en { get; set; }
+        public string Description_ru { get; set; }
     }
 
-    public class AddBlogLanguageDTO
-    {
-        public int LanguageId { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-    }
+  
 }

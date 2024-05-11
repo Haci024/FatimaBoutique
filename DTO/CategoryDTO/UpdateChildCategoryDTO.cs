@@ -11,8 +11,14 @@ namespace DTO.CategoryDTO
     {
         public int MainCategoryId { get;set; }
 
-        public List<Categories> Categories { get; set; }    
+        public List<Categories> MainCategoryList { get; set; }
 
-        public string CategoriesName { get; set; }  
+        public string CategoryName_az { get; set; }
+
+        public string CategoryName_tr { get; set; }
+
+        public string CategoryName_en { get; set; }
+
+        public string CategoryName_ru { get; set; }
     }
 }

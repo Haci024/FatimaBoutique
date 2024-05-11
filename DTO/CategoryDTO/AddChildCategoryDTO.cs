@@ -10,13 +10,16 @@ namespace DTO.MainCategoryDTO
     public class AddChildCategoryDTO
     {
         public int MainCategoryId { get; set; }
-        public List<Categories> Categories { get; set; }
-        public List<AddCategoryLanguageDTO> Languages { get; set; }
+        public List<Categories> MainCategoryList { get; set; }
+   
+
+        public string CategoryName_az { get; set; }
+
+        public string CategoryName_tr { get; set; }
+
+        public string CategoryName_en { get; set; }
+
+        public string CategoryName_ru { get; set; }
     }
 
-    public class AddCategoryLanguageDTO
-    {
-        public int LanguageId { get; set; } 
-        public string CategoryName { get; set; }
-    }
 }

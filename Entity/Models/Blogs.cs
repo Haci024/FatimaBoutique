@@ -26,6 +26,7 @@ namespace Entity.Models
         public DateTime AddingDate { get; set; }
         public Categories Categories { get; set; }
         public int CategoryId { get; set; }
+        public List<BlogsLanguage> BlogLanguages { get; set; }
     }
 
     public class BlogsLanguage

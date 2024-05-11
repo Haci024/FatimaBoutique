@@ -13,6 +13,6 @@ namespace DTO.BlogsDTO
         public decimal SalesPrice { get; set; }
         public bool Status { get; set; }
         public int CategoryId { get; set; }
-        public List<AddBlogLanguageDTO> Languages { get; set; }
+        
     }
 }

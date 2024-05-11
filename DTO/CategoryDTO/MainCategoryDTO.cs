@@ -8,8 +8,14 @@ namespace DTO.MainCategoryDTO
 {
     public class MainCategoryDTO
     {
-        public string CategoryName { get; set; }
+        public string CategoryName_az { get; set; }
 
-        
+        public string CategoryName_tr { get; set; }
+
+        public string CategoryName_en { get; set; }
+
+        public string CategoryName_ru { get; set; }
+
+
     }
 }

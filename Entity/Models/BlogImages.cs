@@ -21,6 +21,6 @@ namespace Entity.Models
 
         public Blogs Blog { get; set; }
 
-        public int BLogsId { get; set; } 
+        public int BLogId { get; set; } 
     }
 }
