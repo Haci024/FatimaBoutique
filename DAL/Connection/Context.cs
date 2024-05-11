@@ -38,6 +38,7 @@ namespace DAL.DbConnection
         public DbSet<BlogImages> BlogsImages { get; set; }
 
         public DbSet<AboutUs> AboutUs { get; set; }
+        
         public DbSet<AboutUsLanguage> AboutUsLanguages { get; set; }
 
         public DbSet<SocialMedia> SocialMedia { get; set; }
@@ -45,6 +46,12 @@ namespace DAL.DbConnection
         public DbSet<Basket> Basket { get; set; }
 
         public DbSet<Orders> Orders { get; set; }
+
+        public DbSet<OrderLanguage> OrderLanguage { get; set; }
+
+        public DbSet<CategoryLanguage> CategoryLanguages { get; set; }
+
+        public DbSet<BlogsLanguage> BlogsLanguages { get; set; }
 
         public DbSet<Language> Languages { get; set; }
 
@@ -55,7 +62,7 @@ namespace DAL.DbConnection
             modelBuilder.Entity<BlogImages>()
                 .HasOne(x => x.Blog).
                 WithMany(x => x.BlogImages).
-                HasForeignKey(x => x.BLogsId).
+                HasForeignKey(x => x.BLogId).
                 OnDelete(DeleteBehavior.ClientSetNull);
 
             modelBuilder.Entity<Blogs>()

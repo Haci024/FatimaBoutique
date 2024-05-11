@@ -67,7 +67,7 @@ namespace Presentation.Areas.Admin.Controllers
         public IActionResult AddChildCategory()
         {
             AddChildCategoryDTO newCategory = new AddChildCategoryDTO();
-            newCategory.Categories = _db.Categories.Include(x => x.MainCategory).ToList();
+            newCategory.MainCategoryList = _db.Categories.Include(x => x.MainCategory).ToList();
 
             return View(newCategory);
         }
@@ -76,13 +76,14 @@ namespace Presentation.Areas.Admin.Controllers
         public IActionResult AddChildCategory(AddChildCategoryDTO mainCategory)
         {
 
-            mainCategory.Categories = _db.Categories.Include(x => x.MainCategory).ToList();
+            mainCategory.MainCategoryList = _db.Categories.Include(x => x.MainCategory).ToList();
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("", "Məlumatları tam doldurun!");
 
                 return View(mainCategory);
             }
+       
             Categories categories = new Categories();
             //categories.CategoryName = mainCategory.CatgegoryName;
             categories.MainCategoryId = mainCategory.MainCategoryId;
@@ -107,7 +108,7 @@ namespace Presentation.Areas.Admin.Controllers
 
             UpdateChildCategoryDTO DTO = new UpdateChildCategoryDTO();
             Categories categories=_category.GetById(categoryId);
-            DTO.Categories = _db.Categories.Include(x => x.MainCategory).Where(x => x.MainCategoryId == null && x.Status==false).ToList();
+            DTO.MainCategoryList = _db.Categories.Include(x => x.MainCategory).Where(x => x.MainCategoryId == null && x.Status==false).ToList();
             DTO.MainCategoryId =(int)categories.MainCategoryId;
             //DTO.CategoriesName = categories.CategoryName;
 
@@ -117,7 +118,7 @@ namespace Presentation.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UpdateChildCategory(UpdateChildCategoryDTO updateDTO,int categoryId)
         {
-            updateDTO.Categories = _db.Categories.Include(x => x.MainCategory).Where(x=>x.MainCategoryId==null && x.Status==false).ToList();
+            updateDTO.MainCategoryList = _db.Categories.Include(x => x.MainCategory).Where(x=>x.MainCategoryId==null && x.Status==false).ToList();
             
             Categories categories = _category.GetById(categoryId);
             categories.MainCategoryId= updateDTO.MainCategoryId;
