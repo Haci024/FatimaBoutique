@@ -21,12 +21,12 @@ namespace Data.Repo
             _db = db;
         }
 
-        public List<ContactUs> GetAllReadingMessages()
+        public IEnumerable<ContactUs> GetAllReadingMessages()
         {
             return _db.ContactUs.Where(x => x.Viewed == true).ToList();
         }
 
-        public List<ContactUs> GetAllUnReadingMessages()
+        public IEnumerable<ContactUs> GetAllUnReadingMessages()
         {
            return _db.ContactUs.Where(x=>x.Viewed==false).ToList();
         }

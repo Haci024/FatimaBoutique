@@ -9,34 +9,34 @@ using System.Threading.Tasks;
 
 namespace Bussiness.Manager
 {
-    public class BlogImagesManager : IBlogImagesService
+    public class SubscriberManager : ISubscriberService
     {
-        private readonly IBlogImagesDAL _dal;
-        public BlogImagesManager(IBlogImagesDAL dal)
+        private readonly ISubscriberDAL _dal;
+        public SubscriberManager(ISubscriberDAL dal)
         {
-            _dal= dal;
+            _dal = dal;
         }
-        public void Create(BlogImages t)
+        public void Create(Subscribers t)
         {
             _dal.Create(t);
         }
 
-        public void Delete(BlogImages t)
+        public void Delete(Subscribers t)
         {
             _dal.Delete(t);
         }
 
-        public BlogImages GetById(int id)
+        public Subscribers GetById(int id)
         {
-            return _dal.GetById(id);
+            return _dal.GetById(id);        
         }
 
-        public List<BlogImages> GetList()
+        public List<Subscribers> GetList()
         {
             return _dal.GetList();
         }
 
-        public void Update(BlogImages t)
+        public void Update(Subscribers t)
         {
             _dal.Update(t);
         }

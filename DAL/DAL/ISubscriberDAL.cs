@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Data.DAL
 {
-    public interface IContactUsDAL:IGenericDAL<ContactUs>
+    public interface ISubscriberDAL:IGenericDAL<Subscribers>
     {
-        public IEnumerable<ContactUs> GetAllReadingMessages();
+        public IEnumerable<Subscribers> ActiveSubscriberList();
 
-        public IEnumerable<ContactUs> GetAllUnReadingMessages();
+        public IEnumerable<Subscribers> DeactiveSubscriberList();
     }
 }

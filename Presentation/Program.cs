@@ -55,6 +55,15 @@ builder.Services.AddScoped<IEmailService, EmailManager>();
 builder.Services.AddScoped<IBasketDAL, BasketRepository>();
 builder.Services.AddScoped<IBasketService,BasketManager>();
 
+builder.Services.AddScoped<IBlogImagesDAL,BlogImagesRepository>();
+builder.Services.AddScoped<IBlogImagesService,BlogImagesManager>();
+
+
+builder.Services.AddScoped<ICategoryLanguageDAL,CategoryLanguageRepository>();
+builder.Services.AddScoped<ICategoryLanguageService, CategoryLanguageManager>();
+
+builder.Services.AddScoped<ISubscriberDAL, SubscriberRepository>();
+builder.Services.AddScoped<ISubscriberService, SubscriberManager>();
 
 
 builder.Services.AddSession(options =>

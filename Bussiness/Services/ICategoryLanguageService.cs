@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Bussiness.Services
 {
-    public interface ICategoryService:IGenericService<Categories>
+    public interface ICategoryLanguageService:IGenericService<CategoryLanguage>
     {
-      
+
     }
 }

@@ -9,6 +9,10 @@ namespace DTO.CustomerListDTO
 {
     public class CustomerListDTO
     {
-        public List<AppUser> Users { get; set; }
+        public IEnumerable<AppUser> AdminList { get; set; }
+
+        public IEnumerable<AppUser> CustomerList { get; set;}
+
+        public IEnumerable<Subscribers> Subscribers { get; set;}
     }
 }

@@ -13,6 +13,7 @@ namespace Entity.Models
     }
     public class AboutUsLanguage
     {
+        public int Id { get; set; }
         public Language Language { get; set; }
 
         public int LanguageId { get; set; }

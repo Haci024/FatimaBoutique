@@ -73,12 +73,16 @@ namespace Presentation.Controllers
                     return View(dto);
                 }
 
-                if (User.IsInRole("Admin"))
+                var role = await _userManager.GetRolesAsync(appUser);
+
+                if (role.Contains("Admin"))
                 {
-                    return RedirectToAction("Index", "Dashboard");
+                    
+                    return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
                 }
                 else
                 {
+                    
                     return RedirectToAction("Profile", "Account");
                 }
 
@@ -129,7 +133,7 @@ namespace Presentation.Controllers
             };
 
             var result = await _userManager.CreateAsync(appUser, dto.Password);
-
+            var addRole = await _userManager.AddToRoleAsync(appUser, "Admin");
             if (result.Succeeded)
             {
                 _emailService.SendActivateAccountCode(appUser);

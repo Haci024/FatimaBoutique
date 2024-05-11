@@ -2,12 +2,15 @@
 using DAL.DbConnection;
 using DTO.ContactUsDTO;
 using DTO.FrequentlyQuestionsDTO;
+using DTO.SocialMediaDTO;
 using Entity.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "SuperAdmin,Admin")]
     public class SecondPagesController : Controller
     {
         private readonly Context _db;
@@ -150,11 +153,11 @@ namespace Presentation.Areas.Admin.Controllers
         //[ValidateAntiForgeryToken]
         //public IActionResult ReadMessage(ReadContactUsDTO dto)
         //{
-            
+
         //   ContactUs contactUs=_contactUsService.GetById(dto.Id);
         //    //if (dto.Status)
         //    //{
-              
+
         //    //    contactUs.Viewed = true;
         //    //    _contactUsService.Update(contactUs);
         //    //    return RedirectToAction("ReadContactMessageList");
@@ -166,13 +169,41 @@ namespace Presentation.Areas.Admin.Controllers
         //    //    return RedirectToAction("UnReadContactMessageList");
         //    //}
 
-           
+
         //}
 
 
         #endregion
         #region Videolar
- 
+
+        #endregion
+        #region Sosial Media
+        [HttpGet]
+
+        public IActionResult UpdateMediaLinks()
+        {
+            SocialMedia socialMedia = _mediaService.GetById(1);
+            UpdateMediaLinkDTO dto = new UpdateMediaLinkDTO();
+            dto.WhatsAppUrl = socialMedia.WhatsAppUrl;
+            dto.YoutubeUrl = socialMedia.YoutubeUrl;
+            dto.InstagramUrl= socialMedia.InstagramUrl;
+            dto.TikTokUrl = socialMedia.TikTokUrl;
+
+            return View(dto);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateMediaLinks(UpdateMediaLinkDTO dto)
+        {
+            SocialMedia socialMedia = _mediaService.GetById(1);
+            socialMedia.WhatsAppUrl=dto.WhatsAppUrl;
+            socialMedia.YoutubeUrl=dto.YoutubeUrl;
+            socialMedia.TikTokUrl=dto.TikTokUrl;
+            socialMedia.InstagramUrl=dto.InstagramUrl;
+            _mediaService.Update(socialMedia);
+
+            return RedirectToAction("Index","Dashboard");
+        }
         #endregion
     }
 

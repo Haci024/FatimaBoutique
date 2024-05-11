@@ -8,14 +8,18 @@ namespace DTO.AboutUsDTO
 {
     public class UpdateAboutUsDTO
     {
-        public List<UpdateAboutUsLanguageDTO> Languages { get; set; }
+        public string FirstTitle_az { get; set; }
+        public string SecondTitle_az { get; set; }
+        public string Description_az { get; set; }
+        public string FirstTitle_tr { get; set; }
+        public string SecondTitle_tr { get; set; }
+        public string Description_tr { get; set; }
+        public string FirstTitle_en { get; set; }
+        public string SecondTitle_en { get; set; }
+        public string Description_en { get; set; }
+        public string FirstTitle_ru { get; set; }
+        public string SecondTitle_ru { get; set; }
+        public string Description_ru { get; set; }
     }
 
-    public class UpdateAboutUsLanguageDTO
-    {
-        public int LanguageId { get; set; }
-        public string FirstTitle { get; set; }
-        public string SecondTitle { get; set; }
-        public string Description { get; set; }
-    }
 }

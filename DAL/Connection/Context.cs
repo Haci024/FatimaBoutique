@@ -55,6 +55,8 @@ namespace DAL.DbConnection
 
         public DbSet<Language> Languages { get; set; }
 
+        public DbSet<Subscribers> Subscribers { get; set; }    
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

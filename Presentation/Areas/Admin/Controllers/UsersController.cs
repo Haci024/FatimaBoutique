@@ -14,7 +14,7 @@ using System.Text;
 namespace Presentation.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    
+    [Authorize(Roles = "SuperAdmin,Admin")]
     public class UsersController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -31,18 +31,32 @@ namespace Presentation.Areas.Admin.Controllers
         }
     
         [HttpGet]
-        public IActionResult AdminList()
+        public async Task<IActionResult> AdminList()
         {
-            List<AppUser> users = _db.Users.ToList();
+            var role =await _role.FindByNameAsync("Admin");
+
+            var admins =await _userManager.GetUsersInRoleAsync(role.Name);
             
-            return View(users);
+            
+            return View(admins);
         }
         [HttpGet]
-        public IActionResult CustomerList()
+        public async Task<IActionResult> CustomerList()
         {
-            List<AppUser> users=_userManager.Users.ToList();
-          
-            return View(users);
+            var role = await _role.FindByNameAsync("User");
+
+            var customers = await _userManager.GetUsersInRoleAsync(role.Name);
+
+            return View(customers);
+        }
+        [HttpGet]
+        public async Task<IActionResult> SubscriberList()
+        {
+           
+
+           
+
+            return View();
         }
         [HttpGet]
         public IActionResult BlockCustomer(string Id)
@@ -61,6 +75,21 @@ namespace Presentation.Areas.Admin.Controllers
             _userManager.UpdateAsync(appUser);
             return View("CustomerList");
         }
+        [HttpGet]
+        public IActionResult Logout()
+        {
+
+            _signIn.SignOutAsync();
+            return RedirectToAction("Index","Home",new {area=""});
+        }
+        [HttpGet]
+        public async Task<IActionResult> MyProfile()
+        {
+            AppUser appUser = await _userManager.FindByNameAsync(User.Identity.Name);
+           
+            return View(appUser);
+        }
+
 
     }
 }

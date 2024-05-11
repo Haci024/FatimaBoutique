@@ -9,34 +9,34 @@ using System.Threading.Tasks;
 
 namespace Bussiness.Manager
 {
-    public class BlogImagesManager : IBlogImagesService
+    public class CategoryLanguageManager:ICategoryLanguageService
     {
-        private readonly IBlogImagesDAL _dal;
-        public BlogImagesManager(IBlogImagesDAL dal)
+        private readonly ICategoryLanguageDAL _dal;
+        public CategoryLanguageManager(ICategoryLanguageDAL dal)
         {
-            _dal= dal;
+            _dal = dal;
         }
-        public void Create(BlogImages t)
+        public void Create(CategoryLanguage t)
         {
             _dal.Create(t);
         }
 
-        public void Delete(BlogImages t)
+        public void Delete(CategoryLanguage t)
         {
-            _dal.Delete(t);
+            _dal.Delete(t); 
         }
 
-        public BlogImages GetById(int id)
+        public CategoryLanguage GetById(int id)
         {
             return _dal.GetById(id);
         }
 
-        public List<BlogImages> GetList()
+        public List<CategoryLanguage> GetList()
         {
             return _dal.GetList();
         }
 
-        public void Update(BlogImages t)
+        public void Update(CategoryLanguage t)
         {
             _dal.Update(t);
         }

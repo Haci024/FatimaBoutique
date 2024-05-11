@@ -9,14 +9,13 @@ namespace Presentation.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly IFrequentlyQuestionService _faqService;
         private readonly IContactUsService _contactUsService;
         private readonly IEmailService _emailService;
 
-        public HomeController(ILogger<HomeController> logger,IContactUsService contactUs,IEmailService emailService, IFrequentlyQuestionService faq)
+        public HomeController(IContactUsService contactUs,IEmailService emailService, IFrequentlyQuestionService faq)
         {
-            _logger = logger;
+            
             _faqService = faq;  
             _contactUsService = contactUs;
             _emailService = emailService;
