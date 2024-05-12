@@ -31,7 +31,7 @@ namespace Bussiness.Manager
             return _dal.GetById(id);
         }
 
-        public List<Videos> GetList()
+        public IEnumerable<Videos> GetList()
         {
             return _dal.GetList();
         }

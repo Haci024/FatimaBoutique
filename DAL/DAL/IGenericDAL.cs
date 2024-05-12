@@ -12,7 +12,7 @@ namespace DAL.DAL
         void Update(T t);
         void Delete(T t);
         public T GetById(int id);
-        public List<T> GetList();
+        public IEnumerable<T> GetList();
 
     }
 

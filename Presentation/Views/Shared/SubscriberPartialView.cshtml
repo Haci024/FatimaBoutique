@@ -1,0 +1,29 @@
+﻿@model DTO.SubscriberDTO.NewSubscriberDTO
+
+<section class="subscribe-section section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-6">
+                <div class="subscribe-details">
+                    <h2 class="mb-3">Abunə olun</h2>
+                    <h6 class="font-light">
+                        Abunə olun və yeniliklərdən xəbərdar olun
+                    </h6>
+                </div>
+            </div>
+          
+            <div class="col-lg-4 col-md-6 mt-md-0 mt-3">
+                <form asp-controller="Home" asp-action="NewSubscriber" method="post">
+                    <div class="subsribe-input">
+                        <div class="input-group">
+                            <input type="email" asp-for="@Model.Gmail" class="form-control subscribe-input" placeholder=" elektron ünvanınız">
+                            <button class="btn btn-solid-default" type="submit">Button</button>
+                        </div>
+                        <div asp-validation-summary="ModelOnly" style="color:red"></div>
+                    </div>
+                </form>
+               
+            </div>
+        </div>
+    </div>
+</section>

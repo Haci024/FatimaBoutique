@@ -18,7 +18,7 @@ namespace Bussiness.Manager
             _dal = dal;
         }
 
-        public List<Categories> ActiveCategoryList()
+        public IEnumerable<Categories> ActiveCategoryList()
         {
             return _dal.ActiveCategoryList();
         }
@@ -28,7 +28,7 @@ namespace Bussiness.Manager
            _dal.Create(t);
         }
 
-        public List<Categories> DeactiveCategoriesList()
+        public IEnumerable<Categories> DeactiveCategoriesList()
         {
             return _dal.DeactiveCategoriesList();
         }
@@ -38,7 +38,7 @@ namespace Bussiness.Manager
            _dal.Delete(t);
         }
 
-        public List<Categories> GetBlogListByCategory(int categoryId)
+        public IEnumerable<Categories> GetBlogListByCategory(int categoryId)
         {
             return _dal.GetBlogListByCategory(categoryId);
         }
@@ -48,7 +48,7 @@ namespace Bussiness.Manager
             return _dal.GetById(id);
         }
 
-        public List<Categories> GetList()
+        public IEnumerable<Categories> GetList()
         {
             return _dal.GetList();
         }

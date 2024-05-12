@@ -126,11 +126,10 @@ namespace Presentation.Areas.Admin.Controllers
             ruFormat.CategoryId = categories.Id;
             ruFormat.LanguageId = 4;
             ruFormat.CategoryName = dto.CategoryName_ru;
-            _db.Add(azFormat);
-            _db.Add(trFormat);
-            _db.Add(enFormat);
-            _db.Add(ruFormat);
-            _db.SaveChanges();
+            _categoryLanguageService.Create(azFormat);
+            _categoryLanguageService.Create(trFormat);
+            _categoryLanguageService.Create(enFormat);
+            _categoryLanguageService.Create(ruFormat);
 
 
             return RedirectToAction("MainCategoryList");

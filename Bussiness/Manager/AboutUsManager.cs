@@ -34,7 +34,7 @@ namespace Bussiness.Manager
            return _dal.GetById(id);
         }
 
-        public List<AboutUs> GetList()
+        public IEnumerable<AboutUs> GetList()
         {
             return _dal.GetList();
         }

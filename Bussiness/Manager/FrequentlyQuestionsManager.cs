@@ -32,7 +32,7 @@ namespace Bussiness.Manager
             return _dal.GetById(id);
         }
 
-        public List<FrequentlyQuestions> GetList()
+        public IEnumerable<FrequentlyQuestions> GetList()
         {
             return _dal.GetList();  
         }

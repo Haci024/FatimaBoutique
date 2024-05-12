@@ -31,7 +31,7 @@ namespace Bussiness.Manager
             return _dal.GetById(id);
         }
 
-        public List<BlogImages> GetList()
+        public IEnumerable<BlogImages> GetList()
         {
             return _dal.GetList();
         }

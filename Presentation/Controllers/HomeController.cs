@@ -1,6 +1,8 @@
 ﻿using Bussiness.Services;
+using DAL.DbConnection;
 using DTO.ContactUsDTO;
 using DTO.FrequentlyQuestionsDTO;
+using DTO.SubscriberDTO;
 using Entity.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -13,9 +15,14 @@ namespace Presentation.Controllers
         private readonly IContactUsService _contactUsService;
         private readonly IEmailService _emailService;
 
-        public HomeController(IContactUsService contactUs,IEmailService emailService, IFrequentlyQuestionService faq)
-        {
+        private readonly Context _db;
+        private readonly ISubscriberService _subscriberService; 
             
+
+        public HomeController(IContactUsService contactUs,ISubscriberService service,Context db,IEmailService emailService, IFrequentlyQuestionService faq)
+        {
+            _db = db;
+            _subscriberService = service;
             _faqService = faq;  
             _contactUsService = contactUs;
             _emailService = emailService;
@@ -90,6 +97,32 @@ namespace Presentation.Controllers
             FrequentlyQuestionListDTO dto =new FrequentlyQuestionListDTO();
             dto.FrequentlyQuestions = _faqService.GetList();
             return View(dto);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult NewSubscriber(NewSubscriberDTO dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Bu elektron ünvan artıq abunə olub");
+
+                return RedirectToAction("Index", "Home");
+            }
+            Subscribers subscribers = new Subscribers();
+            bool alreadySubscribe=_db.Subscribers.Any(x=>x.Email==dto.Gmail);
+            if (alreadySubscribe)
+            {
+                ModelState.AddModelError("", "Bu elektron ünvan artıq abunə olub");
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                subscribers.Email = dto.Gmail;
+                _subscriberService.Create(subscribers);
+                _emailService.NewSubscriberMail(dto.Gmail);
+                return RedirectToAction("Index","Home");
+            }
+           
         }
     }
 }

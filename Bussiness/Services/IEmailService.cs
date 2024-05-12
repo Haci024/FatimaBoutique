@@ -20,5 +20,7 @@ namespace Bussiness.Services
         public void SendActivateAccountCode(AppUser appUser);
 
         public void ContactUsAvtoMessageForUser(AddContactUsDTO contactUsDTO);
+
+        public void NewSubscriberMail(string email);
     }
 }

@@ -297,7 +297,7 @@
                                             </li>
                                            
                                             <li class="mega-menu dropdown ratio_40">
-                                                <a asp-controller="AboutUs" asp-action="Index" class="nav-link">
+                                                <a asp-controller="Home" asp-action="AboutUs" class="nav-link">
                                                     <div class="gradient-title">Haqqımızda</div>
                                                 </a>
                                             </li>
@@ -534,7 +534,9 @@
 
     @RenderBody()
 
-    <!-- footer start -->
+    
+   
+    @await Html.PartialAsync("SubscriberPartialView" ,new DTO.SubscriberDTO.NewSubscriberDTO())
     <footer class="footer-sm-space">
         <div class="main-footer">
             <div class="container">

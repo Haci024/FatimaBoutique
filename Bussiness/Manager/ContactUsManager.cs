@@ -33,17 +33,17 @@ namespace Bussiness.Manager
             return _dal.GetById(id);
         }
 
-        public List<ContactUs> GetList()
+        public IEnumerable<ContactUs> GetList()
         {
             return _dal.GetList();
         }
 
-        public List<ContactUs> ReadMessageList()
+        public IEnumerable<ContactUs> ReadMessageList()
         {
             return _dal.GetAllReadingMessages();
         }
 
-        public List<ContactUs> UnReadMessageList()
+        public IEnumerable<ContactUs> UnReadMessageList()
         {
             return _dal.GetAllUnReadingMessages();
         }

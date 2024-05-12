@@ -32,7 +32,7 @@ namespace Bussiness.Manager
             throw new NotImplementedException();
         }
 
-        public List<SocialMedia> GetList()
+        public IEnumerable<SocialMedia> GetList()
         {
             throw new NotImplementedException();
         }

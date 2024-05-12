@@ -25,7 +25,7 @@ namespace Bussiness.Manager
             _db = context;
 
         }
-
+      
         public void ForgetPasswordEmail(AppUser appUser)
         {
             MimeMessage mimeMessage = new MimeMessage();
@@ -126,7 +126,7 @@ namespace Bussiness.Manager
             bodyBuilder.TextBody = $"Abunəliyiniz uğurla tamamlandı.Ən son yeniliklərdən anında xəbəriniz olacaq ,hörmətlə Fatimah-Boutique:)";
 
             mimeMessage.Body = bodyBuilder.ToMessageBody();
-            mimeMessage.Subject = "Sifariş";
+            mimeMessage.Subject = "Yeni Abunə";
 
             SmtpClient client = new SmtpClient();
 

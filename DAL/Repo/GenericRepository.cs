@@ -30,7 +30,7 @@ namespace Data.Repositories
             return  dbContext.Set<T>().Find(id);
         }
 
-        public List<T> GetList()
+        public IEnumerable<T> GetList()
         {
             using Context dbContext = new Context();
 

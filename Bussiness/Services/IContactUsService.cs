@@ -9,9 +9,9 @@ namespace Bussiness.Services
 {
     public interface IContactUsService : IGenericService<ContactUs>
     {
-        public List<ContactUs> ReadMessageList();
+        public IEnumerable<ContactUs> ReadMessageList();
 
-        public List<ContactUs> UnReadMessageList();
+        public IEnumerable<ContactUs> UnReadMessageList();
 
 
     }

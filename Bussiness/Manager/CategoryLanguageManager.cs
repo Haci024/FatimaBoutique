@@ -31,7 +31,7 @@ namespace Bussiness.Manager
             return _dal.GetById(id);
         }
 
-        public List<CategoryLanguage> GetList()
+        public IEnumerable<CategoryLanguage> GetList()
         {
             return _dal.GetList();
         }
