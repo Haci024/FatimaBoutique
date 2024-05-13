@@ -4696,6 +4696,12 @@
     </div>
 </section>
 <!-- service section end -->
+<!-- Quick View Modal Section Start -->
+<div class="modal fade quick-view-modal view-modal" id="view">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+    </div>
+</div>
+<!-- Quick View Modal Section End -->
 
 @section styles{
     <!-- Google font -->
@@ -4763,7 +4769,6 @@
 }
 
 @section modals{
-    @Html.Partial("Modals/_QuickViewPartial");
     @Html.Partial("Modals/_NewsLetterPartial");
     @Html.Partial("Modals/_CartSuccessfulPartial");
     @Html.Partial("Modals/_CookiePartial");

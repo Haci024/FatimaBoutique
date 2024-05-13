@@ -11,7 +11,7 @@
                 <div class="quick-view-image ">
                     <div class="quick-view-slider ratio_medium">
                         <div>
-                            <img src="~/assets/blogImages/@Model.BlogImages.Where(x=>x.IsMain).Select(x=>x.ImageUrl)"
+                            <img src="~/assets/blogImages/@Model.BlogImages.FirstOrDefault(x=>x.IsMain == true).ImageUrl"
                                  class="img-fluid bg-img blur-up lazyload" alt="product">
                         </div> 
                  </div>
@@ -19,8 +19,8 @@
             </div>
             <div class="col-lg-6">
                 <div class="product-right">
-                 @*    <h2 class="mb-2">@Model.BlogLanguages.FirstOrDefault(b => b.LanguageId == languageId).Title</h2>
-                    <h6 class="font-light mb-1">@Model.Categories.CategoryLanguages.FirstOrDefault(x => x.LanguageId == languageId).CategoryName</h6> *@
+                    <h2 class="mb-2">@Model.BlogLanguages.FirstOrDefault(b => b.LanguageId == languageId).Title</h2>
+                    <h6 class="font-light mb-1">@Model.Categories.CategoryLanguages.FirstOrDefault(x => x.LanguageId == languageId).CategoryName</h6>
                     <div class="price mt-3">
                         <h3>$@((Model.SalesPrice * (100 - Model.DiscountPrice) / 100).ToString("0.00"))</h3>
                     </div>

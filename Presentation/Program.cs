@@ -20,6 +20,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Context>();
 
+builder.Services.AddScoped<LayoutService>();
+
 builder.Services.AddScoped<IOrdersService, OrderManager>();
 builder.Services.AddScoped<IOrderDAL, OrderRepository>();
 

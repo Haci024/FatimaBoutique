@@ -1,4 +1,5 @@
 ﻿using DAL.DbConnection;
+using DTO.SearchDTO;
 using DTO.ShopDTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -60,6 +61,31 @@ namespace Presentation.Controllers
             ViewBag.MaxPrice = maxPrice ?? ViewBag.MaxPriceLimit;
 
             return View(shopListDTO);
+        }
+    
+        public IActionResult Search(string search, string languageKey = "az")
+        {
+            SearchDTO searchDto = new SearchDTO
+            {
+                Products = _context.Blogs.Include(x => x.Categories).ThenInclude(x => x.CategoryLanguages)
+                                         .Include(x => x.BlogImages)
+                                         .Include(x => x.BlogLanguages)
+                                         .ToList(),
+            };
+
+            var query = _context.Blogs.Include(x => x.Categories).ThenInclude(x=>x.CategoryLanguages)
+                                            .Include(x => x.BlogImages)
+                                            .Include(x => x.BlogLanguages)
+                                            .AsQueryable();
+
+            if (search != null)
+                query = query.Where(x => x.BlogLanguages.FirstOrDefault(x=>x.Language.Key == languageKey).Title.Contains(search));
+
+            searchDto.Products = query.ToList();
+
+            ViewBag.Search = search;
+
+            return View(searchDto);
         }
     }
 }

@@ -718,3 +718,30 @@ $('.dropdown .dropdown-menu li').click(function () {
     $(this).parents('.dropdown').find('span').text($(this).text());
     $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
 });
+
+/*=====================
+    25. Search
+ ==========================*/
+document.addEventListener("DOMContentLoaded", function () {
+    // Get the input element and products list
+    var input = document.querySelector('.search-type');
+    var products = document.querySelectorAll('.search-suggestion li');
+
+    // Add event listener to input for keyup event
+    input.addEventListener('keyup', function () {
+        var searchTerm = input.value.toLowerCase().trim(); // Get search term and convert to lowercase
+
+        // Loop through each product and check if it matches the search term
+        products.forEach(function (product) {
+            var productName = product.querySelector('h6').textContent.toLowerCase(); // Get product name
+            var productPrice = product.querySelector('p').textContent.toLowerCase(); // Get product price
+
+            // Check if product name or price contains the search term
+            if (productName.includes(searchTerm) || productPrice.includes(searchTerm)) {
+                product.style.display = ''; // If matches, display the product
+            } else {
+                product.style.display = 'none'; // If not matches, hide the product
+            }
+        });
+    });
+});
