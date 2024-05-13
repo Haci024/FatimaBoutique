@@ -11,7 +11,7 @@ namespace DTO.CategoryDTO
     {
         public int MainCategoryId { get;set; }
 
-        public List<Categories> MainCategoryList { get; set; }
+        public IEnumerable<CategoryLanguage> MainCategoryList { get; set; }
 
         public string CategoryName_az { get; set; }
 

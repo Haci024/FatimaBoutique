@@ -18,14 +18,16 @@ namespace Presentation.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult UnReadMessageList()
         {
-            IEnumerable<ContactUs> ContactList = _contactUsService.UnReadMessageList();
-            return View(ContactList);
+            ContactMessageListDTO dto =new ContactMessageListDTO();
+                dto.UnReadMessages = _contactUsService.UnReadMessageList();
+            return View(dto);
         }
         [HttpGet]
         public IActionResult ReadMessageList()
         {
-            IEnumerable<ContactUs> ContactList = _contactUsService.ReadMessageList();
-            return View(ContactList);
+            ContactMessageListDTO dto = new ContactMessageListDTO();
+            dto.UnReadMessages = _contactUsService.UnReadMessageList();
+            return View(dto);
         }
         [HttpGet]
         public IActionResult ReadMessage(int Id)

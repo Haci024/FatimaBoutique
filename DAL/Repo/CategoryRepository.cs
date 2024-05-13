@@ -23,18 +23,18 @@ namespace Data.Repo
         /// Aktiv kateqoriyaları əsas kateqoriyaları ilə birlikdə gətirir
         /// </summary>
         
-        public List<Categories> ActiveCategoryList()
+        public IEnumerable<Categories> ActiveCategoryList()
         {
             
             return _db.Categories.Include(x=>x.MainCategory).Where(x=>x.Status==false).ToList();
         }
-        public List<Categories> categories=new List<Categories>();
+        public IEnumerable<Categories> categories=new List<Categories>();
 
         /// <summary>
         /// Deaktiv kateqoriyaları əsas kateqoriyaları ilə birlikdə gətirir
         /// </summary>
 
-        public List<Categories> DeactiveCategoriesList()
+        public IEnumerable<Categories> DeactiveCategoriesList()
         {
             return _db.Categories.Include(x=>x.MainCategory).Where(x=>x.Status==true).ToList();
 
@@ -42,7 +42,7 @@ namespace Data.Repo
         /// <summary>
         /// Kateqoriyaya uyğun bloqları gətirir
         /// </summary>
-        public List<Categories> GetBlogListByCategory(int Id)
+        public IEnumerable<Categories> GetBlogListByCategory(int Id)
         {
             return _db.Categories.Include(x=>x.MainCategory).Include(x=>x.Blogs).ThenInclude(x=>x.BlogImages).Where(x=>x.Id==Id).ToList();
         }

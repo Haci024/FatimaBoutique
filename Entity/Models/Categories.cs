@@ -22,7 +22,7 @@ namespace Entity.Models
     {
         public int Id { get; set; }
         public int LanguageId { get; set; }
-        public int CategoryId { get; set; }
+        public int CategoriesId { get; set; }
         public string CategoryName { get; set; }
 
         public Language Language { get; set; }

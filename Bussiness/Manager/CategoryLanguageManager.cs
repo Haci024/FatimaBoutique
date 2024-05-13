@@ -16,9 +16,35 @@ namespace Bussiness.Manager
         {
             _dal = dal;
         }
+
+        public IEnumerable<CategoryLanguage> ActiveChildCategoryList()
+        {
+            return _dal.ActiveChildCategoryList();
+        }
+
+        public IEnumerable<CategoryLanguage> ActiveMainCategoryList()
+        {
+            return _dal.ActiveMainCategoryList();
+        }
+
+        public IEnumerable<CategoryLanguage> ChildCategoryListByMain(int MainCategoryId)
+        {
+           return  _dal.ChildCategoryListByMain(MainCategoryId);
+        }
+
         public void Create(CategoryLanguage t)
         {
             _dal.Create(t);
+        }
+
+        public IEnumerable<CategoryLanguage> DeactiveChildCategoryList()
+        {
+            return _dal.DeactiveChildCategoryList();
+        }
+
+        public IEnumerable<CategoryLanguage> DeactiveMainCategoryList()
+        {
+            return _dal.DeactiveMainCategoryList();
         }
 
         public void Delete(CategoryLanguage t)

@@ -73,11 +73,11 @@ namespace Presentation.Controllers
                     return View(dto);
                 }
 
-                var role = await _userManager.GetRolesAsync(appUser);
 
-                if (role.Contains("Admin"))
+                var roles = await _userManager.GetRolesAsync(appUser);
+                if (roles.Contains("Admin") || roles.Contains("SuperAdmin"))
                 {
-                    
+                   
                     return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
                 }
                 else

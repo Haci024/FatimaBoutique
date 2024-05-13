@@ -2,7 +2,7 @@
 using DAL.DbConnection;
 using DTO.CategoryDTO;
 using Entity.Models;
-//using Humanizer;
+using Humanizer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -32,50 +32,62 @@ namespace Presentation.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult MainCategoryList()
         {
-            
-            return View();
+            CategoryListDTO dto= new CategoryListDTO();
+            dto.ActiveMainCategoryList = _categoryLanguageService.ActiveMainCategoryList();
+            return View(dto);
         }
         [HttpGet]
         public IActionResult ChildCategoryList()
         {
-            return View();
+            CategoryListDTO dto = new CategoryListDTO();
+            dto.ActiveChildCategoryList = _categoryLanguageService.ActiveChildCategoryList();
+            return View(dto);
         }
         [HttpGet]
         public IActionResult AddMainCategory()
         {
-            MainCategoryDTO dto=new MainCategoryDTO();
+            AddMainCategoryDTO dto=new AddMainCategoryDTO();
 
+            return View(dto);
+        }
+        [HttpGet]
+        public IActionResult ChildCategoryListByMain(int MainCategoryId,string MainCategoryName)
+        {
+               CategoryListDTO dto=new CategoryListDTO();
+            dto.ChildCategoryListByMain = _categoryLanguageService.ChildCategoryListByMain(MainCategoryId);
+            dto.MainCategoryName= MainCategoryName;
             return View(dto);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddMainCategory(MainCategoryDTO dto)
+        public IActionResult AddMainCategory(AddMainCategoryDTO dto)
         {
-            Categories categories = new Categories();
-           
-            categories.MainCategoryId = null;
-            categories.Status = false;
+         
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("","Məlumatları tam doldurun!");
               
                 return View(dto);
             }
+            Categories categories = new Categories();
+
+            categories.MainCategoryId = null;
+            categories.Status = false;
             _category.Create(categories);
             CategoryLanguage azFormat = new CategoryLanguage();
             CategoryLanguage trFormat = new CategoryLanguage();
             CategoryLanguage enFormat = new CategoryLanguage();
             CategoryLanguage ruFormat = new CategoryLanguage();
-            azFormat.CategoryId = categories.Id;
+            azFormat.CategoriesId = categories.Id;
             azFormat.LanguageId = 1;
             azFormat.CategoryName = dto.CategoryName_az;
-            trFormat.CategoryId = categories.Id;
+            trFormat.CategoriesId = categories.Id;
             trFormat.LanguageId = 2;
             trFormat.CategoryName = dto.CategoryName_tr;
-            enFormat.CategoryId = categories.Id;
+            enFormat.CategoriesId = categories.Id;
             enFormat.LanguageId = 3;
             enFormat.CategoryName = dto.CategoryName_en;
-            ruFormat.CategoryId = categories.Id;
+            ruFormat.CategoriesId = categories.Id;
             ruFormat.LanguageId = 4;
             ruFormat.CategoryName = dto.CategoryName_ru;
             _categoryLanguageService.Create(azFormat);
@@ -88,7 +100,8 @@ namespace Presentation.Areas.Admin.Controllers
         public IActionResult AddChildCategory()
         {
             AddChildCategoryDTO dto = new AddChildCategoryDTO();
-            dto.MainCategoryList = _db.Categories.Include(x => x.MainCategory).ToList();
+
+            dto.MainCategoryList = _categoryLanguageService.ActiveMainCategoryList();
 
             return View(dto);
         }
@@ -97,16 +110,10 @@ namespace Presentation.Areas.Admin.Controllers
         public IActionResult AddChildCategory(AddChildCategoryDTO dto)
         {
 
-            dto.MainCategoryList = _db.Categories.Include(x => x.MainCategory).ToList();
-            if (!ModelState.IsValid)
-            {
-                ModelState.AddModelError("", "Məlumatları tam doldurun!");
-
-                return View(dto);
-            }
+            dto.MainCategoryList = _categoryLanguageService.ActiveMainCategoryList();
+          
        
             Categories categories = new Categories();
-            
             categories.MainCategoryId = dto.MainCategoryId;
             categories.Status = false;
             _category.Create(categories);
@@ -114,16 +121,16 @@ namespace Presentation.Areas.Admin.Controllers
             CategoryLanguage trFormat= new CategoryLanguage();
             CategoryLanguage enFormat = new CategoryLanguage();
             CategoryLanguage ruFormat = new CategoryLanguage();
-            azFormat.CategoryId = categories.Id;
+            azFormat.CategoriesId = categories.Id;
             azFormat.LanguageId = 1;
             azFormat.CategoryName = dto.CategoryName_az;
-            trFormat.CategoryId = categories.Id;
+            trFormat.CategoriesId = categories.Id;
             trFormat.LanguageId = 2;
             trFormat.CategoryName = dto.CategoryName_tr;
-            enFormat.CategoryId = categories.Id;
+            enFormat.CategoriesId = categories.Id;
             enFormat.LanguageId = 3;
             enFormat.CategoryName = dto.CategoryName_en;
-            ruFormat.CategoryId = categories.Id;
+            ruFormat.CategoriesId = categories.Id;
             ruFormat.LanguageId = 4;
             ruFormat.CategoryName = dto.CategoryName_ru;
             _categoryLanguageService.Create(azFormat);
@@ -149,7 +156,7 @@ namespace Presentation.Areas.Admin.Controllers
 
             UpdateChildCategoryDTO DTO = new UpdateChildCategoryDTO();
             Categories categories=_category.GetById(categoryId);
-            DTO.MainCategoryList = _db.Categories.Include(x => x.MainCategory).Where(x => x.MainCategoryId == null && x.Status==false).ToList();
+            DTO.MainCategoryList = _categoryLanguageService.ActiveMainCategoryList();
             DTO.MainCategoryId =(int)categories.MainCategoryId;
             
 
@@ -159,7 +166,7 @@ namespace Presentation.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UpdateChildCategory(UpdateChildCategoryDTO updateDTO,int categoryId)
         {
-            updateDTO.MainCategoryList = _db.Categories.Include(x => x.MainCategory).Where(x=>x.MainCategoryId==null && x.Status==false).ToList();
+            updateDTO.MainCategoryList = _categoryLanguageService.ActiveMainCategoryList();
             
             Categories categories = _category.GetById(categoryId);
             categories.MainCategoryId= updateDTO.MainCategoryId;
@@ -177,28 +184,47 @@ namespace Presentation.Areas.Admin.Controllers
         public IActionResult UpdateMainCategory(int categoryId)
         {
 
-            UpdateMainCategoryDTO DTO = new UpdateMainCategoryDTO();
-            Categories categories = _category.GetById(categoryId);
-           
+            UpdateMainCategoryDTO dto = new UpdateMainCategoryDTO();
             
-
-            return View(DTO);
+            CategoryLanguage azFormat = _db.CategoryLanguages.FirstOrDefault(x => x.CategoriesId == categoryId && x.LanguageId == 1);
+            CategoryLanguage trFormat = _db.CategoryLanguages.FirstOrDefault(x => x.CategoriesId == categoryId && x.LanguageId == 2);
+            CategoryLanguage enFormat = _db.CategoryLanguages.FirstOrDefault(x => x.CategoriesId == categoryId && x.LanguageId == 3);
+            CategoryLanguage ruFormat = _db.CategoryLanguages.FirstOrDefault(x => x.CategoriesId == categoryId && x.LanguageId == 4);
+            dto.CategoryName_az = azFormat.CategoryName;
+            dto.CategoryName_tr = trFormat.CategoryName;
+            dto.CategoryName_en=enFormat.CategoryName;
+            dto.CategoryName_ru = ruFormat.CategoryName;
+            return View(dto);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult UpdateMainCategory(UpdateMainCategoryDTO DTO, int categoryId)
+        public IActionResult UpdateMainCategory(UpdateMainCategoryDTO dto, int categoryId)
         {
-            Categories categories = _category.GetById(categoryId);
+            
             
 
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("", "Məlumatları tam doldurun!");
 
-                return View(DTO);
+                return View(dto);
             }
-            _category.Update(categories);
-            return RedirectToAction("ChildCategoryList");
+            Categories categories = _category.GetById(categoryId);
+            CategoryLanguage azFormat = _db.CategoryLanguages.FirstOrDefault(x => x.CategoriesId == categories.Id && x.LanguageId == 1);
+            CategoryLanguage trFormat = _db.CategoryLanguages.FirstOrDefault(x => x.CategoriesId == categories.Id && x.LanguageId == 2);
+            CategoryLanguage enFormat = _db.CategoryLanguages.FirstOrDefault(x => x.CategoriesId == categories.Id && x.LanguageId == 3);
+            CategoryLanguage ruFormat = _db.CategoryLanguages.FirstOrDefault(x => x.CategoriesId == categories.Id && x.LanguageId == 4);
+            azFormat.CategoryName = dto.CategoryName_az;
+            trFormat.CategoryName = dto.CategoryName_tr;
+            enFormat.CategoryName = dto.CategoryName_en;
+            ruFormat.CategoryName = dto.CategoryName_ru;
+            _categoryLanguageService.Update(azFormat);
+            _categoryLanguageService.Update(trFormat);
+            _categoryLanguageService.Update(enFormat);
+            _categoryLanguageService.Update(ruFormat);
+           
+
+            return RedirectToAction("MainCategoryList");
         }
         [HttpGet]
         public IActionResult BlockCategory(int categoryId)
@@ -234,9 +260,7 @@ namespace Presentation.Areas.Admin.Controllers
                     _category.Update(categories);
                     return RedirectToAction("ChildCategoryList");
                 }
-            }
-
-            
+            } 
         }
 
 

@@ -9,9 +9,9 @@ namespace DTO.ContactUsDTO
 {
     public class ContactMessageListDTO
     {
-        public List<ContactUs> UnReadMessages { get; set; }
+        public IEnumerable<ContactUs> UnReadMessages { get; set; }
 
-        public List<ContactUs> ReadMessages { get; set; }
+        public IEnumerable<ContactUs> ReadMessages { get; set; }
 
 
     }

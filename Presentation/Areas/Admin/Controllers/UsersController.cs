@@ -1,6 +1,8 @@
-﻿using DAL.DbConnection;
+﻿using Bussiness.Services;
+using DAL.DbConnection;
 using DTO.CustomerListDTO;
 using Entity.Models;
+using Humanizer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -20,12 +22,14 @@ namespace Presentation.Areas.Admin.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly Context _db;
         private readonly RoleManager<IdentityRole> _role;
+        private readonly ISubscriberService _subscribers;
         private readonly SignInManager<AppUser> _signIn;
-        public UsersController(UserManager<AppUser> userManager, Context db, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> role)
+        public UsersController(UserManager<AppUser> userManager,ISubscriberService subscriber, Context db, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> role)
         {
 
             _db = db;
             _userManager = userManager;
+            _subscribers = subscriber;
             _role = role;
             _signIn = signInManager;
         }
@@ -35,28 +39,31 @@ namespace Presentation.Areas.Admin.Controllers
         {
             var role =await _role.FindByNameAsync("Admin");
 
-            var admins =await _userManager.GetUsersInRoleAsync(role.Name);
-            
-            
-            return View(admins);
+          
+            CustomerListDTO dto=new CustomerListDTO();
+            dto.AdminList= await _userManager.GetUsersInRoleAsync(role.Name);
+
+            return View(dto);
         }
         [HttpGet]
         public async Task<IActionResult> CustomerList()
         {
             var role = await _role.FindByNameAsync("User");
 
-            var customers = await _userManager.GetUsersInRoleAsync(role.Name);
+            CustomerListDTO dto = new CustomerListDTO();
+            dto.CustomerList = await _userManager.GetUsersInRoleAsync(role.Name);
 
-            return View(customers);
+            return View(dto);
         }
         [HttpGet]
         public async Task<IActionResult> SubscriberList()
         {
-           
 
-           
+             CustomerListDTO dto = new CustomerListDTO();
+            dto.Subscribers=_subscribers.GetList();
 
-            return View();
+
+            return View(dto);
         }
         [HttpGet]
         public IActionResult BlockCustomer(string Id)

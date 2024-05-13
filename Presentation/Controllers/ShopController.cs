@@ -55,9 +55,7 @@ namespace Presentation.Controllers
             };
 
             shopListDTO.Products = query.ToList();
-
             ViewBag.MaxPriceLimit = _context.Blogs.Max(x => x.SalesPrice);
-
             ViewBag.MinPrice = minPrice ?? 0;
             ViewBag.MaxPrice = maxPrice ?? ViewBag.MaxPriceLimit;
 

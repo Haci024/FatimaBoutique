@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20240506144114_SliderLanguageTableCreated")]
-    partial class SliderLanguageTableCreated
+    [Migration("20240513130924_addLanguageDataToDatabase")]
+    partial class addLanguageDataToDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,9 +45,6 @@ namespace Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AboutId")
-                        .HasColumnType("int");
 
                     b.Property<int>("AboutUsId")
                         .HasColumnType("int");
@@ -162,9 +159,6 @@ namespace Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BlogId")
-                        .HasColumnType("int");
-
                     b.Property<int>("BlogsId")
                         .HasColumnType("int");
 
@@ -175,9 +169,6 @@ namespace Data.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
 
                     b.Property<int>("OrdersId")
                         .HasColumnType("int");
@@ -199,19 +190,22 @@ namespace Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BLogsId")
+                    b.Property<int>("BLogId")
                         .HasColumnType("int");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BLogsId");
+                    b.HasIndex("BLogId");
 
                     b.ToTable("BlogsImages");
                 });
@@ -230,13 +224,8 @@ namespace Data.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Material")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal>("DiscountPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -247,15 +236,8 @@ namespace Data.Migrations
                     b.Property<bool>("SalesStatus")
                         .HasColumnType("bit");
 
-                    b.Property<double>("Size")
-                        .HasColumnType("float");
-
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ViewCount")
                         .HasColumnType("int");
@@ -267,7 +249,7 @@ namespace Data.Migrations
                     b.ToTable("Blogs");
                 });
 
-            modelBuilder.Entity("Entity.Models.Categories", b =>
+            modelBuilder.Entity("Entity.Models.BlogsLanguage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -275,9 +257,36 @@ namespace Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CategoryName")
+                    b.Property<int>("BlogsId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LanguageId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BlogsId");
+
+                    b.HasIndex("LanguageId");
+
+                    b.ToTable("BlogsLanguages");
+                });
+
+            modelBuilder.Entity("Entity.Models.Categories", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("MainCategoryId")
                         .HasColumnType("int");
@@ -290,6 +299,33 @@ namespace Data.Migrations
                     b.HasIndex("MainCategoryId");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("Entity.Models.CategoryLanguage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CategoriesId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LanguageId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoriesId");
+
+                    b.HasIndex("LanguageId");
+
+                    b.ToTable("CategoryLanguages");
                 });
 
             modelBuilder.Entity("Entity.Models.ContactUs", b =>
@@ -315,6 +351,9 @@ namespace Data.Migrations
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("SendingDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -371,6 +410,62 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Languages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Key = "az",
+                            Name = "Azərbaycan"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Key = "tr",
+                            Name = "Türk"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Key = "en",
+                            Name = "İngilis"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Key = "ru",
+                            Name = "Rus"
+                        });
+                });
+
+            modelBuilder.Entity("Entity.Models.OrderLanguage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("LanguageId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrdersId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LanguageId");
+
+                    b.HasIndex("OrdersId");
+
+                    b.ToTable("OrderLanguage");
                 });
 
             modelBuilder.Entity("Entity.Models.Orders", b =>
@@ -386,10 +481,6 @@ namespace Data.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("count")
                         .HasColumnType("int");
@@ -485,6 +576,26 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SocialMedia");
+                });
+
+            modelBuilder.Entity("Entity.Models.Subscribers", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Subscribers");
                 });
 
             modelBuilder.Entity("Entity.Models.Videos", b =>
@@ -670,7 +781,7 @@ namespace Data.Migrations
             modelBuilder.Entity("Entity.Models.AboutUsLanguage", b =>
                 {
                     b.HasOne("Entity.Models.AboutUs", "AboutUs")
-                        .WithMany("AboutLanguages")
+                        .WithMany()
                         .HasForeignKey("AboutUsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -709,7 +820,7 @@ namespace Data.Migrations
                 {
                     b.HasOne("Entity.Models.Blogs", "Blog")
                         .WithMany("BlogImages")
-                        .HasForeignKey("BLogsId")
+                        .HasForeignKey("BLogId")
                         .IsRequired();
 
                     b.Navigation("Blog");
@@ -725,6 +836,25 @@ namespace Data.Migrations
                     b.Navigation("Categories");
                 });
 
+            modelBuilder.Entity("Entity.Models.BlogsLanguage", b =>
+                {
+                    b.HasOne("Entity.Models.Blogs", "Blogs")
+                        .WithMany("BlogLanguages")
+                        .HasForeignKey("BlogsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entity.Models.Language", "Language")
+                        .WithMany("BlogLanguages")
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Blogs");
+
+                    b.Navigation("Language");
+                });
+
             modelBuilder.Entity("Entity.Models.Categories", b =>
                 {
                     b.HasOne("Entity.Models.Categories", "MainCategory")
@@ -732,6 +862,44 @@ namespace Data.Migrations
                         .HasForeignKey("MainCategoryId");
 
                     b.Navigation("MainCategory");
+                });
+
+            modelBuilder.Entity("Entity.Models.CategoryLanguage", b =>
+                {
+                    b.HasOne("Entity.Models.Categories", "Categories")
+                        .WithMany("CategoryLanguages")
+                        .HasForeignKey("CategoriesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entity.Models.Language", "Language")
+                        .WithMany("CategoryLanguages")
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Categories");
+
+                    b.Navigation("Language");
+                });
+
+            modelBuilder.Entity("Entity.Models.OrderLanguage", b =>
+                {
+                    b.HasOne("Entity.Models.Language", "Language")
+                        .WithMany("OrderLanguages")
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entity.Models.Orders", "Orders")
+                        .WithMany("OrderLanguages")
+                        .HasForeignKey("OrdersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Language");
+
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("Entity.Models.Orders", b =>
@@ -811,11 +979,6 @@ namespace Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Entity.Models.AboutUs", b =>
-                {
-                    b.Navigation("AboutLanguages");
-                });
-
             modelBuilder.Entity("Entity.Models.AppUser", b =>
                 {
                     b.Navigation("Orders");
@@ -824,13 +987,31 @@ namespace Data.Migrations
             modelBuilder.Entity("Entity.Models.Blogs", b =>
                 {
                     b.Navigation("BlogImages");
+
+                    b.Navigation("BlogLanguages");
                 });
 
             modelBuilder.Entity("Entity.Models.Categories", b =>
                 {
                     b.Navigation("Blogs");
 
+                    b.Navigation("CategoryLanguages");
+
                     b.Navigation("ChildCategories");
+                });
+
+            modelBuilder.Entity("Entity.Models.Language", b =>
+                {
+                    b.Navigation("BlogLanguages");
+
+                    b.Navigation("CategoryLanguages");
+
+                    b.Navigation("OrderLanguages");
+                });
+
+            modelBuilder.Entity("Entity.Models.Orders", b =>
+                {
+                    b.Navigation("OrderLanguages");
                 });
 
             modelBuilder.Entity("Entity.Models.Slider", b =>

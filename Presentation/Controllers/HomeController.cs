@@ -5,6 +5,7 @@ using DTO.FrequentlyQuestionsDTO;
 using DTO.SubscriberDTO;
 using Entity.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace Presentation.Controllers
@@ -30,6 +31,7 @@ namespace Presentation.Controllers
 
         public IActionResult Index()
         {
+           
             return View();
         }
         public IActionResult Error()

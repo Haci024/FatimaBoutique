@@ -14,5 +14,6 @@ namespace Data.DAL
         public IEnumerable<CategoryLanguage> ActiveChildCategoryList();
         public IEnumerable<CategoryLanguage> DeactiveMainCategoryList();
         public IEnumerable<CategoryLanguage> DeactiveChildCategoryList();
+        public IEnumerable<CategoryLanguage> ChildCategoryListByMain(int MainCategoryId);
     }
 }

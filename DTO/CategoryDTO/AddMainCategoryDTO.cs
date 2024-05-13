@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO.CategoryDTO
 {
-    public class MainCategoryDTO
+    public class AddMainCategoryDTO
     {
         public string CategoryName_az { get; set; }
 

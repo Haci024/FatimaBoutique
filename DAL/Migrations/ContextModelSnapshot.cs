@@ -309,9 +309,6 @@ namespace Data.Migrations
                     b.Property<int>("CategoriesId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("CategoryName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -351,6 +348,9 @@ namespace Data.Migrations
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("SendingDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -407,6 +407,32 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Languages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Key = "az",
+                            Name = "Azərbaycan"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Key = "tr",
+                            Name = "Türk"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Key = "en",
+                            Name = "İngilis"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Key = "ru",
+                            Name = "Rus"
+                        });
                 });
 
             modelBuilder.Entity("Entity.Models.OrderLanguage", b =>

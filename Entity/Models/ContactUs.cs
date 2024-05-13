@@ -14,6 +14,7 @@ namespace Entity.Models
         public string PhoneNumber { get;set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public DateTime SendingDate { get; set; }
         /// <summary>
         /// Bu hissədə admin gələn mesajlara adminpaneldən baxanda status true olan kimi oxunanlar səhifəsinə transfer olacaq.
         /// </summary>

@@ -21,22 +21,27 @@ namespace Data.Repo
         public IEnumerable<CategoryLanguage> ActiveMainCategoryList()
         {
 
-            return _db.CategoryLanguages.Include(x=>x.Language).Include(x=>x.Categories).Where(x=>x.CategoryId==null && x.Categories.Status==false  && x.Language.Key=="az").ToList();
+            return _db.CategoryLanguages.Include(x=>x.Language).Include(x=>x.Categories).Where(x=>x.Categories.MainCategoryId == null && x.Categories.Status==false  && x.Language.Key=="az").ToList();
         }
         public IEnumerable<CategoryLanguage> ActiveChildCategoryList()
         {
 
-            return _db.CategoryLanguages.Include(x => x.Language).Include(x => x.Categories).Where(x => x.CategoryId != null && x.Categories.Status == false && x.Language.Key == "az").ToList();
+            return _db.CategoryLanguages.Include(x => x.Language).Include(x => x.Categories).Where(x => x.Categories.MainCategoryId != null && x.Categories.Status == false && x.Language.Key == "az").ToList();
         }
         public IEnumerable<CategoryLanguage> DeactiveMainCategoryList()
         {
 
-            return _db.CategoryLanguages.Include(x => x.Language).Include(x => x.Categories).Where(x => x.CategoryId == null && x.Categories.Status == true && x.Language.Key == "az").ToList();
+            return _db.CategoryLanguages.Include(x => x.Language).Include(x => x.Categories).Where(x => x.Categories.MainCategoryId == null && x.Categories.Status == true && x.Language.Key == "az").ToList();
         }
         public IEnumerable<CategoryLanguage> DeactiveChildCategoryList()
         {
 
-            return _db.CategoryLanguages.Include(x => x.Language).Include(x => x.Categories).Where(x => x.CategoryId != null && x.Categories.Status == true && x.Language.Key == "az").ToList();
+            return _db.CategoryLanguages.Include(x => x.Language).Include(x => x.Categories).Where(x => x.Categories.MainCategoryId != null && x.Categories.Status == true && x.Language.Key == "az").ToList();
+        }
+
+        public IEnumerable<CategoryLanguage> ChildCategoryListByMain(int MainCategoryId)
+        {
+            return _db.CategoryLanguages.Include(x => x.Language).Include(x => x.Categories).Where(x => x.Categories.MainCategoryId ==MainCategoryId && x.Categories.Status == false && x.Language.Key == "az").ToList();
         }
     }
 }

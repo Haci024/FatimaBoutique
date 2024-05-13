@@ -10,11 +10,11 @@ namespace Data.DAL
 {
     public interface ICategoryDAL:IGenericDAL<Categories>
     {
-        public List<Categories> ActiveCategoryList();
+        public IEnumerable<Categories> ActiveCategoryList();
 
-        public List<Categories> DeactiveCategoriesList();
+        public IEnumerable<Categories> DeactiveCategoriesList();
 
-        public List<Categories> GetBlogListByCategory(int Id);
+        public IEnumerable<Categories> GetBlogListByCategory(int Id);
 
         
     }

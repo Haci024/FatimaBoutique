@@ -23,5 +23,6 @@ namespace Entity.Models
 
         public bool ActivateBonus { get; set; }
 
+
     }
 }

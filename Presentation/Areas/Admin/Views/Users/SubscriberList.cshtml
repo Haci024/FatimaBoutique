@@ -1,20 +1,20 @@
-﻿@model DTO.ContactUsDTO.ContactMessageListDTO
+﻿@model DTO.CustomerListDTO.CustomerListDTO
 @{
-    ViewData["Title"] = "UnReadMessageList";
+    ViewData["Title"] = "SubscriberList";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
     int num = 0;
 }
 
 <div class="container-fluid">
 
-    
+
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
                     <div style="display:flex;justify-content:space-between;align-items:center">
                         <h2>
-                            Oxunmamış mesajlar
+                            Abunələr
                         </h2>
                     </div>
                     <ul class="header-dropdown m-r--5">
@@ -36,38 +36,36 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Tarix</th>
-                                    <th>Göndərən</th>
-                                    <th>Telefon nömrəsi</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
                                     <th class="text-right">
                                         <div style="margin-right:20px">
                                             Əməliyyatlar
                                         </div>
                                     </th>
+
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>No</th>
-                                    <th>Tarix</th>
-                                    <th>Göndərən</th>
-                                    <th>Telefon nömrəsi</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
                                     <th class="text-right">
                                         <div style="margin-right:20px">
                                             Əməliyyatlar
                                         </div>
                                     </th>
+
                                 </tr>
                             </tfoot>
                             <tbody>
-                                @foreach (var item in Model.UnReadMessages)
+                                @foreach (var item in Model.Subscribers)
                                 {
                                     <tr>
                                         <td>@(num = num + 1)</td>
-                                        <td>@item.SendingDate.ToString("dd.MM.yyyy HH:mm")</td>
-                                        <td>@item.FullName</td>
-                                        <td>@item.PhoneNumber</td>
-                                      
+                                        <td>@item.Email</td>
+                                        <td>Aktivdir</td>
 
                                         <td style="display:flex;justify-content:end">
 
@@ -78,7 +76,7 @@
 
                                             </div>
                                             <div style="margin-right:10px">
-                                                <a asp-action="ReplyMessage" asp-route-email="@item.Gmail" class="btn bg-indigo waves-effect">
+                                                <a asp-action="ReplyMessage" asp-route-email="@item.Email" class="btn bg-indigo waves-effect">
                                                     Cavab göndər
                                                 </a>
                                             </div>
@@ -99,4 +97,3 @@
     </div>
     <!-- #END# Exportable Table -->
 </div>
-

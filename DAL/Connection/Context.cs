@@ -16,9 +16,12 @@ namespace DAL.DbConnection
      
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             {
-            
-            optionsBuilder.UseSqlServer("server=77.245.159.27\\MSSQLSERVER2019;initial catalog=FatimahBoutique;user=FatimahAdmin;password=6!3dRpp48;TrustServerCertificate=True");
-            
+
+            optionsBuilder.UseSqlServer("server=77.245.159.27\\MSSQLSERVER2019;initial catalog=FatimaBoutique;user=FatimahAdmin;password=6!3dRpp48;TrustServerCertificate=True");
+           // optionsBuilder.UseSqlServer("server=Odissey;database=FatimaBoutique;integrated security=true;TrustServerCertificate=True");//Database ilə əlaqə
+            optionsBuilder.EnableSensitiveDataLogging();
+
+
         }
         //server hissesine 77.45.159.27 bu ip yaz mssql de.Istifadeci ve password da yuxaridaki baglantida var.Ordan goture bilersen.
 
@@ -82,6 +85,15 @@ namespace DAL.DbConnection
            new IdentityRole { Id = "qOLKNNDsskdfkjsdksdkjc", Name = "User", NormalizedName = "USER" }
          
        );
+            modelBuilder.Entity<Language>().HasData(
+                new Language { Id = 1,Name="Azərbaycan",Key="az" },
+                  new Language { Id = 2, Name = "Türk", Key = "tr" },
+                    new Language { Id = 3, Name = "İngilis", Key = "en" },
+                      new Language { Id = 4, Name = "Rus", Key = "ru" }
+
+
+
+   ); 
         }
     }
     

@@ -1,7 +1,95 @@
-﻿@model IEnumerable<Entity.Models.AppUser>
+﻿@model DTO.CustomerListDTO.CustomerListDTO
 @{
     ViewData["Title"] = "AdminList";
+    int num = 0;
 }
 
 
 
+<div class="container-fluid">
+
+   
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <div style="display:flex;justify-content:space-between;align-items:center">
+                        <h2>
+                            Adminlər
+                        </h2>
+                        <div style="padding-right:30px">
+                            <a asp-action="NewAdmin" class="btn bg-deep-purple waves-effect ">
+                                <i class="material-icons">person_add</i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>İstifadəçi adı</th>
+                                    <th>Status</th>
+                                    <th class="text-right">
+                                        <div style="margin-right:20px">
+                                            Əməliyyatlar
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>No</th>
+                                    <th>İstifadəçi adı</th>
+                                    <th>Status</th>
+                                    <th class="text-right">
+                                        <div style="margin-right:20px">
+                                            Əməliyyatlar
+                                        </div>
+                                    </th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                @foreach (var item in Model.AdminList)
+                                {
+                                    <tr>
+                                        <td>@(num = num + 1)</td>
+                                        <td>
+                                         @item.UserName
+                                        </td>
+                                        <td>Aktivdir</td>
+
+
+                                        <td style="display:flex;justify-content:end">
+
+                                            <div style="margin-right:10px">
+                                                <a asp-action="ReadMessage" asp-route-Id="@item.Id" class="btn bg-blue-grey waves-effect">
+                                                    Oxu
+                                                </a>
+
+                                            </div>
+                                            <div style="margin-right:10px">
+                                                <a asp-action="ReplyMessage" asp-route-Id="@item.Id" class="btn bg-indigo waves-effect">
+                                                    Cavab göndər
+                                                </a>
+                                            </div>
+
+
+
+                                        </td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #END# Exportable Table -->
+</div>
