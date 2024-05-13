@@ -2,7 +2,7 @@
 using DAL.DbConnection;
 using DTO.CategoryDTO;
 using Entity.Models;
-using Humanizer;
+//using Humanizer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

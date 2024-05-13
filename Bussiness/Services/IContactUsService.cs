@@ -12,7 +12,5 @@ namespace Bussiness.Services
         public IEnumerable<ContactUs> ReadMessageList();
 
         public IEnumerable<ContactUs> UnReadMessageList();
-
-
     }
 }
