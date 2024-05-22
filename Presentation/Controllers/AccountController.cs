@@ -54,7 +54,7 @@ namespace Presentation.Controllers
            
             var result = await _signInManager.PasswordSignInAsync(dto.UserName, dto.Password, false, true);
             AppUser appUser =await _userManager.FindByNameAsync(dto.UserName);
-
+           
             if (result.IsLockedOut)
             {
                 ModelState.AddModelError("", "Məlumatlarınızı 5 dəfə səhv daxil etdiyiniz  hesabınız 3 dəqiqə müddətinə blok edildi!");
@@ -75,6 +75,7 @@ namespace Presentation.Controllers
 
 
                 var roles = await _userManager.GetRolesAsync(appUser);
+              
                 if (roles.Contains("Admin") || roles.Contains("SuperAdmin"))
                 {
                    

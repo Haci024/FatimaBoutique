@@ -83,20 +83,17 @@
 
                                         <td style="display:flex;justify-content:end">
 
+                   
                                             <div style="margin-right:10px">
-                                                <a asp-action="ReadMessage" asp-route-Id="@item.Id" class="btn bg-blue-grey waves-effect">
-                                                    Oxu
-                                                </a>
-
-                                            </div>
-                                            <div style="margin-right:10px">
-                                                <a asp-action="ReplyMessage" asp-route-Id="@item.Id" class="btn bg-indigo waves-effect">
-                                                    Cavab göndər
+                                                <a asp-action="UpdateChildCategory" asp-route-categoryId="@item.Categories.Id" class="btn bg-indigo waves-effect">
+                                                    <i class="material-icons">edit</i>
                                                 </a>
                                             </div>
-
-
-
+                                            <div style="margin-right:10px">
+                                                <a asp-action="BlockCategory" asp-route-categoryId="@item.Categories.Id" class="btn bg-red waves-effect">
+                                                    <i class="material-icons">delete</i>
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                 }

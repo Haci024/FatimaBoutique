@@ -17,12 +17,12 @@
                     <form id="form_validation" method="post">
                         <div class="form-group form-float">
                             <div>
-                                <select class="form-control show-tick" asp-for="MainCategoryId" name="MainCategoryId" id="childCategoryId" multiple data-live-search="true">
+                                <select class="form-control show-tick" asp-for="MainCategoryId" name="MainCategoryId" id="childCategoryId">
 
                                     @foreach (var item in Model.MainCategoryList)
                                     {
 
-                                        <option style="margin-left:30px" value="@item.Id">@item.CategoryName</option>
+                                        <option  value="@item.Id">@item.CategoryName</option>
 
                                     }
                                 </select>

@@ -126,5 +126,14 @@ namespace Presentation.Controllers
             }
            
         }
+
+        [HttpGet]
+        public IActionResult UnSubscribe()
+        {
+            
+            return View();
+        }
+        [HttpPost]
+        
     }
 }

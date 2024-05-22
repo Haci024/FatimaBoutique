@@ -45,6 +45,9 @@ namespace Presentation.Controllers
                 case "HighToLow":
                     query = query.OrderByDescending(x => x.SalesPrice);
                     break;
+                case "AddingDate":
+                    query = query.OrderByDescending(x => x.AddingDate);
+                    break;
             }
 
             ViewBag.SortList = new List<SelectListItem>

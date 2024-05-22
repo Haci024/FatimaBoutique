@@ -1,5 +1,4 @@
 ﻿using DAL.DbConnection;
-using DTO.BlogsDTO;
 using Entity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,27 +18,9 @@ namespace Presentation.Controllers
             return View();
         }
 
-        public IActionResult Detail(int id)
+        public IActionResult Detail()
         {
-            Blogs Product = _context.Blogs
-                .Include(x => x.BlogImages)
-                .Include(x => x.Categories).ThenInclude(x => x.CategoryLanguages)
-                .Include(x => x.BlogLanguages)
-                .FirstOrDefault(x => x.Id == id);
-
-            //if (Product == null) return View("Error");
-
-            ProductDetailDTO productDTO = new ProductDetailDTO
-            {
-                Product = Product,
-                RelatedProducts = _context.Blogs.Include(x=>x.BlogLanguages)
-                                                .Include(x => x.BlogImages)
-                                                .Include(x => x.Categories).ThenInclude(x => x.CategoryLanguages)
-                                                .Where(x => x.CategoryId == Product.CategoryId)
-                                                .ToList(),
-            };
-
-            return View(productDTO);
+            return View();
         }
 
         public IActionResult ProductDetail(int id)

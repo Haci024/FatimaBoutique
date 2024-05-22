@@ -30,7 +30,7 @@
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Shop Fashion</li>
+                        <li class="breadcrumb-item active" aria-current="page">Məhsullarımız</li>
                     </ol>
                 </nav>
             </div>
@@ -47,7 +47,7 @@
                     <div>
                         <div class="image-slider">
                             <div class="image-product">
-                                <img src="~/assets/images/fashion/category/5.jpg" class="w-100 blur-up lazyload"
+                                <img src="~/assets/blogImages/ring3.jpeg" class="w-100 blur-up lazyload"
                                      alt="">
                                 <div class="image-contain">
                                     <h5>tops</h5>
@@ -58,7 +58,7 @@
                     <div>
                         <div class="image-slider">
                             <div class="image-product">
-                                <img src="~/assets/images/fashion/category/6.jpg" class="w-100 blur-up lazyload"
+                                <img src="~/assets/blogImages/ring1.jpeg" class="w-100 blur-up lazyload"
                                      alt="">
                                 <div class="image-contain">
                                     <h5>bottom</h5>
@@ -69,7 +69,7 @@
                     <div>
                         <div class="image-slider">
                             <div class="image-product">
-                                <img src="~/assets/images/fashion/category/7.jpg" class="w-100 blur-up lazyload"
+                                <img src="~/assets/blogImages/ring2.jpeg" class="w-100 blur-up lazyload"
                                      alt="">
                                 <div class="image-contain">
                                     <h5>Bags</h5>
@@ -80,10 +80,10 @@
                     <div>
                         <div class="image-slider">
                             <div class="image-product">
-                                <img src="~/assets/images/fashion/category/8.jpg" class="w-100 blur-up lazyload"
+                                <img src="~/assets/blogImages/ring3.jpeg" class="w-100 blur-up lazyload"
                                      alt="">
                                 <div class="image-contain">
-                                    <h5>Denims</h5>
+                                    <h5>Üzükər</h5>
                                 </div>
                             </div>
                         </div>
@@ -91,10 +91,10 @@
                     <div>
                         <div class="image-slider">
                             <div class="image-product">
-                                <img src="~/assets/images/fashion/category/9.jpg" class="w-100 blur-up lazyload"
+                                <img src="~/assets/blogImages/ring3.jpeg" class="w-100 blur-up lazyload"
                                      alt="">
                                 <div class="image-contain">
-                                    <h5>Hoddies</h5>
+                                    <h5>Qolbağlar</h5>
                                 </div>
                             </div>
                         </div>
@@ -102,10 +102,10 @@
                     <div>
                         <div class="image-slider">
                             <div class="image-product">
-                                <img src="~/assets/images/fashion/category/10.jpg" class="w-100 blur-up lazyload"
+                                <img src="~/assets/blogImages/ring2.jpeg" class="w-100 blur-up lazyload"
                                      alt="">
                                 <div class="image-contain">
-                                    <h5>Footwear</h5>
+                                    <h5>Boyunbağlıar</h5>
                                 </div>
                             </div>
                         </div>
@@ -113,10 +113,10 @@
                     <div>
                         <div class="image-slider">
                             <div class="image-product">
-                                <img src="~/assets/images/fashion/category/11.jpg" class="w-100 blur-up lazyload"
+                                <img src="~/assets/blogImages/ring1.jpeg" class="w-100 blur-up lazyload"
                                      alt="">
                                 <div class="image-contain">
-                                    <h5>Makeup</h5>
+                                    <h5>Bilərzik</h5>
                                 </div>
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                                 <img src="~/assets/images/fashion/category/12.jpg" class="w-100 blur-up lazyload"
                                      alt="">
                                 <div class="image-contain">
-                                    <h5>Accessories</h5>
+                                    <h5>Sırğalar</h5>
                                 </div>
                             </div>
                         </div>
@@ -404,10 +404,9 @@
                             <i data-feather="align-left"></i> Filter
                         </button>
                     </div>
-                    <!-- filter button -->
-                    <!-- label and featured section -->
+                  
                     <div class="col-md-12">
-                        <h3 class="mb-3">@Model.Products.Count Results Found</h3>
+                        <h3 class="mb-3">@Model.Products.Count Aksesuar tapıldı</h3>
                     </div>
 
                     <div class="col-12">
@@ -417,33 +416,38 @@
                                     <div class="dropdown select-featured">
                                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
                                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                            Sort by:
+                                            Filter:
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                             <li>
                                                 <a class="dropdown-item" href="@Url.Action("Index", new { sort = "AtoZ" })">
-                                                    Alphabetically A-Z
+                                                    A-dan Z-yə
                                                 </a>
                                             </li>
                                             <li>
                                                 <a class="dropdown-item" href="@Url.Action("Index", new { sort = "ZtoA" })">
-                                                    Alphabetically Z-A
+                                                    Z-dən A-ya
                                                 </a>
                                             </li>
                                             <li>
                                                 <a class="dropdown-item" href="@Url.Action("Index", new { sort = "LowToHigh" })">
-                                                    Price, Low to High
+                                                    Artan qiymətlə
                                                 </a>
                                             </li>
                                             <li>
                                                 <a class="dropdown-item" href="@Url.Action("Index", new { sort = "HighToLow" })">
-                                                    Price, High to Low
+                                                    Azalan qiymətlə
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="@Url.Action("Index", new { sort = "AddingDate" })">
+                                                    Ən son paylaşılanlar
                                                 </a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="dropdown select-featured">
+                             @*    <div class="dropdown select-featured">
                                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
                                             data-bs-toggle="dropdown" aria-expanded="false">
                                         Select Featured
@@ -465,7 +469,7 @@
                                             <a class="dropdown-item" href="javascript:void(0)">Hoodie</a>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> *@
                             </div>
                             <div class="grid-options d-sm-inline-block d-none">
                                 <ul class="d-flex">
@@ -507,13 +511,13 @@
                             <div class="product-box">
                                 <div class="img-wrapper">
                                     <div class="front">
-                                        <a asp-controller="product" asp-action="detail" asp-route-id="@item.Id">
+                                        <a href="product-left-sidebar.html">
                                             <img src="~/assets/blogImages/@item.BlogImages.FirstOrDefault(x=>x.IsMain == true).ImageUrl"
                                                  class="bg-img blur-up lazyload" alt="">
                                         </a>
                                     </div>
                                     <div class="back">
-                                        <a asp-controller="product" asp-action="detail" asp-route-id="@item.Id">
+                                        <a href="product-left-sidebar.html">
                                             <img src="~/assets/blogImages/@item.BlogImages.FirstOrDefault(x=>x.IsMain == false).ImageUrl"
                                                  class="bg-img blur-up lazyload" alt="">
                                         </a>
@@ -539,7 +543,7 @@
                                         <span class="font-light grid-content">@item.Categories.CategoryLanguages.FirstOrDefault(x=>x.LanguageId == languageId).CategoryName</span>
                                     </div>
                                     <div class="main-price">
-                                        <a asp-controller="product" asp-action="detail" asp-route-id="@item.Id" class="font-default">
+                                        <a href="product-left-sidebar.html" class="font-default">
                                             <h5 class="ms-0">@item.BlogLanguages.FirstOrDefault(b => b.LanguageId == languageId).Title</h5>
                                         </a>
                                         <div class="listing-content">

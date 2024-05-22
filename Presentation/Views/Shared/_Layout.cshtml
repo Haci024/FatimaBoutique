@@ -303,16 +303,26 @@
                                             <li class="dropdown">
                                                 <a asp-controller="Shop" asp-action="Index" class="nav-link">Məhsullar</a>
                                             </li>
-                                           
-                                            <li class="mega-menu dropdown ratio_40">
-                                                <a asp-controller="Home" asp-action="AboutUs" class="nav-link">
-                                                    <div class="gradient-title">Haqqımızda</div>
-                                                </a>
-                                            </li>
                                             <li class="dropdown">
-                                                <a asp-controller="Home" asp-action="ContactUs" class="nav-link">Bizimlə əlaqə</a>
+                                                <a href="javascript:void(0)" class="nav-link menu-title">Digər səhifələr</a>
+                                                <ul class="nav-submenu menu-content">
+                                                  
+                                                  
+                                                    <li>
+                                                        <a asp-controller="Home" asp-action="Faq">Tez-tez verilən suallar</a>
+                                                    </li>
+                                                    <li>
+                                                        <a asp-controller="Home" asp-action="ContactUs">Bizimlə əlaqə</a>
+                                                    </li>
+                                                    <li>
+                                                        <a asp-controller="Home" asp-action="Videos">Videolar</a>
+                                                    </li>
+                                                    <li>
+                                                        <a asp-controller="Home" asp-action="UnsubscribePage">Abunəliyin ləğvi</a>
+                                                    </li>
+                                           
+                                                </ul>
                                             </li>
-                                         
                                             <li class="mobile-poster d-flex d-xl-none">
                                                 <img src="~/assets/images/pwa.png" class="img-fluid" alt="">
                                                 <div class="mobile-contain">
@@ -437,8 +447,8 @@
                                         <i data-feather="x" class="font-light"></i>
                                     </span>
                                 </div>
-                                <div class="search-suggestion">
-                                    @* <ul class="custom-scroll">
+                           @*    <div class="search-suggestion">
+                                    <ul class="custom-scroll">
                                         @foreach (var item in products)
                                         {
                                             <li>
@@ -454,8 +464,8 @@
                                                 </div>
                                             </li>
                                         }
-                                    </ul> *@
-                                </div>
+                                    </ul>
+                                </div>  *@
                             </div>
                         </div>
                     </div>
@@ -536,7 +546,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-4 col-sm-6">
+                    <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="footer-links">
                             <div class="footer-title">
                                 <h3>Səhifələr</h3>
@@ -562,65 +572,58 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
                         <div class="footer-links">
                             <div class="footer-title">
-                                <h3>New Categories</h3>
+                                <h3>Kateqoriyalar</h3>
                             </div>
                             <div class="footer-content">
                                 <ul>
                                     <li>
-                                        <a href="shop-left-sidebar.html" class="font-dark">Latest Shoes</a>
+                                        <a href="shop-left-sidebar.html" class="font-dark">Üzüklər</a>
                                     </li>
                                     <li>
-                                        <a href="shop-left-sidebar.html" class="font-dark">Branded Jeans</a>
+                                        <a href="shop-left-sidebar.html" class="font-dark">Qolbağlar</a>
                                     </li>
                                     <li>
-                                        <a href="shop-left-sidebar.html" class="font-dark">New Jackets</a>
+                                        <a href="shop-left-sidebar.html" class="font-dark">Boyunbağılar</a>
                                     </li>
                                     <li>
-                                        <a href="shop-left-sidebar.html" class="font-dark">Colorfull Hoodies</a>
+                                        <a href="shop-left-sidebar.html" class="font-dark">Bilərziklər</a>
                                     </li>
                                     <li>
-                                        <a href="shop-left-sidebar.html" class="font-dark">Shiner Goggles</a>
+                                        <a href="shop-left-sidebar.html" class="font-dark">Sırğalar</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
                         <div class="footer-links">
                             <div class="footer-title">
-                                <h3>Get Help</h3>
+                                <h3>Sosialda bizi izləyin</h3>
                             </div>
                             <div class="footer-content">
                                 <ul>
                                     <li>
-                                        <a href="./profile.html" class="font-dark">Your Account</a>
+                                        <a href="shop-left-sidebar.html" class="font-dark">İnstagram</a>
                                     </li>
                                     <li>
-                                        <a href="./faq.html" class="font-dark">Shopping FAQs</a>
+                                        <a href="shop-left-sidebar.html" class="font-dark">Facebook</a>
                                     </li>
+                                    <li>
+                                        <a href="shop-left-sidebar.html" class="font-dark">Tik-Tok</a>
+                                    </li>
+                                    <li>
+                                        <a href="shop-left-sidebar.html" class="font-dark">You tube</a>
+                                    </li>
+                                 
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-4 col-sm-6 d-none d-sm-block">
-                        <div class="footer-newsletter">
-                            <h3>Let’s stay in touch</h3>
-                            <div class="form-newsletter">
-                                <div class="input-group mb-4">
-                                    <input type="text" class="form-control color-4" placeholder="Your Email Address">
-                                    <span class="input-group-text" id="basic-addon4">
-                                        <i class="fas fa-arrow-right"></i>
-                                    </span>
-                                </div>
-                                <p class="font-dark mb-0">
-                                    Keep up to date with our latest news and special offers.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+
+
                 </div>
             </div>
         </div>

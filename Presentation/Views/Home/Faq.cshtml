@@ -19,21 +19,7 @@
         <li></li>
         <li></li>
     </ul>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 search-section">
-                <h3>Sizdən gələn suallar</h3>
-                <div class="search-bar">
-                    <div class="input-group search-bar">
-                        <input type="search" class="form-control" placeholder="Search">
-                        <button class="input-group-text" id="basic-addon3">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 </section>
 <!-- Breadcrumb section end -->
 <!-- FAQ Section Start -->
@@ -74,69 +60,198 @@
         </div>
     </div>
 </section>
-<!-- FAQ Section End -->
-<!-- FAQ details start -->
 <section class="faq-details section-b-space">
     <div class="container">
         <div class="row g-4">
             <div class="col-md-4">
                 <div class="faq-link-box">
                     <ul>
-                        @foreach (var item in Model.FrequentlyQuestions)
-                        {
+                        <li>
+                            <a href="#1">
+                                <h4>1.</h4>
+                                <h5>Abunəlikdən necə çıxa bilərəm?</h5>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#2">
+                                <h4>2.</h4>
+                                <h5>Alış-veriş zamanı qeydiyyat vacibdirmi?</h5>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#3">
+                                <h4>3.</h4>
+                                <h5>Sualıma cavab tapmadıqda nə etməliyəm?</h5>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#4">
+                                <h4>4.</h4>
+                                <h5>Qeydiyyatdan keçdikdə elektron ünvan təsdiqi vacibdir?</h5>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#5">
+                                <h4>5.</h4>
+                                <h5>Ölkə xaricinə çatdırılma varmı?</h5>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#6">
+                                <h4>6.</h4>
+                                <h5>Məhsulda problem olduqda necə qaytara bilərəm?</h5>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#7">
+                                <h4>7.</h4>
+                                <h5>Alış-veriş prosesi necə baş verir?</h5>
+                            </a>
+                        </li>
                             <li>
-                                <a href="#@i">
-                                    <h4>@(i=i+1).</h4>
-                                    @* <h5>@item.Question</h5> *@
-                                </a>
-                            </li>
-                        }
+                            <a href="#8">
+                                <h4>8.</h4>
+                                <h5>Alış-veriş prosesi necə baş verir?</h5>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#9">
+                                <h4>9.</h4>
+                                <h5>Alış-veriş prosesi necə baş verir?</h5>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-7 col-md-8">
-
-                @foreach (var item in Model.FrequentlyQuestions)
-                {
-                    <div class="faq-heading" id="@i">
-                        <i data-feather="help-circle" class="theme-color"></i>
-                        <div class="faq-option">
-                            @* <h3>@item.Question?</h3>
-                            <h6 class="font-light">
-                                @item.Answer
-                            </h6> *@
-                        </div>
+                <div class="faq-heading" id="1">
+                    <i data-feather="help-circle" class="theme-color"></i>
+                    <div class="faq-option">
+                        <h3>Abunəliyi necə dayandıra bilərəm?</h3>
+                        <h6 class="font-light">
+                         Saytımıza daxil olduqda Naviqasiya paneli hissəsində digər səhifələr bölməsinə gəlib açılan alt menyuda
+                         Abunəliyin  ləğvi hissəsini seçməklə səhifəyə yönəldikdən sonra abunə olan elektron ünvanı daxil edib göndər düyməsinə 
+                         klik edin.
+                        </h6>
                     </div>
-                }
+                </div>
+                <div class="faq-heading" id="2">
+                    <i data-feather="help-circle" class="theme-color"></i>
+                    <div class="faq-option">
+                        <h3>Alış-veriş zamanı qeydiyyat vacibdirmi?</h3>
+                        <h6 class="font-light">
+                            Bəli bu sizin alış-verişiniz üçün vacibdir. Sadəcə bir dəfə qeydiyyatdan keçməklə növbəti alış-verişlərdə
+                            məlumatlarınız avtomatik sistemimizdə mövcud olduğu üçün proses sizin üçün asan olacaq.Məlumatların doldurulması və qeydiyyat
+                            sizinlə əlaqə saxlamağımız üçün vacibdir.Buna görə sizə aid olan aktiv elektron ünvanınızı və telefon nömrənizi daxil etməniz tələb edilir.
+                        </h6>
+                    </div>
+                </div>
+                <div class="faq-heading" id="3">
+                    <i data-feather="help-circle" class="theme-color"></i>
+                    <div class="faq-option">
+                        <h3>Alış-veriş zamanı qeydiyyat vacibdirmi?</h3>
+                        <h6 class="font-light">
+                            Bəli bu sizin alış-verişiniz üçün vacibdir. Sadəcə bir dəfə qeydiyyatdan keçməklə növbəti alış-verişlərdə
+                            məlumatlarınız avtomatik sistemimizdə mövcud olduğu üçün proses sizin üçün asan olacaq.Məlumatların doldurulması və qeydiyyat
+                            sizinlə əlaqə saxlamağımız üçün vacibdir.Buna görə sizə aid olan aktiv elektron ünvanınızı və telefon nömrənizi daxil etməniz tələb edilir.
+                        </h6>
+                    </div>
+                </div>
+
+                <div class="faq-heading" id="4">
+                    <i data-feather="help-circle" class="theme-color"></i>
+                    <div class="faq-option">
+                        <h3>Another important quesstion in FAQ?</h3>
+                        <h6 class="font-light">
+                            The static holiday caravan has been designed for holiday use instead
+                            of full time
+                            living. With its modern construction and use of high quality materials the static
+                            caravan should be built to British and European standard: BS EN 1647 but some luxury
+                            caravans are built to BS 3632 confirming to residential standards.
+                        </h6>
+                    </div>
+                </div>
+
+                <div class="faq-heading" id="5">
+                    <i data-feather="help-circle" class="theme-color"></i>
+                    <div class="faq-option">
+                        <h3>Another question in FAQ?</h3>
+                        <h6 class="font-light">
+                            Normal static caravan can come in either one or two sectiond with
+                            width up to 22ft and
+                            60ft long. If you have a one piece model this is a single unit and the two piece is
+                            known as a twin and usually assembled on site.
+                        </h6>
+                    </div>
+                </div>
+
+                <div class="faq-heading" id="6">
+                    <i data-feather="help-circle" class="theme-color"></i>
+                    <div class="faq-option">
+                        <h3>Another very important question in FAQ?</h3>
+                        <h6 class="font-light">
+                            Decide on how many bedrooms you require as most caravans can be from
+                            2 to 4 bedrooms but
+                            up to eight berths. manufactures will normally have their own layout but will offer but
+                            will a number of ranges depending on your budget.
+                        </h6>
+                    </div>
+                </div>
+
+                <div class="faq-heading" id="7">
+                    <i data-feather="help-circle" class="theme-color"></i>
+                    <div class="faq-option">
+                        <h3>Alış-veriş necə baş verir?</h3>
+                        <h6 class="font-light">
+                          Siz məhsulu seçib müvafiq formu doldurduqdan sonra qeydiyyat zamanı daxil etdiyiniz elektron ünvanınıza 
+                          və eləcə də işçilərimizə sifraiş barədə məlumat göndərilir. Ən qısa zamanda sizinlə əlaqə saxlanılır.
+                        </h6>
+                    </div>
+                </div>
+                <div class="faq-heading" id="7">
+                    <i data-feather="help-circle" class="theme-color"></i>
+                    <div class="faq-option">
+                        <h3>Another question in FAQ?</h3>
+                        <h6 class="font-light">
+                            The static holiday caravan has been designed for holiday use instead
+                            of full time
+                            living. With its modern construction and use of high quality materials the static
+                            caravan should be built to British and European standard: BS EN 1647 but some luxury
+                            caravans are built to BS 3632 confirming to residential standards.
+                        </h6>
+                    </div>
+                </div>
+                <div class="faq-heading" id="8">
+                    <i data-feather="help-circle" class="theme-color"></i>
+                    <div class="faq-option">
+                        <h3>Another question in FAQ?</h3>
+                        <h6 class="font-light">
+                            The static holiday caravan has been designed for holiday use instead
+                            of full time
+                            living. With its modern construction and use of high quality materials the static
+                            caravan should be built to British and European standard: BS EN 1647 but some luxury
+                            caravans are built to BS 3632 confirming to residential standards.
+                        </h6>
+                    </div>
+                </div>
+                <div class="faq-heading" id="9">
+                    <i data-feather="help-circle" class="theme-color"></i>
+                    <div class="faq-option">
+                        <h3>Another question in FAQ?</h3>
+                        <h6 class="font-light">
+                            The static holiday caravan has been designed for holiday use instead
+                            of full time
+                            living. With its modern construction and use of high quality materials the static
+                            caravan should be built to British and European standard: BS EN 1647 but some luxury
+                            caravans are built to BS 3632 confirming to residential standards.
+                        </h6>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
-<!-- FAQ details end -->
-<!-- Subscribe Section Start -->
-<section class="subscribe-section section-b-space">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <div class="subscribe-details">
-                    <h2 class="mb-3">Abunəlik</h2>
-                    <h6 class="font-light">
-                        Abunə olun və yeniliklərdən xəbərdar olun
-                    </h6>
-                </div>
-            </div>
 
-            <div class="col-lg-6 col-md-6 mt-md-0 mt-3">
-                <div class="subsribe-input">
-                    <div class="input-group">
-                        <input type="email" class="form-control subscribe-input" placeholder="Elektron ünvanınızı daxil edin...">
-                        <button class="btn btn-solid-default" type="button">Gönder</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 <!-- Subscribe Section End -->
 @section styles {
     <!--Google font-->

@@ -1,0 +1,78 @@
+﻿@model DTO.CategoryDTO.UpdateChildCategoryDTO
+@{
+    ViewData["Title"] = "UpdateChildCategory";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+
+    <!-- Basic Validation -->
+    <div class="row clearfix">
+        <div class="col-lg-6 col-md-8 col-sm-8 col-xs-8">
+            <div class="card">
+                <div class="header text-center">
+                    <h2>Yeni alt kateqoriya</h2>
+                </div>
+                <div class="body">
+                    <form id="form_validation" method="post">
+                        <div class="form-group form-float">
+                            <div>
+                                <select class="form-control show-tick" asp-for="MainCategoryId" name="MainCategoryId" id="childCategoryId"  data-live-search="true">
+
+                                    @foreach (var item in Model.MainCategoryList)
+                                    {
+
+                                        <option style="margin-left:30px" value="@item.Id">@item.CategoryName</option>
+
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <p>
+                                <label>Kateqoriya adı (azərbaycan)</label>
+                            </p>
+                            <div class="form-line">
+                                <input type="text" asp-for="CategoryName_az" name="CategoryName_az" class="form-control" placeholder="azərbaycan dilində">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <p>
+                                <label>Kateqoriya adı (türk)</label>
+                            </p>
+                            <div class="form-line">
+                                <input type="text" asp-for="CategoryName_tr" name="CategoryName_tr" class="form-control" placeholder="türk dilində">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <p>
+                                <label>Kateqoriya adı (ingilis)</label>
+                            </p>
+                            <div class="form-line">
+                                <input type="text" asp-for="CategoryName_en" name="CategoryName_en" class="form-control" placeholder="ingilis dilində">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <p>
+                                <label>Kateqoriya adı (rus)</label>
+                            </p>
+                            <div class="form-line">
+                                <input type="text" asp-for="CategoryName_ru" name="CategoryName_ru" class="form-control" placeholder="rus dilində">
+                            </div>
+                        </div>
+
+
+                        <div class="font-bold col-pink" asp-validation-summary="ModelOnly"></div>
+                        <div class="text-center">
+                            <button class="btn btn-primary waves-effect" type="submit" id="submitButton">Yenilə</button>
+                            <a asp-action="ChildCategoryList" class="btn btn-success">Geri</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

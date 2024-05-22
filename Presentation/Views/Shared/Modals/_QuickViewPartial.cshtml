@@ -1,4 +1,4 @@
-﻿@model Entity.Models.Blogs
+﻿@* @model Entity.Models.Blogs
 @{
     int languageId = 1;
 }
@@ -17,7 +17,7 @@
                  </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+           <div class="col-lg-6">
                 <div class="product-right">
                     <h2 class="mb-2">@Model.BlogLanguages.FirstOrDefault(b => b.LanguageId == languageId).Title</h2>
                     <h6 class="font-light mb-1">@Model.Categories.CategoryLanguages.FirstOrDefault(x => x.LanguageId == languageId).CategoryName</h6>
@@ -43,3 +43,4 @@
         </div>
     </div>
 </div>
+ *@
