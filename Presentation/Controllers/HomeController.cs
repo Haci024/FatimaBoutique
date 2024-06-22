@@ -47,32 +47,33 @@ namespace Presentation.Controllers
         public IActionResult ContactUs()
         {
             AddContactUsDTO dto = new AddContactUsDTO();
-            ViewBag.IsExsist = false;
+            ViewBag.Success = false;
             return View(dto);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult ContactUs(AddContactUsDTO dto)
         {
+            
             if (!ModelState.IsValid)
             {
 
                 ViewBag.EmptyData = "Zəhmət olmasa bütün xanaları doldurun ki,sizinlə əlaqə saxlayanda problem yaşamayaq!";
-                ViewBag.IsExsist = false;
+                ViewBag.Success = false;
 
                 return View(dto);
             };
-            
+            try
+            {
             ContactUs contactUs=new ContactUs();
             contactUs.Viewed = false;
             contactUs.Gmail = dto.Gmail;
             contactUs.PhoneNumber = dto.PhoneNumber;
             contactUs.FullName = dto.FullName;
             contactUs.Description=dto.Description;
+                contactUs.SendingDate = DateTime.UtcNow;
             contactUs.Title = dto.Title;
-            try
-            {
-                ViewBag.IsExsist = true;
+                ViewBag.Success = true;
                 _emailService.ContactUsAvtoMessageForUser(dto);
                 _contactUsService.Create(contactUs);
                 return RedirectToAction("ContactUs", "Home");
@@ -130,10 +131,45 @@ namespace Presentation.Controllers
         [HttpGet]
         public IActionResult UnSubscribe()
         {
-            
-            return View();
+            UnsubcribeDTO dto = new UnsubcribeDTO();
+          
+            return View(dto);
         }
         [HttpPost]
-        
+        public IActionResult UnSubscribe(UnsubcribeDTO dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Zəhmət olmasa elektron ünvanınızı daxil edin!");
+              
+                return View();
+            }
+            Subscribers subscribers = _db.Subscribers.Where(x => x.Email == dto.Email).FirstOrDefault();
+            if (subscribers == null)
+            {
+                ModelState.AddModelError("", "Daxil etdiyiniz elektron ünvan abunə olmayıb!");
+               
+                return View();
+            }
+            else
+            {
+                if (subscribers.Status == false)
+                {
+                 
+                    subscribers.Status = true;
+                    _subscriberService.Update(subscribers);
+                    return View();
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Daxil etdiyiniz elektron ünvan abunəliyi dayandırılıb!");
+
+                    return View();
+                }
+                
+            }
+           
+           
+        }
     }
 }

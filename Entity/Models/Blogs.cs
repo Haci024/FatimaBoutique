@@ -16,6 +16,8 @@ namespace Entity.Models
         /// </summary>
         public bool SalesStatus { get; set; }
         public decimal SalesPrice { get; set; }
+
+        public bool IsSales { get; set; } = false;
         public decimal DiscountPrice { get; set; }
         public bool Status { get; set; }
         public List<BlogImages> BlogImages { get; set; }//Bloq rəsimləri

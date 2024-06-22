@@ -1,4 +1,4 @@
-﻿@model DTO.ContactUsDTO.ReadContactUsDTO
+﻿@model DTO.ContactUsDTO.ReplyMessageDTO
 @{
     ViewData["Title"] = "ReadMessage";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -11,7 +11,8 @@
         <div class="col-lg-6 col-md-8 col-sm-8 col-xs-8">
             <div class="card">
                 <div class="header text-center">
-                    <h2>Göndərən:@Model.FullName</h2>
+                    <h2>Göndərilən şəxs:@Model.FullName  </h2>
+                    <h2>Göndərilən şəxs:@Model.Gmail  </h2>
                 </div>
                 <div class="body">
                     <form id="form_validation" method="post">
@@ -21,7 +22,7 @@
                                 <label>Başlıq</label>
                             </p>
                             <div class="form-line">
-                                <input type="text" asp-for="Title" name="Title" class="form-control" placeholder="azərbaycan dilində" readonly>
+                                <input type="text" asp-for="Title" name="Title" class="form-control" placeholder="Başlıq" >
                             </div>
                         </div>
                         <div class="input-group">
@@ -29,17 +30,13 @@
                                 <label>Məzmun</label>
                             </p>
                             <div class="form-line">
-                                <textarea type="text" asp-for="Description" name="Description" class="form-control" readonly></textarea>
+                                <textarea type="text" asp-for="Description" name="Description" class="form-control" ></textarea>
                             </div>
                         </div>
-                      
-                        
-
-
-                        
+                        <div style="color:darkred" asp-validation-summary="ModelOnly"></div>
                         <div class="text-center">
-                            <a  asp-action="ReplyMessage" asp-route-Id="@Model.Id" class="btn btn-primary waves-effect"><i class="material-icons">reply email</i></a>
-                          
+                            <button  type="submit" class="btn btn-primary waves-effect">Göndər</button>
+                            <a asp-action="ReadMessageList" class="btn btn-success">Geri</a>
                         </div>
                     </form>
                 </div>

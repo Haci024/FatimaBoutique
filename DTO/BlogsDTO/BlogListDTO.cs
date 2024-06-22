@@ -9,6 +9,10 @@ namespace DTO.BlogsDTO
 {
     public class BlogListDTO
     {
-        public IEnumerable<Blogs> Blogs { get; set; }
+        public IEnumerable<BlogsLanguage> ActiveProducts { get; set; }
+
+        public IEnumerable<BlogsLanguage> DeactiveProducts { get; set; }
+
+        public IEnumerable<BlogsLanguage> SalesProducts { get; set; }
     }
 }

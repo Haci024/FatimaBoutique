@@ -10,6 +10,6 @@ namespace Bussiness.Services
 {
     public interface IBlogService:IGenericService<Blogs>
     {
-       
+        
     }
 }

@@ -22,5 +22,7 @@ namespace Bussiness.Services
         public void ContactUsAvtoMessageForUser(AddContactUsDTO contactUsDTO);
 
         public void NewSubscriberMail(string email);
+
+        public void ReplyMessageToCustomer(ReplyMessageDTO dto);
     }
 }

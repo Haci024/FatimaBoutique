@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Contact Us | Fatimah Boutique";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    bool send = ViewBag.IsExsist;
+    bool send = ViewBag.Success;
 }
 
 <!-- Breadcrumb section start -->
@@ -41,9 +41,6 @@
 <!-- Contact Section Start -->
 <section class="contact-section">
     <div class="container">
-        <form method="post">
-
-        </form>
         <div class="row g-4">
             <div class="col-lg-7">
                 <form method="post">
@@ -186,7 +183,7 @@
 
     <!-- script js -->
     <script src="~/assets/js/theme-setting.js" defer></script>
-    <script src="~/assets/js/script.js" defer></script>
+    <script src="~/assets/js/script.js" defer></script>  
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var inputElement = document.getElementById('phone');
@@ -239,18 +236,19 @@
     </script>
 
 }
-@if (send)
+@if(send)
 {
-
     <script>
-
         Swal.fire({
             icon: 'success',
             title: 'Göndərildi!',
             text: 'Sizin müraciətiniz qeydə alındı ən qısa zamanda sizinlə əlaqə saxlanılacaq.Bizi izləmədə qalın!'
         });
     </script>
-
+} 
+else
+{
+    
 }
 
 @section modals{

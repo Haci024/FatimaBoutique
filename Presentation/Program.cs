@@ -40,6 +40,9 @@ builder.Services.AddScoped<IBlogDAL, BLogsRepository>();
 builder.Services.AddScoped<ISocialMediaService, SocialMediaManager>();
 builder.Services.AddScoped<ISocialMediaDAL, SocialMediaRepository>();
 
+builder.Services.AddScoped<IBlogLanguagesService, BlogLanguagesManager>();
+builder.Services.AddScoped<IBlogLanguagesDAL, BlogLanguagesRepository>();
+
 builder.Services.AddScoped<IAboutUsService, AboutUsManager>();
 builder.Services.AddScoped<IAboutUsDAL,AboutUsRepository>();
 

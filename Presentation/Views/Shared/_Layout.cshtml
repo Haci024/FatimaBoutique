@@ -318,7 +318,7 @@
                                                         <a asp-controller="Home" asp-action="Videos">Videolar</a>
                                                     </li>
                                                     <li>
-                                                        <a asp-controller="Home" asp-action="UnsubscribePage">Abunəliyin ləğvi</a>
+                                                        <a asp-controller="Home" asp-action="UnSubscribe">Abunəliyin ləğvi</a>
                                                     </li>
                                            
                                                 </ul>
@@ -510,8 +510,11 @@
     @RenderBody()
 
     
+    
+    
+        @await Html.PartialAsync("SubscriberPartialView", new DTO.SubscriberDTO.NewSubscriberDTO())
+    
    
-    @await Html.PartialAsync("SubscriberPartialView" ,new DTO.SubscriberDTO.NewSubscriberDTO())
     <footer class="footer-sm-space">
         <div class="main-footer">
             <div class="container">
@@ -644,7 +647,7 @@
 
     <!-- bg overlay start -->
     <div class="bg-overlay"></div>
-    <!-- bg overlay end -->
+   
 
     <script>
         $(function () {

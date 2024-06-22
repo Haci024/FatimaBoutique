@@ -17,8 +17,8 @@ namespace DAL.DbConnection
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             {
 
-            optionsBuilder.UseSqlServer("server=77.245.159.27\\MSSQLSERVER2019;initial catalog=FatimahBoutique;user=FatimahAdmin;password=6!3dRpp48;TrustServerCertificate=True");
-           // optionsBuilder.UseSqlServer("server=Odissey;database=FatimaBoutique;integrated security=true;TrustServerCertificate=True");//Database ilə əlaqə
+            //optionsBuilder.UseSqlServer("server=77.245.159.27\\MSSQLSERVER2019;initial catalog=FatimahBoutique;user=FatimahAdmin;password=6!3dRpp48;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("server=Odissey;database=FatimaBoutique;integrated security=true;TrustServerCertificate=True");//Database ilə əlaqə
             optionsBuilder.EnableSensitiveDataLogging();
 
 

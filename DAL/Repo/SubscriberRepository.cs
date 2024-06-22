@@ -26,5 +26,7 @@ namespace Data.Repo
         {
             return _db.Subscribers.Where(x=>x.Status==false).ToList();
         }
+
+    
     }
 }

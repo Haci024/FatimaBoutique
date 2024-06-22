@@ -1,6 +1,7 @@
 ﻿using Bussiness.Services;
 using DTO.ContactUsDTO;
 using Entity.Models;
+using Humanizer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,9 +12,11 @@ namespace Presentation.Areas.Admin.Controllers
     public class ContactUsController : Controller
     {
         private readonly IContactUsService _contactUsService;
-        public ContactUsController(IContactUsService service)
+        private readonly IEmailService _emailService;
+        public ContactUsController(IContactUsService service,IEmailService emailService)
         {
             _contactUsService = service;
+            _emailService = emailService;   
         }
         [HttpGet]
         public IActionResult UnReadMessageList()
@@ -45,6 +48,36 @@ namespace Presentation.Areas.Admin.Controllers
 
 
             return View(dto);
+        }
+        [HttpGet]
+        public IActionResult ReplyMessage(int Id)
+        {
+            ReplyMessageDTO dto = new ReplyMessageDTO();
+            ContactUs newContact = _contactUsService.GetById(Id);
+            dto.Id = Id;
+            dto.FullName = newContact.FullName;
+            dto.Gmail = newContact.Gmail;
+            return View(dto);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ReplyMessage(ReplyMessageDTO dto)
+        {
+            ContactUs newContact = _contactUsService.GetById(dto.Id);
+            dto.Gmail= newContact.Gmail;    
+            dto.FullName= newContact.FullName;
+
+            if (dto.Title==null || dto.Description==null)
+            {
+                ModelState.AddModelError("", "Məlumatları tam doldurun!");
+                return View(dto);
+            }
+            else
+            {
+                _emailService.ReplyMessageToCustomer(dto);
+                return RedirectToAction("ReadMessageList");
+            }
+         
         }
     }
 }

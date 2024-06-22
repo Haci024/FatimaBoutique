@@ -1,5 +1,6 @@
 ﻿using Bussiness.Services;
 using Data.DAL;
+using DTO.SubscriberDTO;
 using Entity.Models;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,8 @@ namespace Bussiness.Manager
         {
             _dal.Delete(t);
         }
+
+  
 
         public Subscribers GetById(int id)
         {

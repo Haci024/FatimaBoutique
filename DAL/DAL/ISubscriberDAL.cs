@@ -13,5 +13,7 @@ namespace Data.DAL
         public IEnumerable<Subscribers> ActiveSubscriberList();
 
         public IEnumerable<Subscribers> DeactiveSubscriberList();
+
+        
     }
 }

@@ -157,5 +157,26 @@ namespace Bussiness.Manager
             client.Send(mimeMessage);
             client.Disconnect(true);
         }
+
+        public void ReplyMessageToCustomer(ReplyMessageDTO dto)
+        {
+            MimeMessage mimeMessage = new MimeMessage();
+            MailboxAddress ConfirmAddressFrom = new MailboxAddress(dto.Title, "odisseybanks024@gmail.com");
+            MailboxAddress ConfirmAdressTo = new MailboxAddress("Fatimah-Boutique", dto.Gmail);
+
+            mimeMessage.From.Add(ConfirmAddressFrom);
+            mimeMessage.To.Add(ConfirmAdressTo);
+            var bodyBuilder = new BodyBuilder();
+            bodyBuilder.TextBody = dto.Description;
+            mimeMessage.Body = bodyBuilder.ToMessageBody();
+            mimeMessage.Subject = dto.Title;
+
+            SmtpClient client = new SmtpClient();
+
+            client.Connect("smtp.gmail.com", 587, false);
+            client.Authenticate("odisseybanks024@gmail.com", "voxryimidhytyjot");
+            client.Send(mimeMessage);
+            client.Disconnect(true);
+        }
     }
 }

@@ -134,7 +134,7 @@ namespace Presentation.Controllers
             };
 
             var result = await _userManager.CreateAsync(appUser, dto.Password);
-            var addRole = await _userManager.AddToRoleAsync(appUser, "Admin");
+            var addRole = await _userManager.AddToRoleAsync(appUser, "User");
             if (result.Succeeded)
             {
                 _emailService.SendActivateAccountCode(appUser);
@@ -370,5 +370,6 @@ namespace Presentation.Controllers
             return View();
         }
         #endregion
+
     }
 }

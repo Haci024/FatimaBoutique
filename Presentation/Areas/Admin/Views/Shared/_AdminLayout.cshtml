@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Jquery DataTable | Bootstrap Based Admin Template - Material Design</title>
-    <!-- Favicon-->
+    <title>Fatima-Boutique İdarə paneli</title>
+    
     <link rel="icon" href="../../favicon.ico" type="image/x-icon">
 
-    <!-- Google Fonts -->
+    
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
@@ -95,18 +95,14 @@
         <aside id="leftsidebar" class="sidebar">
             <!-- User Info -->
             <div class="user-info">
-                <div class="image">
-                    <img src="~/admin/images/user.png" width="48" height="48" alt="User" />
-                </div>
+              
                 <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">---</div>
-                    <div class="email">---</div>
+                    <h3 class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@User.Identity.Name</h3>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a asp-controller="Users" asp-action="MyProfile"><i class="material-icons">person</i>Profilim</a></li>
-                           
-                            <li><a asp-controller="Users" asp-action="LogOut"><i class="material-icons">input</i>Hesabdan çıxış</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a asp-area="" asp-controller="Account" asp-action="Logout"><i class="material-icons">input</i>Hesabdan çıxış</a></li>
                         </ul>
                     </div>
                 </div>
@@ -143,17 +139,21 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a asp-controller="Blogs" asp-action="OfferBlogList">Endirimdə olanlar</a>
+                                <a asp-controller="Blogs" asp-action="NewProduct">Yeni məhsul</a>
                             </li>
                             <li>
-                                <a asp-controller="Blogs" asp-action="SimpleBlogList">Paylaşımlar</a>
+                                <a asp-controller="Blogs" asp-action="SalesProductList">Endirimdə olanlar</a>
                             </li>
                             <li>
-                                <a asp-controller="Blogs" asp-action="DeactiveBlogList">Deaktiv paylaşımlar</a>
+                                <a asp-controller="Blogs" asp-action="AllProducts">Paylaşımlar</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Blogs" asp-action="DeactiveProductList">Deaktiv paylaşımlar</a>
                             </li>
                             <li>
                                 <a asp-controller="Blogs" asp-action="SliderList">Başlıq paylaşımları</a>
                             </li>
+                          
                             
                         </ul>
                     </li>

@@ -18,15 +18,19 @@ namespace Bussiness.Manager
             _dal = dal;
 
         }
+        
+
         public void Create(Blogs t)
         {
             _dal.Create(t);
         }
 
+      
         public void Delete(Blogs t)
         {
             _dal.Delete(t);
         }
+
 
         public Blogs GetById(int id)
         {
@@ -38,6 +42,7 @@ namespace Bussiness.Manager
             return _dal.GetList();
         }
 
+     
         public void Update(Blogs t)
         {
             _dal.Update(t);
