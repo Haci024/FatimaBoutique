@@ -9,17 +9,10 @@ namespace DTO.SliderDTO
 {
     public class AddSliderDTO
     {
-        public IFormFile Photo { get; set; }
-        public decimal Percent { get; set; }
+        public IFormFile SliderImage { get; set; }
+        public string Url { get; set; }
         public bool Status { get; set; }
-        public DateTime AddingDate { get; set; }
-        public List<AddSliderLanguageDTO> Languages { get; set; }
     }
 
-    public class AddSliderLanguageDTO
-    {
-        public int LanguageId { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-    }
+
 }

@@ -1,6 +1,8 @@
 ﻿using Bussiness.Services;
 using DAL.DbConnection;
 using DTO.CategoryDTO;
+using DTO.CategoryDTO.Child;
+using DTO.CategoryDTO.Main;
 using Entity.Models;
 using Humanizer;
 using Microsoft.AspNetCore.Authorization;
@@ -15,218 +17,52 @@ namespace Presentation.Areas.Admin.Controllers
     public class CategoryController : Controller
     {
         private readonly Context _db;
+        
+        private readonly IProductService _products;
         private readonly ICategoryService _category;
-        private readonly IBlogService _blogService;
-        private readonly ICategoryLanguageService _categoryLanguageService;
-        private readonly IBlogImagesService _blogImagesService;
+        private readonly IProductImageService _productImages;
 
-        public CategoryController(Context db, ICategoryService category, IBlogService blogService, ICategoryLanguageService categoryLanguageService, IBlogImagesService blogImagesService)
+        public CategoryController(Context db, IProductService products, ICategoryService category, IProductImageService productImages)
         {
             _db = db;
+            _products = products;
             _category = category;
-            _blogService = blogService;
-            _categoryLanguageService = categoryLanguageService;
-            _blogImagesService = blogImagesService;
+            _productImages = productImages;
         }
 
         [HttpGet]
-        public IActionResult MainCategoryList()
+        public async Task<IActionResult> MainCategoryList()
         {
-            CategoryListDTO dto= new CategoryListDTO();
-            dto.ActiveMainCategoryList = _categoryLanguageService.ActiveMainCategoryList();
+          IEnumerable<MainCategoryListDTO> dto=await _category.ActiveMainCategoryList();
+            
+           
             return View(dto);
         }
         [HttpGet]
-        public IActionResult ChildCategoryList()
+        public async Task<IActionResult> ChildCategoryList()
         {
-            CategoryListDTO dto = new CategoryListDTO();
-            dto.ActiveChildCategoryList = _categoryLanguageService.ActiveChildCategoryList();
+            IEnumerable<ChildCategoryListDTO> dto = await _category.ActiveChildCategoryList();
             return View(dto);
         }
         [HttpGet]
         public IActionResult AddMainCategory()
         {
-            AddMainCategoryDTO dto=new AddMainCategoryDTO();
-
-            return View(dto);
-        }
-        [HttpGet]
-        public IActionResult ChildCategoryListByMain(int MainCategoryId,string MainCategoryName)
-        {
-               CategoryListDTO dto=new CategoryListDTO();
-            dto.ChildCategoryListByMain = _categoryLanguageService.ChildCategoryListByMain(MainCategoryId);
-            dto.MainCategoryName= MainCategoryName;
-            return View(dto);
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult AddMainCategory(AddMainCategoryDTO dto)
-        {
+            NewMainCategoryDTO dto = new NewMainCategoryDTO();
          
-            if (!ModelState.IsValid)
-            {
-                ModelState.AddModelError("","Məlumatları tam doldurun!");
-              
-                return View(dto);
-            }
-            Categories categories = new Categories();
-
-            categories.MainCategoryId = null;
-            categories.Status = false;
-            _category.Create(categories);
-            CategoryLanguage azFormat = new CategoryLanguage();
-            CategoryLanguage trFormat = new CategoryLanguage();
-            CategoryLanguage enFormat = new CategoryLanguage();
-            CategoryLanguage ruFormat = new CategoryLanguage();
-            azFormat.CategoriesId = categories.Id;
-            azFormat.LanguageId = 1;
-            azFormat.CategoryName = dto.CategoryName_az;
-            trFormat.CategoriesId = categories.Id;
-            trFormat.LanguageId = 2;
-            trFormat.CategoryName = dto.CategoryName_tr;
-            enFormat.CategoriesId = categories.Id;
-            enFormat.LanguageId = 3;
-            enFormat.CategoryName = dto.CategoryName_en;
-            ruFormat.CategoriesId = categories.Id;
-            ruFormat.LanguageId = 4;
-            ruFormat.CategoryName = dto.CategoryName_ru;
-            _categoryLanguageService.Create(azFormat);
-            _categoryLanguageService.Create(trFormat);
-            _categoryLanguageService.Create(enFormat);
-            _categoryLanguageService.Create(ruFormat);
-            return RedirectToAction("MainCategoryList");
+            return View(dto);
         }
         [HttpGet]
-        public IActionResult AddChildCategory()
+        public async Task<IActionResult> ChildCategoryListByMain(int MainCategoryId)
         {
-            AddChildCategoryDTO dto = new AddChildCategoryDTO();
-
-            dto.MainCategoryList = _categoryLanguageService.ActiveMainCategoryList();
-
+            IEnumerable<ChildCategoryListDTO> dto =await _category.ChildCategoryListByMain(MainCategoryId);
+          
+            
             return View(dto);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddChildCategory(AddChildCategoryDTO dto)
+        public IActionResult AddMainCategory(NewMainCategoryDTO dto)
         {
-
-            dto.MainCategoryList = _categoryLanguageService.ActiveMainCategoryList();
-          
-       
-            Categories categories = new Categories();
-            categories.MainCategoryId = dto.MainCategoryId;
-            categories.Status = false;
-            _category.Create(categories);
-            CategoryLanguage azFormat= new CategoryLanguage();
-            CategoryLanguage trFormat= new CategoryLanguage();
-            CategoryLanguage enFormat = new CategoryLanguage();
-            CategoryLanguage ruFormat = new CategoryLanguage();
-            azFormat.CategoriesId = categories.Id;
-            azFormat.LanguageId = 1;
-            azFormat.CategoryName = dto.CategoryName_az;
-            trFormat.CategoriesId = categories.Id;
-            trFormat.LanguageId = 2;
-            trFormat.CategoryName = dto.CategoryName_tr;
-            enFormat.CategoriesId = categories.Id;
-            enFormat.LanguageId = 3;
-            enFormat.CategoryName = dto.CategoryName_en;
-            ruFormat.CategoriesId = categories.Id;
-            ruFormat.LanguageId = 4;
-            ruFormat.CategoryName = dto.CategoryName_ru;
-            _categoryLanguageService.Create(azFormat);
-            _categoryLanguageService.Create(trFormat);
-            _categoryLanguageService.Create(enFormat);
-            _categoryLanguageService.Create(ruFormat);
-
-
-            return RedirectToAction("ChildCategoryList");
-        }
-        [HttpGet]
-        public IActionResult BlogListByCategory(int categoryId)
-        {
-          
-
-            List<Blogs> blogs=_db.Blogs.Include(x=>x.Categories).ThenInclude(x=>x.MainCategory).Where(x=>x.CategoryId==categoryId).ToList();
-          
-            return View(blogs);
-        }
-        [HttpGet]
-        public IActionResult UpdateChildCategory(int categoryId)
-        {
-
-            UpdateChildCategoryDTO DTO = new UpdateChildCategoryDTO();
-            Categories categories=_category.GetById(categoryId);
-            DTO.MainCategoryList = _categoryLanguageService.ActiveMainCategoryList();
-            CategoryLanguage azFormat = _db.CategoryLanguages.Include(x=>x.Categories).FirstOrDefault(x => x.CategoriesId == categories.Id && x.LanguageId == 1);
-            CategoryLanguage trFormat = _db.CategoryLanguages.FirstOrDefault(x => x.CategoriesId == categories.Id && x.LanguageId == 2);
-            CategoryLanguage enFormat = _db.CategoryLanguages.FirstOrDefault(x => x.CategoriesId == categories.Id && x.LanguageId == 3);
-            CategoryLanguage ruFormat = _db.CategoryLanguages.FirstOrDefault(x => x.CategoriesId == categories.Id && x.LanguageId == 4);
-            DTO.CategoryName_ru = ruFormat.CategoryName;
-            DTO.CategoryName_az = azFormat.CategoryName;
-            DTO.CategoryName_tr = trFormat.CategoryName;
-            DTO.CategoryName_en = enFormat.CategoryName;
-            if (categories != null)
-            {
-                DTO.MainCategoryId = categories.MainCategoryId ?? 0;
-            }
-            else
-            {
-                
-                DTO.MainCategoryId = 0; 
-            }
-            return View(DTO);
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult UpdateChildCategory(UpdateChildCategoryDTO dto,int categoryId)
-        {
-            dto.MainCategoryList = _categoryLanguageService.ActiveMainCategoryList();
-            
-          
-
-            Categories categories = _category.GetById(categoryId);
-            CategoryLanguage azFormat = _db.CategoryLanguages.FirstOrDefault(x => x.CategoriesId == categories.Id && x.LanguageId == 1);
-            CategoryLanguage trFormat = _db.CategoryLanguages.FirstOrDefault(x => x.CategoriesId == categories.Id && x.LanguageId == 2);
-            CategoryLanguage enFormat = _db.CategoryLanguages.FirstOrDefault(x => x.CategoriesId == categories.Id && x.LanguageId == 3);
-            CategoryLanguage ruFormat = _db.CategoryLanguages.FirstOrDefault(x => x.CategoriesId == categories.Id && x.LanguageId == 4);
-            azFormat.CategoryName = dto.CategoryName_az;
-            trFormat.CategoryName = dto.CategoryName_tr;
-            enFormat.CategoryName = dto.CategoryName_en;
-            ruFormat.CategoryName = dto.CategoryName_ru;
-            if (categories != null)
-            {
-                categories.MainCategoryId = dto.MainCategoryId;
-            }
-          
-            _categoryLanguageService.Update(azFormat);
-            _categoryLanguageService.Update(trFormat);
-            _categoryLanguageService.Update(enFormat);
-            _categoryLanguageService.Update(ruFormat);
-            _category.Update(categories);
-            return RedirectToAction("ChildCategoryList");
-        }
-        [HttpGet]
-        public IActionResult UpdateMainCategory(int categoryId)
-        {
-
-            UpdateMainCategoryDTO dto = new UpdateMainCategoryDTO();
-            
-            CategoryLanguage azFormat = _db.CategoryLanguages.FirstOrDefault(x => x.CategoriesId == categoryId && x.LanguageId == 1);
-            CategoryLanguage trFormat = _db.CategoryLanguages.FirstOrDefault(x => x.CategoriesId == categoryId && x.LanguageId == 2);
-            CategoryLanguage enFormat = _db.CategoryLanguages.FirstOrDefault(x => x.CategoriesId == categoryId && x.LanguageId == 3);
-            CategoryLanguage ruFormat = _db.CategoryLanguages.FirstOrDefault(x => x.CategoriesId == categoryId && x.LanguageId == 4);
-            dto.CategoryName_az = azFormat.CategoryName;
-            dto.CategoryName_tr = trFormat.CategoryName;
-            dto.CategoryName_en=enFormat.CategoryName;
-            dto.CategoryName_ru = ruFormat.CategoryName;
-            return View(dto);
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult UpdateMainCategory(UpdateMainCategoryDTO dto, int categoryId)
-        {
-            
-            
 
             if (!ModelState.IsValid)
             {
@@ -234,27 +70,100 @@ namespace Presentation.Areas.Admin.Controllers
 
                 return View(dto);
             }
-            Categories categories = _category.GetById(categoryId);
-            CategoryLanguage azFormat = _db.CategoryLanguages.FirstOrDefault(x => x.CategoriesId == categories.Id && x.LanguageId == 1);
-            CategoryLanguage trFormat = _db.CategoryLanguages.FirstOrDefault(x => x.CategoriesId == categories.Id && x.LanguageId == 2);
-            CategoryLanguage enFormat = _db.CategoryLanguages.FirstOrDefault(x => x.CategoriesId == categories.Id && x.LanguageId == 3);
-            CategoryLanguage ruFormat = _db.CategoryLanguages.FirstOrDefault(x => x.CategoriesId == categories.Id && x.LanguageId == 4);
-            azFormat.CategoryName = dto.CategoryName_az;
-            trFormat.CategoryName = dto.CategoryName_tr;
-            enFormat.CategoryName = dto.CategoryName_en;
-            ruFormat.CategoryName = dto.CategoryName_ru;
-            _categoryLanguageService.Update(azFormat);
-            _categoryLanguageService.Update(trFormat);
-            _categoryLanguageService.Update(enFormat);
-            _categoryLanguageService.Update(ruFormat);
-           
+            Categories categories = new Categories();
 
+            categories.MainCategoryId = null;
+            categories.Status = true;
+            categories.Name = dto.Name;
+            _category.Create(categories);
+          
+           
             return RedirectToAction("MainCategoryList");
+        }
+        [HttpGet]
+        public async Task<IActionResult> AddChildCategory()
+        {
+            AddChildCategoryDTO dto = new AddChildCategoryDTO();
+
+            dto.MainCategories =await  _category.ActiveMainCategoryList();
+
+            return View(dto);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddChildCategory(AddChildCategoryDTO dto)
+        {
+            dto.MainCategories = await _category.ActiveMainCategoryList();
+            if (dto.MainCategoryId == null && dto.Name == null)
+            {
+                ModelState.AddModelError("", "Məlumatları tam doldurun!");
+                return View(dto);
+            }
+
+            Categories categories = new Categories();
+            categories.MainCategoryId = dto.MainCategoryId;
+            categories.Name=dto.Name;
+            categories.Status = true;
+            _category.Create(categories);
+            return RedirectToAction("ChildCategoryList");
+        }
+        [HttpGet]
+        public async Task<IActionResult> UpdateChildCategory(int categoryId)
+        {
+            var entity = _category.GetById(categoryId);
+            UpdateChildCategoryDTO dto = new UpdateChildCategoryDTO();
+            dto.MainCategoryId =(int) entity.MainCategoryId;
+            dto.MainCategories =await  _category.ActiveMainCategoryList();
+            dto.Name=entity.Name;
+            
+            return View(dto);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateChildCategory(UpdateChildCategoryDTO dto, int categoryId)
+        {
+            dto.MainCategories =await  _category.ActiveMainCategoryList();
+            if (dto.MainCategoryId==null && dto.Name==null)
+            {
+                ModelState.AddModelError("", "Məlumatları tam doldurun!");
+                return View(dto);
+            }
+           
+            Categories categories = _category.GetById(categoryId);
+            categories.Name =dto.Name;
+            categories.MainCategoryId=dto.MainCategoryId;
+            _category.Update(categories);
+            return RedirectToAction("ChildCategoryList");
+        }
+        [HttpGet]
+        public IActionResult UpdateMainCategory(int categoryId)
+        {
+            UpdateMainCategoryDTO dto = new UpdateMainCategoryDTO();
+            Categories category=_category.GetById(categoryId);
+            dto.Name=category.Name;
+            
+            return View(dto);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public  IActionResult UpdateMainCategory(UpdateMainCategoryDTO dto, int categoryId)
+        {
+            if (dto.MainCategoryId == null && dto.Name == null)
+            {
+                ModelState.AddModelError("", "Məlumatları tam doldurun!");
+
+                return View(dto);
+            }
+            Categories categories = _category.GetById(categoryId);
+            categories.Name=dto.Name;
+            _category.Update(categories);
+
+           return RedirectToAction("MainCategoryList");
         }
         [HttpGet]
         public IActionResult BlockCategory(int categoryId)
         {
-            Categories categories=_category.GetById(categoryId);
+            Categories categories = _category.GetById(categoryId);
             if (categories.MainCategoryId != null)
             {
                 if (categories.Status)
@@ -269,7 +178,7 @@ namespace Presentation.Areas.Admin.Controllers
                     _category.Update(categories);
                     return RedirectToAction("ChildCategoryList");
                 }
-    
+
             }
             else
             {
@@ -285,11 +194,7 @@ namespace Presentation.Areas.Admin.Controllers
                     _category.Update(categories);
                     return RedirectToAction("MainCategoryList");
                 }
-            } 
+            }
         }
-
-
-
-
     }
 }

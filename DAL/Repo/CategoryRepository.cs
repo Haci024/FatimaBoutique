@@ -1,6 +1,8 @@
 ﻿using DAL.DbConnection;
 using Data.DAL;
 using Data.Repositories;
+using DTO.CategoryDTO.Child;
+using DTO.CategoryDTO.Main;
 using Entity.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -19,32 +21,96 @@ namespace Data.Repo
         {
             _db = db;
         }
+
+        public async Task<IEnumerable<ChildCategoryListDTO>> ActiveChildCategoryList()
+        {
+            var categories = await _db.Categories.Where(x => x.MainCategoryId != null && x.Status==true && x.MainCategory.Status==true).Select(x => new ChildCategoryListDTO
+            {
+                Id=x.Id,
+                MainCategoryId = (int)x.MainCategoryId,
+                Name = x.Name,
+                Status = x.Status,
+                MainCategoryName=x.MainCategory.Name,
+            }).ToListAsync();
+            return categories;
+        }
+
+        public async Task<IEnumerable<MainCategoryListDTO>> ActiveMainCategoryList()
+        {
+            var categories = await _db.Categories.Where(x => x.MainCategoryId == null).Select(x => new MainCategoryListDTO
+            {
+                Id = (int)x.Id,
+                Name = x.Name,
+                Status = x.Status,
+
+
+            }).ToListAsync();
+            return categories;
+        }
+        public async Task<IEnumerable<ChildCategoryListDTO>> ChildCategoryListByMain(int mainCategoryId)
+        {
+            var data = await _db.Categories.Where(x => x.MainCategoryId == mainCategoryId && x.Status==true).Select(x => new ChildCategoryListDTO
+            {
+                Id=x.Id,
+                MainCategoryId=(int)x.MainCategoryId,
+                Name=x.Name,
+                Status = x.Status,
+                MainCategoryName=x.MainCategory.Name,
+
+            }).ToListAsync();
+            return data;
+        }
+
+        public async Task<IEnumerable<ChildCategoryListDTO>> DeactiveChildCategoryList()
+        {
+            var data=await _db.Categories.Where(x=>x.MainCategoryId!=null && x.Status==false).Select(x=> new ChildCategoryListDTO
+            {
+                Id=x.Id,
+                MainCategoryId= (int)x.MainCategoryId,
+                Name = x.Name,
+                Status = x.Status,
+
+            }).ToListAsync();
+            return data;
+        }
+
+      
         /// <summary>
         /// Aktiv kateqoriyaları əsas kateqoriyaları ilə birlikdə gətirir
         /// </summary>
-        
-        public IEnumerable<Categories> ActiveCategoryList()
-        {
-            
-            return _db.Categories.Include(x=>x.MainCategory).Where(x=>x.Status==false).ToList();
-        }
-        public IEnumerable<Categories> categories=new List<Categories>();
 
-        /// <summary>
-        /// Deaktiv kateqoriyaları əsas kateqoriyaları ilə birlikdə gətirir
-        /// </summary>
 
-        public IEnumerable<Categories> DeactiveCategoriesList()
-        {
-            return _db.Categories.Include(x=>x.MainCategory).Where(x=>x.Status==true).ToList();
 
-        }
-        /// <summary>
-        /// Kateqoriyaya uyğun bloqları gətirir
-        /// </summary>
-        public IEnumerable<Categories> GetBlogListByCategory(int Id)
+        public IEnumerable<NavbarCategoryListDTO> NavbarCategoryList()
         {
-            return _db.Categories.Include(x=>x.MainCategory).Include(x=>x.Blogs).ThenInclude(x=>x.BlogImages).Where(x=>x.Id==Id).ToList();
+
+            var categories = _db.Categories.Where(x => x.Status == true).Select(x => new NavbarCategoryListDTO
+            {
+                Id = x.Id,
+                Name = x.Name,
+                ChildCategories = x.ChildCategories.Select(y => new ChildCategoryListDTO
+                {
+                    MainCategoryId = (int)y.MainCategoryId,
+                    Name = y.Name,
+                    Status = y.Status,
+                    MainCategoryName = x.Name,
+                    ThirdCategories = y.ChildCategories.Select(t => new ThirdCategoryListDTO
+                    {
+                        Id=(int)t.Id,
+                        Name=t.Name,
+                        Status = t.Status,
+                        MainCategoryName=t.MainCategory.Name,
+
+                    }).ToList(),
+
+
+
+
+                }).ToList(),
+
+            }) ;
+
+            return categories;
         }
     }
 }

@@ -9,6 +9,6 @@ namespace DTO.SearchDTO
 {
     public class SearchDTO
     {
-        public List<Blogs> Products { get; set; }
+        public List<Products> Products { get; set; }
     }
 }

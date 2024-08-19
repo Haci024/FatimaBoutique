@@ -18,7 +18,7 @@ namespace DAL.DbConnection
             {
 
             //optionsBuilder.UseSqlServer("server=77.245.159.27\\MSSQLSERVER2019;initial catalog=FatimahBoutique;user=FatimahAdmin;password=6!3dRpp48;TrustServerCertificate=True");
-            optionsBuilder.UseSqlServer("server=Odissey;database=FatimaBoutique;integrated security=true;TrustServerCertificate=True");//Database ilə əlaqə
+            optionsBuilder.UseSqlServer("server=Odissey;database=FatimaBoutique;integrated security=true;TrustServerCertificate=True;MultipleActiveResultSets=True;");//Database ilə əlaqə
             optionsBuilder.EnableSensitiveDataLogging();
 
 
@@ -32,29 +32,18 @@ namespace DAL.DbConnection
         public DbSet<Categories> Categories { get; set; }
 
         public DbSet<Slider> Slider { get; set; }
-        public DbSet<SliderLanguage> SliderLanguages { get; set; }
-
+      
         public DbSet<Videos> Videos { get; set; }
 
-        public DbSet<Blogs> Blogs { get; set; }
+        public DbSet<Products> Products { get; set; }
 
-        public DbSet<BlogImages> BlogsImages { get; set; }
+        public DbSet<ProductsImages> ProductImages { get; set; }
 
-        public DbSet<AboutUs> AboutUs { get; set; }
         
-        public DbSet<AboutUsLanguage> AboutUsLanguages { get; set; }
 
-        public DbSet<SocialMedia> SocialMedia { get; set; }
+        //public DbSet<Basket> Basket { get; set; }
 
-        public DbSet<Basket> Basket { get; set; }
-
-        public DbSet<Orders> Orders { get; set; }
-
-        public DbSet<OrderLanguage> OrderLanguage { get; set; }
-
-        public DbSet<CategoryLanguage> CategoryLanguages { get; set; }
-
-        public DbSet<BlogsLanguage> BlogsLanguages { get; set; }
+        //public DbSet<Orders> Orders { get; set; }
 
         public DbSet<Language> Languages { get; set; }
 
@@ -64,15 +53,15 @@ namespace DAL.DbConnection
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<BlogImages>()
-                .HasOne(x => x.Blog).
-                WithMany(x => x.BlogImages).
-                HasForeignKey(x => x.BLogId).
+            modelBuilder.Entity<ProductsImages>()
+                .HasOne(x => x.Products).
+                WithMany(x => x.ProductsImages).
+                HasForeignKey(x => x.ProductId).
                 OnDelete(DeleteBehavior.ClientSetNull);
 
-            modelBuilder.Entity<Blogs>()
+            modelBuilder.Entity<Products>()
                .HasOne(x => x.Categories).
-               WithMany(y => y.Blogs).
+               WithMany(y => y.Products).
                HasForeignKey(x => x.CategoryId).
                OnDelete(DeleteBehavior.ClientSetNull);
 
@@ -85,15 +74,7 @@ namespace DAL.DbConnection
            new IdentityRole { Id = "qOLKNNDsskdfkjsdksdkjc", Name = "User", NormalizedName = "USER" }
          
        );
-            modelBuilder.Entity<Language>().HasData(
-                new Language { Id = 1,Name="Azərbaycan",Key="az" },
-                  new Language { Id = 2, Name = "Türk", Key = "tr" },
-                    new Language { Id = 3, Name = "İngilis", Key = "en" },
-                      new Language { Id = 4, Name = "Rus", Key = "ru" }
-
-
-
-   ); 
+          
         }
     }
     

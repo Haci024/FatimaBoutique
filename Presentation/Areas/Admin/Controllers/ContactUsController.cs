@@ -42,8 +42,8 @@ namespace Presentation.Areas.Admin.Controllers
             dto.PhoneNumber = newContact.PhoneNumber;
             dto.FullName = newContact.FullName;
             dto.Description = newContact.Description;
-            dto.Title = newContact.Title;
-            dto.Gmail = newContact.Gmail;
+           
+            dto.Gmail = newContact.Email;
             dto.Status = newContact.Viewed;
 
 
@@ -56,7 +56,7 @@ namespace Presentation.Areas.Admin.Controllers
             ContactUs newContact = _contactUsService.GetById(Id);
             dto.Id = Id;
             dto.FullName = newContact.FullName;
-            dto.Gmail = newContact.Gmail;
+            dto.Gmail = newContact.Email;
             return View(dto);
         }
         [HttpPost]
@@ -64,7 +64,7 @@ namespace Presentation.Areas.Admin.Controllers
         public IActionResult ReplyMessage(ReplyMessageDTO dto)
         {
             ContactUs newContact = _contactUsService.GetById(dto.Id);
-            dto.Gmail= newContact.Gmail;    
+            dto.Gmail= newContact.Email;    
             dto.FullName= newContact.FullName;
 
             if (dto.Title==null || dto.Description==null)

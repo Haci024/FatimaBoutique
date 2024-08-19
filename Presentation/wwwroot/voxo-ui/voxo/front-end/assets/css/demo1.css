@@ -782,7 +782,7 @@ span {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  background-color: rgba(232, 115, 22, 0.8);
+  background-color: rgba(0, 99, 210, 0.8);
   -webkit-backdrop-filter: blur(2px);
           backdrop-filter: blur(2px);
   width: 80%; }
@@ -4805,7 +4805,7 @@ header .main-navbar {
           opacity: 1; } }
     .product-box .img-wrapper .circle-shape {
       position: absolute;
-      background-color: rgba(232, 115, 22, 0.04);
+      background-color: rgba(0, 99, 210, 0.04);
       top: -80px;
       left: -80px;
       width: 100%;
@@ -4822,7 +4822,7 @@ header .main-navbar {
         width: 390px;
         height: 390px;
         position: absolute;
-        background-color: rgba(232, 115, 22, 0.04);
+        background-color: rgba(0, 99, 210, 0.04);
         top: -130px;
         left: -130px;
         border-radius: 50%;
@@ -4840,7 +4840,7 @@ header .main-navbar {
       text-orientation: mixed;
       font-weight: bolder;
       font-size: 68px;
-      color: rgba(232, 115, 22, 0.1);
+      color: rgba(0, 99, 210, 0.1);
       -webkit-user-select: none;
          -moz-user-select: none;
           -ms-user-select: none;
@@ -5099,7 +5099,7 @@ header .main-navbar {
   text-align: center;
   z-index: 1; }
   .product-banner .offer-end-demo4 {
-    background-color: rgba(232, 115, 22, 0.8); }
+    background-color: rgba(0, 99, 210, 0.8); }
     .product-banner .offer-end-demo4 h3 {
       margin-top: -3px; }
     .product-banner .offer-end-demo4 h6 {

@@ -1,0 +1,159 @@
+﻿@model AddProductDTO
+@{
+    ViewData["Title"] = "AddChildCategory";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+   
+}
+
+<div class="container">
+
+    <!-- Basic Validation -->
+    <div class="row clearfix">
+        <div class="col-lg-6 col-md-8 col-sm-8 col-xs-8">
+            <div class="card">
+                <div class="header text-center">
+                    <h2>Yeni Məhsul</h2>
+                </div>
+                <div class="body">
+                    <form id="form_validation" method="post" enctype="multipart/form-data">
+                        <div class="form-group form-float">
+                            <p>
+                                <label>Kateqoriya</label>
+                            </p>
+                            <div>
+                                <select class="form-control show-tick" asp-for="CategoryId" name="CategoryId" id="childCategoryId">
+
+                                    @foreach (var item in Model.ChildCategories)
+                                    {
+
+                                        <option value="@item.Id">@item.Name ----- @item.MainCategoryName</option>
+
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <p>
+                                <label>Məhsul</label>
+                            </p>
+                            <div class="form-line">
+                                <input type="text" asp-for="Name" name="Name" class="form-control" placeholder="azərbaycan dilində">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <p>
+                                <label>Rəsimlər</label>
+                            </p>
+                            <div class="form-line">
+                                <input type="file" asp-for="Photos" multiple class="form-control" placeholder="rəsim seçin">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <p>
+                                <label>Açıqlama</label>
+                            </p>
+                            <div class="form-line">
+                                <textarea type="text" asp-for="Description" name="Description" class="form-control" placeholder="açıqlama"></textarea>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <p>
+                                <label>Qiymət</label>
+                            </p>
+                            <div class="form-line">
+                                <input type="number" asp-for="Price" name="Price" class="form-control" placeholder="qiyməti daxil edin...">
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-lg-12 form-line">
+                                <div class="demo-radio-button">
+                                    <label class="form-label">Endirimdədir?</label>
+                                    <div class="form-line">
+                                        <input name="IsCompleted" asp-for="SalesStatus" type="radio" value="False" id="radio_30" class="with-gap radio-col-light-green">
+                                        <label for="radio_30">Xeyr</label>
+                                        <input name="IsCompleted" asp-for="SalesStatus" type="radio" value="True" id="radio_32" class="with-gap radio-col-blue">
+                                        <label for="radio_32">Bəli</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                       
+                        <div id="discount-section" style="display:none;">
+                            <div class="input-group">
+                                <p>
+                                    <label>Endirim qiyməti</label>
+                                </p>
+                                <div class="form-line">
+                                    <input type="number" asp-for="SalesPrice" name="SalesPrice" class="form-control" step="0.01" placeholder="endirim qiymətini daxil edin...">
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <p>
+                                    <label>Endirim üçün son tarix</label>
+                                </p>
+                                <div class="form-line">
+                                    <input type="datetime-local" asp-for="LastDateForIsSale" name="LastDateForIsSale" class="form-control" placeholder="endirim üçün son tarixi qeyd edin...">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="font-bold col-pink" asp-validation-summary="ModelOnly"></div>
+                        <div class="text-center">
+                            <button class="btn btn-primary waves-effect" type="submit" id="submitButton">Yarat</button>
+                            <a asp-action="AllProducts" class="btn btn-success">Geri</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div> 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const yesRadio = document.getElementById("radio_32"); 
+        const noRadio = document.getElementById("radio_30");  
+        const discountSection = document.getElementById("discount-section");
+
+        
+        function toggleDiscountSection() {
+            if (yesRadio.checked) {
+                discountSection.style.display = "block";
+            } else {
+                discountSection.style.display = "none";
+            }
+        }
+
+      
+        yesRadio.addEventListener("change", toggleDiscountSection);
+        noRadio.addEventListener("change", toggleDiscountSection);
+
+        toggleDiscountSection();
+    });
+</script>
+<script>
+    document.getElementById('imageUpload').addEventListener('change', function (event) {
+        const maxFiles = 7;
+        const minFiles = 2;
+        const input = event.target;
+
+        if (input.files.length > maxFiles || input.files.length < minFiles) {
+
+            window.jQuery.NotificationApp.send(
+                "Xəbərdarlıq!",
+                `Rəsim sayı ${minFiles}-dən az  və ${maxFiles}-dən çox olmalıdır!`,
+                "bottom-left",
+                "rgba(0,0,0,0.2)",
+                "error"
+            );
+            input.value = '';
+        }
+
+
+    });
+
+
+
+</script>

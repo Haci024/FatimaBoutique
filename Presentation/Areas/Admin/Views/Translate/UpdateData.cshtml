@@ -1,0 +1,65 @@
+﻿@model UpdateDataDTO
+@{
+    ViewData["Title"] = "UpdateData";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+
+    <!-- Basic Validation -->
+    <div class="row clearfix">
+        <div class="col-lg-6 col-md-8 col-sm-8 col-xs-8">
+            <div class="card">
+                <div class="header text-center">
+                    <h2>Data Yenilə</h2>
+                </div>
+                <div class="body">
+                    <form id="form_validation" method="post">
+                        <div class="form-group form-float">
+                            <p>
+                                <label>Dil</label>
+                            </p>
+                            <div>
+                                <select class="form-control show-tick" asp-for="Culture" name="Culture">
+                                    {
+                                  
+                                    <option value="tr-TR">Türk dili</option>
+                                    <option value="en-US">İngilis dili</option>
+                                    <option value="ru-RU">Rus dili</option>
+
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <p>
+                                <label>Söz</label>
+                            </p>
+                            <div class="form-line">
+                                <input type="text" asp-for="ResourceKey" name="ResourceKey" class="form-control" placeholder=" daxil edin...">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <p>
+                                <label>Qarşılığı</label>
+                            </p>
+                            <div class="form-line">
+                                <input type="text" asp-for="ResourceValue" name="ResourceValue" class="form-control" placeholder=" daxil edin...">
+                            </div>
+                        </div>
+
+
+
+                        <div class="font-bold col-pink" asp-validation-summary="ModelOnly"></div>
+                        <div class="text-center">
+                            <button class="btn btn-primary waves-effect" type="submit" id="submitButton">Əlavə et</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

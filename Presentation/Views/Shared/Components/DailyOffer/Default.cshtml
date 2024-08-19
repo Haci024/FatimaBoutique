@@ -1,0 +1,70 @@
+﻿@inject LanguageService language
+<section class="deal-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 px-0">
+                <div class="discount-image-details-1">
+                    <div class="discount-images">
+                        <div class="theme-circle"></div>
+                        <img src="~/voxo-ui/voxo/front-end/assets/images/furniture-images/deal/1.png"
+                             class="img-fluid shoes-images blur-up lazyload" alt="">
+                    </div>
+
+                    <div class="discunt-details mt-xl-0 mt-4">
+                        <div>
+                            <div class="heart-button">
+                                <i data-feather="heart"></i>
+                            </div>
+
+                            <div class="discount-shop">
+                                <h2 class="text-spacing">@language.GetKey("Günün təklifi")</h2>
+                                <h6>@language.GetKey("Elə indi al və qənaət et")</h6>
+                            </div>
+
+                            <h5 class="mt-3">@language.GetKey("Xüsusi endirim") <span class="theme-color">50%</span></h5>
+                            <h2 class="my-2 deal-text">
+                               @language.GetKey("Sadəcə bu gün") <br>@language.GetKey("cəmi") <span class="theme-color">75 azn</span>
+                            </h2>
+                            <div class="timer-style-2 my-2 justify-content-center d-flex">
+                                <ul>
+                                    <li>
+                                        <div class="counter">
+                                            <div>
+                                                <h2 id="days1" class="theme-color"></h2>Days
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="counter">
+                                            <div>
+                                                <h2 id="hours1" class="theme-color"></h2>Hour
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="counter">
+                                            <div>
+                                                <h2 id="minutes1" class="theme-color"></h2>Min
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="counter">
+                                            <div>
+                                                <h2 id="seconds1" class="theme-color"></h2>Sec
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <button onclick="location.href = 'shop-left-sidebar.html';" type="button"
+                                    class="btn default-light-theme default-theme mt-2">
+                             @language.GetKey("İndi al")
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

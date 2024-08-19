@@ -1,5 +1,6 @@
 ﻿using Bussiness.Services;
 using Data.DAL;
+using DTO.FrequentlyQuestionsDTO;
 using Entity.Models;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,19 @@ namespace Bussiness.Manager
         {
             _dal=dal;
         }
+        public async Task<IEnumerable<FaqListDTO>> ActiveFaqList()
+        {
+            return await _dal.ActiveFaqList();
+        }
+
         public void Create(FrequentlyQuestions t)
         {
             _dal.Create(t);
+        }
+
+        public async Task<IEnumerable<FaqListDTO>> DeactiveFaqList()
+        {
+            return await _dal.DeactiveFaqList();
         }
 
         public void Delete(FrequentlyQuestions t)

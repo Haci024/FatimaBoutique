@@ -1,0 +1,100 @@
+﻿@model IEnumerable<SearchProductDTO>
+@inject LanguageService language
+
+<div class="search-full">
+    <div class="input-group">
+        <span class="input-group-text">
+            <i data-feather="search" class="font-light"></i>
+        </span>
+        <input type="text" class="form-control search-type" id="" placeholder="Search here..">
+        <span class="input-group-text close-search">
+            <i data-feather="x" class="font-light"></i>
+        </span>
+    </div>
+    <div class="search-suggestion">
+        <ul class="custom-scroll">
+            <li>
+                <div class="product-cart media">
+                    <img src="assets/images/electronics/product/1.jpg"
+                         class="img-fluid blur-up lazyload" alt="">
+                    <div class="media-body">
+                        <a href="javascript:void(0)">
+                            <h6 class="mb-1">New Smart Watch 4 ERT2</h6>
+                        </a>
+                        <ul class="rating">
+                            <li>
+                                <i class="fas fa-star theme-color"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star theme-color"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star theme-color"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                            </li>
+                        </ul>
+                        <p class="mb-0 mt-1">$28.00</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="product-cart media">
+                    <img src="assets/images/electronics/product/5.jpg"
+                         class="img-fluid blur-up lazyload" alt="">
+                    <div class="media-body">
+                        <a href="javascript:void(0)">
+                            <h6 class="mb-1">Powermatic 900 W Juicer</h6>
+                        </a>
+                        <ul class="rating">
+                            <li>
+                                <i class="fas fa-star theme-color"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star theme-color"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star theme-color"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star theme-color"></i>
+                            </li>
+                            <li>
+                                <i class="fas fa-star theme-color"></i>
+                            </li>
+                        </ul>
+                        <p class="mb-0 mt-1">$35.00</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#searchInput').on('input', function () {
+            var query = $(this).val();
+
+            if (query.length > 2) { 
+                $.ajax({
+                    url: 'Home/SearchBar', 
+                    method: 'GET',
+                    data: { query: query },
+                    success: function (response) {
+                        $('#searchResults').html(response); 
+                    },
+                    error: function () {
+                        $('#searchResults').html('<li>Bir hata oluştu. Lütfen tekrar deneyin.</li>');
+                    }
+                });
+            } else {
+                $('#searchResults').html(''); 
+            }
+        });
+    });
+
+</script>

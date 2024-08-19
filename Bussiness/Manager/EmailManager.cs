@@ -43,7 +43,7 @@ namespace Bussiness.Manager
             SmtpClient client = new SmtpClient();
 
             client.Connect("smtp.gmail.com", 587, false);
-            client.Authenticate("odisseybanks024@gmail.com", "voxryimidhytyjot");
+            client.Authenticate("odisseybanks024@gmail.com", "goyk wxvj kveh ksbm");
             client.Send(mimeMessage);
             client.Disconnect(true);
         }
@@ -64,7 +64,7 @@ namespace Bussiness.Manager
             using (SmtpClient client = new SmtpClient())
             {
                 client.Connect("smtp.gmail.com", 587, false);
-                client.Authenticate("odisseybanks024@gmail.com", "voxryimidhytyjot");
+                client.Authenticate("odisseybanks024@gmail.com", "goyk wxvj kveh ksbm");
 
                 client.Send(mimeMessage);
             }
@@ -88,7 +88,7 @@ namespace Bussiness.Manager
             SmtpClient client = new SmtpClient();
 
             client.Connect("smtp.gmail.com", 587, false);
-            client.Authenticate("odisseybanks024@gmail.com", "voxryimidhytyjot");
+            client.Authenticate("odisseybanks024@gmail.com", "goyk wxvj kveh ksbm");
             client.Send(mimeMessage);
             client.Disconnect(true);
         }
@@ -110,7 +110,7 @@ namespace Bussiness.Manager
             SmtpClient client = new SmtpClient();
 
             client.Connect("smtp.gmail.com", 587, false);
-            client.Authenticate("odisseybanks024@gmail.com", "voxryimidhytyjot");
+            client.Authenticate("odisseybanks024@gmail.com", "goyk wxvj kveh ksbm");
             client.Send(mimeMessage);
             client.Disconnect(true);
         }
@@ -131,7 +131,7 @@ namespace Bussiness.Manager
             SmtpClient client = new SmtpClient();
 
             client.Connect("smtp.gmail.com", 587, false);
-            client.Authenticate("odisseybanks024@gmail.com", "voxryimidhytyjot");
+            client.Authenticate("odisseybanks024@gmail.com", "goyk wxvj kveh ksbm");
             client.Send(mimeMessage);
             client.Disconnect(true);
         }
@@ -140,7 +140,7 @@ namespace Bussiness.Manager
         {
             MimeMessage mimeMessage = new MimeMessage();
             MailboxAddress ConfirmAddressFrom = new MailboxAddress("Bizimlə əlaqə", "odisseybanks024@gmail.com");
-            MailboxAddress ConfirmAdressTo = new MailboxAddress("Fatimah-Boutique", contactUsDTO.Gmail);
+            MailboxAddress ConfirmAdressTo = new MailboxAddress("Fatimah-Boutique", contactUsDTO.Email);
 
             mimeMessage.From.Add(ConfirmAddressFrom);
             mimeMessage.To.Add(ConfirmAdressTo);
@@ -148,12 +148,12 @@ namespace Bussiness.Manager
             bodyBuilder.TextBody = $"Hörmətli {contactUsDTO.FullName} , müraciətiniz qeydə alındı .Ən qısa zamanda müraciətiniz cavablandırılacaq,hörmətlə Fatimah-Boutique:)";
 
             mimeMessage.Body = bodyBuilder.ToMessageBody();
-            mimeMessage.Subject =contactUsDTO.Title;
+            mimeMessage.Subject ="Test";
 
             SmtpClient client = new SmtpClient();
 
             client.Connect("smtp.gmail.com", 587, false);
-            client.Authenticate("odisseybanks024@gmail.com", "voxryimidhytyjot");
+            client.Authenticate("odisseybanks024@gmail.com", "goyk wxvj kveh ksbm");
             client.Send(mimeMessage);
             client.Disconnect(true);
         }
@@ -174,7 +174,7 @@ namespace Bussiness.Manager
             SmtpClient client = new SmtpClient();
 
             client.Connect("smtp.gmail.com", 587, false);
-            client.Authenticate("odisseybanks024@gmail.com", "voxryimidhytyjot");
+            client.Authenticate("odisseybanks024@gmail.com", "goyk wxvj kveh ksbm");
             client.Send(mimeMessage);
             client.Disconnect(true);
         }

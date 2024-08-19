@@ -14,10 +14,6 @@ namespace Entity.Models
 
         public int OrdersId { get; set; }
 
-        public Blogs Blogs { get; set; }
-
-        public int  BlogsId { get; set; }
-
         public string CustomerName { get; set; }
 
         public string Email { get; set; }   

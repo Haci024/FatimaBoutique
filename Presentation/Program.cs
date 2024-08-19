@@ -1,16 +1,26 @@
-﻿using Bussiness.Manager;
+﻿using Business.Manager;
+using Business.Services;
+using Bussiness.Manager;
 using Bussiness.Services;
 using DAL.DbConnection;
 using Data.DAL;
 using Data.Repo;
 using Entity.Models;
+using FluentValidation.Resources;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Presentation.Helper;
 using System;
+using System.Globalization;
 using Validation.AppUserVal;
+using LanguageManager = Presentation.Helper.LanguageManager;
+
+
 
 
 
@@ -19,14 +29,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Context>();
+builder.Services.AddScoped<LanguageService>();
+builder.Services.AddScoped<LanguageManager>();
+builder.Services.AddScoped<ILanguagesService, LanguagesManager>();
+builder.Services.AddScoped<ILanguageDAL, LanguageRepository>();
 
-builder.Services.AddScoped<LayoutService>();
 
 builder.Services.AddScoped<IOrdersService, OrderManager>();
 builder.Services.AddScoped<IOrderDAL, OrderRepository>();
 
-builder.Services.AddScoped<ISocialMediaService,SocialMediaManager>();
-builder.Services.AddScoped<ISocialMediaDAL, SocialMediaRepository>();
+
 
 builder.Services.AddScoped<ICategoryService, CategoriesManager>();
 builder.Services.AddScoped<ICategoryDAL, CategoryRepository>();
@@ -34,23 +46,21 @@ builder.Services.AddScoped<ICategoryDAL, CategoryRepository>();
 builder.Services.AddScoped<IContactUsService, ContactUsManager>();
 builder.Services.AddScoped<IContactUsDAL, ContactUsRepository>();
 
-builder.Services.AddScoped<IBlogService, BlogManager>();
-builder.Services.AddScoped<IBlogDAL, BLogsRepository>();
+builder.Services.AddScoped<IProductService, ProductManager>();
+builder.Services.AddScoped<IProductDAL, ProductsRepository>();
 
-builder.Services.AddScoped<ISocialMediaService, SocialMediaManager>();
-builder.Services.AddScoped<ISocialMediaDAL, SocialMediaRepository>();
 
-builder.Services.AddScoped<IBlogLanguagesService, BlogLanguagesManager>();
-builder.Services.AddScoped<IBlogLanguagesDAL, BlogLanguagesRepository>();
-
-builder.Services.AddScoped<IAboutUsService, AboutUsManager>();
-builder.Services.AddScoped<IAboutUsDAL,AboutUsRepository>();
+builder.Services.Configure<GCSConfigOptions>(builder.Configuration);
+builder.Services.AddSingleton<IGoogleCloudStorageService, GoogleCloudStorageManager>();
 
 builder.Services.AddScoped<IVideoService, VideosManager>();
 builder.Services.AddScoped<IVideoDAL, VideoRepository>();
 
 builder.Services.AddScoped<IFrequentlyQuestionService, FrequentlyQuestionsManager>();
 builder.Services.AddScoped<IFrequentlyQuestionDAL, FrequentlyQuestionRepository>();
+
+
+
 
 builder.Services.AddScoped<ISliderService, SLiderManager>();
 builder.Services.AddScoped<ISliderDAL, SliderRepository>();
@@ -60,15 +70,16 @@ builder.Services.AddScoped<IEmailService, EmailManager>();
 builder.Services.AddScoped<IBasketDAL, BasketRepository>();
 builder.Services.AddScoped<IBasketService,BasketManager>();
 
-builder.Services.AddScoped<IBlogImagesDAL,BlogImagesRepository>();
-builder.Services.AddScoped<IBlogImagesService,BlogImagesManager>();
+builder.Services.AddScoped<IProductImagesDAL,ProductImagesRepository>();
+builder.Services.AddScoped<IProductImageService, ProductImagesManager>();
 
 
-builder.Services.AddScoped<ICategoryLanguageDAL,CategoryLanguageRepository>();
-builder.Services.AddScoped<ICategoryLanguageService, CategoryLanguageManager>();
+
 
 builder.Services.AddScoped<ISubscriberDAL, SubscriberRepository>();
 builder.Services.AddScoped<ISubscriberService, SubscriberManager>();
+
+
 
 
 builder.Services.AddSession(options =>
@@ -87,7 +98,7 @@ builder.Services.AddAuthentication(options =>
 {
     options.ExpireTimeSpan = TimeSpan.FromDays(1);
     options.LoginPath = "/Account/Login";
-    options.AccessDeniedPath = "/Account/AccessDenied";
+    options.AccessDeniedPath = "/Home/Error";
 });
 
 
@@ -106,7 +117,15 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 
 .AddEntityFrameworkStores<Context>().AddErrorDescriber<CustomIdentityValidator>()
 .AddDefaultTokenProviders();
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCultures = new[] { new CultureInfo("en-US"), new CultureInfo("tr-TR"), new CultureInfo("ru-RU"), new CultureInfo("az-AZ") };
+    options.DefaultRequestCulture = new RequestCulture("az-AZ");
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+});
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
@@ -118,7 +137,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
 app.UseRouting();
 
 

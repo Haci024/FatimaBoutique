@@ -10,9 +10,8 @@ namespace Entity.Models
     {
         public int Id { get; set; } 
         public string FullName { get; set; }
-        public string Gmail { get; set; }
+        public string Email { get; set; }
         public string PhoneNumber { get;set; }
-        public string Title { get; set; }
         public string Description { get; set; }
         public DateTime SendingDate { get; set; }
         /// <summary>

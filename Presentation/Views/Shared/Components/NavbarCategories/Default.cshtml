@@ -1,0 +1,60 @@
+﻿@model IEnumerable<NavbarCategoryListDTO>
+@inject LanguageService language
+<div class="category-menu">
+    <button type="button"
+            class="btn btn-solid-default toggle-category d-sm-block d-none">
+        @language.GetKey("Kateqoriyalar")
+        <i class="fas fa-chevron-down d-xl-inline-block d-none"></i>
+    </button>
+    <div class="category-dropdown">
+        <div class="close-btn d-xl-none">
+            Category List
+            <span class="back-category">
+                <i class="fa fa-angle-left"></i>
+            </span>
+        </div>
+        <ul>
+            @foreach (var mainCategories in Model)
+            {
+                <li class="submenu">
+                    <a href="javascript:void(0)">@language.GetKey(mainCategories.Name)</a>
+                    <ul class="category-mega-menu">
+                        <li>
+                            <div class="row">
+                                @foreach (var childCategories in mainCategories.ChildCategories)
+                                {
+                                    <div class="col-xl-3">
+                                        <div class="category-childmenu">
+                                            <div class="title-category">
+                                                <h6>@language.GetKey(childCategories.Name)</h6>
+                                            </div>
+                                            <ul>
+                                               
+                  
+                                           
+                                               @foreach (var thirdCategory in childCategories.ThirdCategories)
+                                            {
+                                                 <li>
+                                                      <a asp-controller="Shop" asp-action="ThirdCategoryList">@language.GetKey(thirdCategory.Name)</a>
+                                                 </li>
+                                            }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                }
+                                <div class="col-xl-3">
+                                    <div class="category-banner">
+                                        <img src="assets/images/electronics/banner/4.jpg"
+                                             class="img-fluid blur-up lazyload" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            }
+           
+         
+        </ul>
+    </div>
+</div>

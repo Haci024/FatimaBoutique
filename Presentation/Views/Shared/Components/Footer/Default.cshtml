@@ -1,0 +1,126 @@
+﻿@inject LanguageService language
+
+<footer class="footer-sm-space">
+    <div class="main-footer">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="footer-contact">
+                        <div class="brand-logo">
+                            <a href="index.html" class="footer-logo">
+                                <svg class="svg-icon">
+                                    <use class="fill-color" xlink:href="assets/svg/icons.svg#logo"></use>
+                                </svg>
+                                <img src="assets/images/logo.png" class="img-fluid blur-up lazyload" alt="logo">
+                            </a>
+                        </div>
+                        <ul class="contact-lists">
+                            <li>
+                                <span><b>@language.GetKey("Əlaqə telefonu"):</b> <span class="font-light"> +(994) 099-999-99-99</span></span>
+
+                            </li>
+                            <li>
+                                <span>
+                                    <b>Address:</b><span class="font-light">
+                                        1418 Riverwood Drive, Suite 3245
+                                        Cottonwood, CA 96052, United States
+                                    </span>
+                                </span>
+                            </li>
+                            <li>
+                                <span><b>Email:</b><span class="font-light"> support@fatimahboutique.com</span></span>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="footer-links">
+                        <div class="footer-title">
+                            <h3>@language.GetKey("Səhifələr")</h3>
+                        </div>
+                        <div class="footer-content">
+                            <ul>
+                                <li>
+                                    <a asp-controller="Home" asp-action="Index" class="font-dark">@language.GetKey("Əsas")</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Shop" asp-action="Index" class="font-dark">@language.GetKey("Məhsullar")</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Home" asp-action="Faq" class="font-dark">@language.GetKey("Tez-tez verilən suallar")</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Home" asp-action="ContactUs" class="font-dark">@language.GetKey("Bizimlə əlaqə")</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                    <div class="footer-links">
+                        <div class="footer-title">
+                            <h3>Kateqoriyalar</h3>
+                        </div>
+                        <div class="footer-content">
+                            <ul>
+                                <li>
+                                    <a href="shop-left-sidebar.html" class="font-dark">Latest Shoes</a>
+                                </li>
+                                <li>
+                                    <a href="shop-left-sidebar.html" class="font-dark">Branded Jeans</a>
+                                </li>
+                                <li>
+                                    <a href="shop-left-sidebar.html" class="font-dark">New Jackets</a>
+                                </li>
+                                <li>
+                                    <a href="shop-left-sidebar.html" class="font-dark">Colorfull Hoodies</a>
+                                </li>
+                                <li>
+                                    <a href="shop-left-sidebar.html" class="font-dark">Shiner Goggles</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                    <div class="footer-links">
+                        <div class="footer-title">
+                            <h3>@language.GetKey("Sizə aid olanlar")</h3>
+                        </div>
+                        <div class="footer-content">
+                            <ul>
+                                <li>
+                                    <a href="user-dashboard.html" class="font-dark">@language.GetKey("Hesabım")</a>
+                                </li>
+                                <li>
+                                    <a href="user-dashboard.html" class="font-dark">@language.GetKey("Sifarişlərim")</a>
+                                </li>
+                                <li>
+                                    <a href="order-tracking.html" class="font-dark">@language.GetKey("Sifarişlərini izlə")</a>
+                                </li>
+                              
+                                <li>
+                                    <a asp-controller="Home" asp-action="ContactUs" class="font-dark">@language.GetKey("Saytda problem var")</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="sub-footer">
+        <div class="container">
+            <div class="row gy-3">
+                <div class="col-md-6">
+                    
+                </div>
+                <div class="col-md-6">
+                    <p class="mb-0 font-dark"><a href="https://instagram.com">@language.GetKey("Website designed by: ") OdisseyTeam </a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

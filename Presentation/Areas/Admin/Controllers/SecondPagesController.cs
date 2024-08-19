@@ -2,7 +2,7 @@
 using DAL.DbConnection;
 using DTO.ContactUsDTO;
 using DTO.FrequentlyQuestionsDTO;
-using DTO.SocialMediaDTO;
+
 using Entity.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,14 +16,14 @@ namespace Presentation.Areas.Admin.Controllers
         private readonly Context _db;
         private readonly IContactUsService _contactUsService;
         private readonly IFrequentlyQuestionService _questionService;
-        private readonly ISocialMediaService _mediaService;
+        
 
-        public SecondPagesController(Context db, IContactUsService service,ISocialMediaService socialMedia, IFrequentlyQuestionService frequentlyQuestionService)
+        public SecondPagesController(Context db, IContactUsService service, IFrequentlyQuestionService frequentlyQuestionService)
         {
             _db = db;
             _contactUsService = service;
             _questionService= frequentlyQuestionService;
-            _mediaService = socialMedia;
+            
         }
 
         [HttpGet]
@@ -68,8 +68,8 @@ namespace Presentation.Areas.Admin.Controllers
                 return View(dto);
             }
             FrequentlyQuestions entity= new FrequentlyQuestions();
-            //entity.Question=dto.Question;
-            //entity.Answer=dto.Answer;
+            entity.Question = dto.Question;
+            entity.Answer = dto.Answer;
             entity.Status = false;
             _questionService.Create(entity);
             return RedirectToAction("ActiveFaqList");
@@ -79,9 +79,9 @@ namespace Presentation.Areas.Admin.Controllers
         {
             FrequentlyQuestions frequentlyQuestions = _questionService.GetById(Id);
             UpdateQuestionDTO dto= new UpdateQuestionDTO();
-            //dto.Id= frequentlyQuestions.Id;
-            //dto.Answer= frequentlyQuestions.Answer;
-            //dto.Question= frequentlyQuestions.Question;
+            dto.Id = frequentlyQuestions.Id;
+            dto.Answer = frequentlyQuestions.Answer;
+            dto.Question = frequentlyQuestions.Question;
             return View(dto);
         }
         
@@ -94,10 +94,10 @@ namespace Presentation.Areas.Admin.Controllers
 
                 return View("Error");
             }
-            //FrequentlyQuestions entiy = _questionService.GetById(dto.Id);
-            //entiy.Question= dto.Question;
-            //entiy.Answer= dto.Answer;
-            //_questionService.Update(entiy);
+            FrequentlyQuestions entiy = _questionService.GetById(dto.Id);
+            entiy.Question = dto.Question;
+            entiy.Answer = dto.Answer;
+            _questionService.Update(entiy);
             return RedirectToAction("ActiveFaqList");
         }
         [HttpGet]
@@ -177,34 +177,7 @@ namespace Presentation.Areas.Admin.Controllers
         #region Videolar
 
         #endregion
-        #region Sosial Media
-        [HttpGet]
-
-        public IActionResult UpdateMediaLinks()
-        {
-            SocialMedia socialMedia = _mediaService.GetById(1);
-            UpdateMediaLinkDTO dto = new UpdateMediaLinkDTO();
-            dto.WhatsAppUrl = socialMedia.WhatsAppUrl;
-            dto.YoutubeUrl = socialMedia.YoutubeUrl;
-            dto.InstagramUrl= socialMedia.InstagramUrl;
-            dto.TikTokUrl = socialMedia.TikTokUrl;
-
-            return View(dto);
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult UpdateMediaLinks(UpdateMediaLinkDTO dto)
-        {
-            SocialMedia socialMedia = _mediaService.GetById(1);
-            socialMedia.WhatsAppUrl=dto.WhatsAppUrl;
-            socialMedia.YoutubeUrl=dto.YoutubeUrl;
-            socialMedia.TikTokUrl=dto.TikTokUrl;
-            socialMedia.InstagramUrl=dto.InstagramUrl;
-            _mediaService.Update(socialMedia);
-
-            return RedirectToAction("Index","Dashboard");
-        }
-        #endregion
+        
     }
 
 }

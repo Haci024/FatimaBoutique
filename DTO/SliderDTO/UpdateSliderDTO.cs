@@ -10,10 +10,9 @@ namespace DTO.SliderDTO
     public class UpdateSliderDTO
     {
         public IFormFile Photo { get; set; }
-        public decimal Percent { get; set; }
         public bool Status { get; set; }
-        public DateTime AddingDate { get; set; }
-        public List<AddSliderLanguageDTO> Languages { get; set; }
+        public string url { get; set; }
+       
     }
 }
     

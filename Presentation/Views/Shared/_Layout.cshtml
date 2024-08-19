@@ -1,43 +1,153 @@
-﻿@using Bussiness.Manager
-@inject LayoutService _layoutService
-
-@{
-    var products = _layoutService.GetProducts();
-    int languageId = 1;
-}
-
+﻿@using System.Globalization
+@inject LanguageService language
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <style>
+        .flags-container {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+    </style>
     <link rel="manifest" href="manifest.json">
-    <link rel="icon" href="~/assets/images/favicon/4.png" type="image/x-icon">
-    <link rel="apple-touch-icon" href="~/assets/images/favicon/4.png">
+    <link rel="icon" href="~/voxo-ui/voxo/front-end/assets/images/favicon/4.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="~/voxo-ui/voxo/front-end/assets/images/favicon/4.png">
     <meta name="theme-color" content="#e87316">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="msapplication-TileImage" content="~/assets/images/favicon/4.png">
+    <meta name="apple-mobile-web-app-title" content="Voxo">
+    <meta name="msapplication-TileImage" content="~/voxo-ui/voxo/front-end/assets/images/favicon/4.png">
     <meta name="msapplication-TileColor" content="#FFFFFF">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="~/assets/images/favicon/4.png" type="image/x-icon">
+    <meta name="description" content="Voxo">
+    <meta name="keywords" content="Voxo">
+    <meta name="author" content="Voxo">
+    <link rel="icon" href="~/voxo-ui/voxo/front-end/assets/images/favicon/4.png" type="image/x-icon">
     <title>@ViewBag.Title</title>
 
-    <!-- CSS -->
-    @RenderSection("styles", required: false)
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    @* <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@800;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;500;600;700;800;900&amp;display=swap"
+          rel="stylesheet"> *@
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="~/voxo-ui/voxo/front-end/assets/css/demo6.css" rel="stylesheet" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="~/voxo-ui/voxo/front-end/assets/css/vendors/ion.rangeSlider.min.css" />
+    <link id="rtl-link" rel="stylesheet" type="text/css" href="~/voxo-ui/voxo/front-end/assets/css/vendors/bootstrap.css">
+    <link href="~/voxo-ui/voxo/front-end/assets/css/element-banner.css" rel="stylesheet" />
+    
+    <link href="~/voxo-ui/voxo/front-end/assets/css/demo2.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/voxo-ui/voxo/front-end/assets/css/vendors/font-awesome.css">
+    <link href="~/voxo-ui/voxo/front-end/assets/css/element-header.css" rel="stylesheet" />
+    <!-- feather icon css -->
+    <link rel="stylesheet" type="text/css" href="~/voxo-ui/voxo/front-end/assets/css/vendors/feather-icon.css">
+   
+    <!-- animation css -->
+    <link rel="stylesheet" type="text/css" href="~/voxo-ui/voxo/front-end/assets/css/vendors/animate.css">
+  <link href="~/voxo-ui/voxo/front-end/assets/css/demo5.css" rel="stylesheet" />
+    <!-- slick css -->
+    <link rel="stylesheet" type="text/css" href="~/voxo-ui/voxo/front-end/assets/css/vendors/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="~/voxo-ui/voxo/front-end/assets/css/vendors/slick/slick-theme.css">
 
-    <!-- JS -->
-    @RenderSection("scripts", required: false)
+    <!-- Theme css -->
+    <link id="color-link" rel="stylesheet" type="text/css" href="~/voxo-ui/voxo/front-end/assets/css/demo4.css"> 
 
 </head>
 
 <body class="theme-color4 light ltr">
 
-    <!-- header start -->
+
     <header class="header-style-2" id="home">
+        <div class="top-header">
+            <div class="container-fluid-lg">
+                <div class="row">
+                    <div class="col-auto d-xl-block d-none">
+                        <ul class="border-list">
+                            <li>@language.GetKey("Metrolara pulsuz çatdırılma")</li>
+                            <li>@language.GetKey("İlk alışda 20% endirim...")</li>
+                        </ul>
+                    </div>
+                  
+                    <div class="col-auto">
+                        <ul class="border-list">
+                             <li>
+                               <img style="width:25px;height:25px" src="~/voxo-ui/voxo/front-end/assets/images/social-media icons/instagram.png"/>
+                            </li>
+                             <li>
+                                <img style="width:25px;height:25px" src="~/voxo-ui/voxo/front-end/assets/images/social-media icons/tiktok.png" />
+                            </li>
+                             <li>
+                                <img style="width:25px;height:25px" src="~/voxo-ui/voxo/front-end/assets/images/social-media icons/facebook.png" />
+                            </li>
+                            <li>
+                                <img style="width:25px;height:25px" src="~/voxo-ui/voxo/front-end/assets/images/social-media icons/whatsapp.png" />
+                            </li>
+                            <li class="onhover-dropdown">
+                                <div class="cart-media">
+                                    <!--Bu hissəyə toxunmaq olmaz yoxsa dil simgəsi itəcək-->
+                                    @if (CultureInfo.CurrentCulture.DisplayName == "azərbaycan (Azərbaycan)")
+                                    {
+                                        <div><img src="~/assets/flag-icons/azerbaijan.png" style="width:30px;height:30px;" /></div>
+                                    }
+                                    @if (CultureInfo.CurrentCulture.DisplayName == "Türkçe (Türkiye)")
+                                    {
+
+                                        <div><img src="~/assets/flag-icons/turkey.png" style="width:30px;height:30px;" /></div>
+                                    }
+                                    @if (CultureInfo.CurrentCulture.DisplayName == "English (United States)")
+                                    {
+
+                                        <div><img src="~/assets/flag-icons/united-kingdom.png" style="width:30px;height:30px;" /></div>
+
+                                    }
+                                    @if (CultureInfo.CurrentCulture.DisplayName == "русский (Россия)")
+                                    {
+
+                                        <div><img src="~/assets/flag-icons/russia.png" style="width:30px;height:30px;" /></div>
+
+
+                                    }
+
+
+                                </div>
+                                <div class="onhover-div profile-dropdown">
+                                    <ul>
+                                        <li>
+                                            <div class="flags-container">
+                                                <a asp-controller="Home" asp-action="SetLanguage" asp-route-culture="az-AZ" class="d-inline-block">
+                                                    <img src="~/assets/flag-icons/azerbaijan.png" style="width:30px;height:30px;" />
+                                                </a>
+                                                <a asp-controller="Home" asp-action="SetLanguage" asp-route-culture="tr-TR" class="d-inline-block">
+                                                    <img src="~/assets/flag-icons/turkey.png" style="width:30px;height:30px;" />
+                                                </a>
+                                                <a asp-controller="Home" asp-action="SetLanguage" asp-route-culture="en-US" class="d-inline-block">
+                                                    <img src="~/assets/flag-icons/united-kingdom.png" style="width:30px;height:30px;" />
+                                                </a>
+                                                <a asp-controller="Home" asp-action="SetLanguage" asp-route-culture="ru-RU" class="d-inline-block">
+                                                    <img src="~/assets/flag-icons/russia.png" style="width:30px;height:30px;" />
+                                                </a>
+                                            </div>
+                                        </li>
+                                       
+
+
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="main-header navbar-searchbar">
             <div class="container-fluid-lg">
                 <div class="row">
@@ -45,17 +155,17 @@
                         <div class="main-menu">
                             <div class="menu-left">
                                 <div class="brand-logo">
-                                    <a href="index.html">
+                                    <a asp-controller="Home" asp-action="Index">
                                         <svg class="svg-icon">
-                                            <use class="fill-color" xlink:href="~assets/svg/icons.svg#logo"></use>
+                                            <use class="fill-color" xlink:href="~/voxo-ui/voxo/front-end/assets/svg/icons.svg#logo"></use>
                                         </svg>
-                                        <img src="~/assets/images/logo.png" class="img-fluid blur-up lazyload" alt="logo">
+                                        <img src="~/voxo-ui/voxo/front-end/assets/images/logo.png" class="img-fluid blur-up lazyload" alt="logo">
                                     </a>
                                 </div>
                                 <div class="category-menu">
                                     <div class="category-dropdown">
                                         <div class="close-btn d-xl-none">
-                                            Kateqoriyalar
+                                            Category List
                                             <span class="back-category">
                                                 <i class="fa fa-angle-left"></i>
                                             </span>
@@ -140,7 +250,7 @@
                                                             </div>
                                                             <div class="col-xl-3">
                                                                 <div class="category-banner">
-                                                                    <img src="~/assets/images/electronics/banner/4.jpg"
+                                                                    <img src="~/voxo-ui/voxo/front-end/assets/images/electronics/banner/4.jpg"
                                                                          class="img-fluid blur-up lazyload" alt="">
                                                                 </div>
                                                             </div>
@@ -258,7 +368,7 @@
                                                             </div>
                                                             <div class="col-xl-3">
                                                                 <div class="category-banner">
-                                                                    <img src="~/assets/images/banner/1.jpg"
+                                                                    <img src="~/voxo-ui/voxo/front-end/assets/images/banner/1.jpg"
                                                                          class="img-fluid blur-up lazyload" alt="">
                                                                 </div>
                                                             </div>
@@ -281,13 +391,12 @@
                                         </ul>
                                     </div>
                                 </div>
+                               @await Component.InvokeAsync("NavbarCategories")
                             </div>
                             <nav>
                                 <div class="main-navbar">
                                     <div id="mainnav">
-                                        <div class="toggle-nav">
-                                            <i class="fa fa-bars sidebar-bar"></i>
-                                        </div>
+                                        <div class="toggle-nav me-3"><i class="fa fa-bars sidebar-bar"></i></div>
                                         <ul class="nav-menu">
                                             <li class="back-btn d-xl-none">
                                                 <div class="close-btn">
@@ -297,34 +406,33 @@
                                                     </span>
                                                 </div>
                                             </li>
-                                            <li class="mega-menu dropdown home-menu">
-                                                <a asp-controller="Home" asp-action="Index" class="nav-link">Əsas </a>
+                                            <li>
+                                                <a asp-controller="Shop" asp-action="Index" class="nav-link menu-title">@language.GetKey("Məhsullar")</a>
+                                                
                                             </li>
                                             <li class="dropdown">
-                                                <a asp-controller="Shop" asp-action="Index" class="nav-link">Məhsullar</a>
-                                            </li>
-                                            <li class="dropdown">
-                                                <a href="javascript:void(0)" class="nav-link menu-title">Digər səhifələr</a>
+                                                <a href="javascript:void(0)" class="nav-link menu-title">@language.GetKey("Digər Səhifələr")</a>
                                                 <ul class="nav-submenu menu-content">
-                                                  
-                                                  
                                                     <li>
-                                                        <a asp-controller="Home" asp-action="Faq">Tez-tez verilən suallar</a>
+                                                        <a asp-controller="Home" asp-action="ContactUs">@language.GetKey("Bizimlə əlaqə")</a>
                                                     </li>
                                                     <li>
-                                                        <a asp-controller="Home" asp-action="ContactUs">Bizimlə əlaqə</a>
+                                                        <a asp-controller="Home" asp-action="Faq">@language.GetKey("Tez-tez verilən suallar")</a>
                                                     </li>
                                                     <li>
-                                                        <a asp-controller="Home" asp-action="Videos">Videolar</a>
+                                                        <a asp-controller="Account" asp-action="MyProfile">@language.GetKey("Hesabım")</a>
                                                     </li>
                                                     <li>
-                                                        <a asp-controller="Home" asp-action="UnSubscribe">Abunəliyin ləğvi</a>
+                                                        <a asp-controller="Home" asp-action="UnSubscribe">@language.GetKey("Abunəliyin ləğvi")</a>
                                                     </li>
-                                           
+
+
+
+
                                                 </ul>
                                             </li>
                                             <li class="mobile-poster d-flex d-xl-none">
-                                                <img src="~/assets/images/pwa.png" class="img-fluid" alt="">
+                                                <img src="assets/images/pwa.png" class="img-fluid" alt="">
                                                 <div class="mobile-contain">
                                                     <h5>Enjoy app-like experience</h5>
                                                     <p class="font-light">
@@ -342,11 +450,76 @@
                                     </div>
                                 </div>
                             </nav>
+
                             <div class="menu-right">
                                 <ul>
                                     <li>
-                                        <div class="search-box theme-bg-color">
-                                            <i data-feather="search"></i>
+                                        <div class="search-box theme-bg-color"  style="border-radius:50%">
+
+                                            <i data-feather="search" ></i>
+                                        </div>
+                                
+                                        <div class="search-suggestion">
+                                            <ul class="custom-scroll">
+                                                <li>
+                                                    <div class="product-cart media">
+                                                        <img src="assets/images/electronics/product/1.jpg"
+                                                             class="img-fluid blur-up lazyload" alt="">
+                                                        <div class="media-body">
+                                                            <a href="javascript:void(0)">
+                                                                <h6 class="mb-1">New Smart Watch 4 ERT2</h6>
+                                                            </a>
+                                                            <ul class="rating p-0">
+                                                                <li>
+                                                                    <i class="fas fa-star theme-color"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fas fa-star theme-color"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fas fa-star theme-color"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fas fa-star"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fas fa-star"></i>
+                                                                </li>
+                                                            </ul>
+                                                            <p class="mb-0 mt-1">$28.00</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="product-cart media">
+                                                        <img src="assets/images/electronics/product/5.jpg"
+                                                             class="img-fluid blur-up lazyload" alt="">
+                                                        <div class="media-body">
+                                                            <a href="javascript:void(0)">
+                                                                <h6 class="mb-1">Powermatic 900 W Juicer</h6>
+                                                            </a>
+                                                            <ul class="rating m-0 p-0">
+                                                                <li>
+                                                                    <i class="fas fa-star theme-color"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fas fa-star theme-color"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fas fa-star theme-color"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fas fa-star theme-color"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fas fa-star theme-color"></i>
+                                                                </li>
+                                                            </ul>
+                                                            <p class="mb-0 mt-1">$35.00</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </li>
                                     <li class="onhover-dropdown">
@@ -356,117 +529,41 @@
                                         <div class="onhover-div profile-dropdown">
                                             <ul>
                                                 <li>
-                                                    <a asp-controller="Account" asp-action="Login" class="d-block">Giriş</a>
+                                                    <a href="log-in.html" class="d-block">@language.GetKey("Daxil ol")</a>
                                                 </li>
                                                 <li>
-                                                    <a asp-controller="Account" asp-action="Register" class="d-block">Qeydiyyat</a>
+                                                    <a href="sign-up.html" class="d-block">@language.GetKey("Qeydiyyat")</a>
                                                 </li>
                                             </ul>
+                                        </div>
+                                    </li>
+                                    <li class="onhover-dropdown wislist-dropdown">
+                                        <div class="cart-media">
+                                            <a href="wishlist.html">
+                                                <i data-feather="heart"></i>
+                                                <span class="label label-theme rounded-pill">5</span>
+                                            </a>
+                                        </div>
+                                        <div class="onhover-div">
+                                            <a href="wishlist.html">
+                                                <div class="wislist-empty">
+                                                    <i class="fab fa-gratipay"></i>
+                                                    <h6 class="mb-1">Your wislist empty !!</h6>
+                                                    <p class="font-light mb-0">explore more and shortlist items.</p>
+                                                </div>
+                                            </a>
                                         </div>
                                     </li>
                                     <li class="onhover-dropdown cart-dropdown">
                                         <button type="button" class="btn btn-solid-default btn-spacing">
                                             <i data-feather="shopping-cart" class="pe-2"></i>
-                                            <span>$5686.25</span>
+                                            <span>5686.25 azn</span>
                                         </button>
-                                        <div class="onhover-div">
-                                            <div class="cart-menu">
-                                                <div class="cart-title">
-                                                    <h6>
-                                                        <i data-feather="shopping-bag"></i>
-                                                        <span class="label label-theme rounded-pill">5</span>
-                                                    </h6>
-                                                    <span class="d-md-none d-block">
-                                                        <i class="fas fa-arrow-right back-cart"></i>
-                                                    </span>
-                                                </div>
-                                                <ul class="custom-scroll">
-                                                    <li>
-                                                        <div class="media">
-                                                            <img src="~/assets/images/fashion/product/front/1.jpg"
-                                                                 class="img-fluid blur-up lazyload" alt="">
-                                                            <div class="media-body">
-                                                                <h6>Slim Fit Plastic Coat</h6>
-                                                                <div class="qty-with-price">
-                                                                    <span>$78.00</span>
-                                                                    <span>
-                                                                        <input type="number" class="form-control"
-                                                                               value="1">
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            <button type="button" class="btn-close d-block d-md-none"
-                                                                    aria-label="Close">
-                                                                <i class="fas fa-times"></i>
-                                                            </button>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="media">
-                                                            <img src="~/assets/images/fashion/product/front/7.jpg"
-                                                                 class="img-fluid blur-up lazyload" alt="">
-                                                            <div class="media-body">
-                                                                <h6>Womens Stylish Jacket</h6>
-                                                                <div class="qty-with-price">
-                                                                    <span>$24.00</span>
-                                                                    <span>
-                                                                        <input type="number" class="form-control"
-                                                                               value="1">
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            <button type="button" class="btn-close d-block d-md-none"
-                                                                    aria-label="Close">
-                                                                <i class="fas fa-times"></i>
-                                                            </button>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="cart-btn">
-                                                <h6 class="cart-total">
-                                                    <span class="font-light">Total:</span> $
-                                                    542.00
-                                                </h6>
-                                                <button onclick="location.href = 'cart.html';" type="button"
-                                                        class="btn btn-solid-default btn-block">
-                                                    Proceed to payment
-                                                </button>
-                                            </div>
-                                        </div>
                                     </li>
                                 </ul>
                             </div>
-                            <div class="search-full">
-                                <div class="input-group">
-                                    <span class="input-group-text">
-                                        <i data-feather="search" class="font-light"></i>
-                                    </span>
-                                    <input type="text" class="form-control search-type" placeholder="Search here..">
-                                    <span class="input-group-text close-search">
-                                        <i data-feather="x" class="font-light"></i>
-                                    </span>
-                                </div>
-                           @*    <div class="search-suggestion">
-                                    <ul class="custom-scroll">
-                                        @foreach (var item in products)
-                                        {
-                                            <li>
-                                                <div class="product-cart media">
-                                                    <img src="~/assets/blogImages/@item.BlogImages.FirstOrDefault(x=>x.IsMain == true).ImageUrl"
-                                                         class="img-fluid blur-up lazyload" alt="">
-                                                    <div class="media-body">
-                                                        <a href="javascript:void(0)">
-                                                            <h6 class="mb-1">@item.BlogLanguages.FirstOrDefault(b => b.LanguageId == languageId).Title</h6>
-                                                        </a>
-                                                        <p class="mb-0 mt-1">$@((item.SalesPrice * (100 - item.DiscountPrice) / 100).ToString("0.00"))</p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        }
-                                    </ul>
-                                </div>  *@
-                            </div>
+                          @await Component.InvokeAsync("SearchBar") 
+                            
                         </div>
                     </div>
                 </div>
@@ -475,179 +572,289 @@
     </header>
     <!-- header end -->
 
-    <!-- mobile fix menu start -->
     <div class="mobile-menu d-sm-none">
         <ul>
             <li>
-                <a asp-controller="Home" asp-action="Index" class="active">
+                <a href="demo3.html" class="active">
                     <i data-feather="home"></i>
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a asp-controller="Shop" asp-action="Index" class="toggle-category">
+                <a href="javascript:void(0)" class="toggle-category">
                     <i data-feather="align-justify"></i>
                     <span>Category</span>
                 </a>
             </li>
             <li>
-                <a asp-controller="Shop" asp-action="Basket">
+                <a href="javascript:void(0)">
                     <i data-feather="shopping-bag"></i>
-                    <span>Səbət</span>
+                    <span>Cart</span>
                 </a>
             </li>
-       
             <li>
-                <a asp-controller="Account" asp-action="Profile">
+                <a href="javascript:void(0)">
+                    <i data-feather="heart"></i>
+                    <span>Wishlist</span>
+                </a>
+            </li>
+            <li>
+                <a href="user-dashboard.html">
                     <i data-feather="user"></i>
-                    <span>Profilim</span>
+                    <span>Account</span>
                 </a>
             </li>
         </ul>
     </div>
     <!-- mobile fix menu end -->
-
+    <!-- home slider start -->
     @RenderBody()
+    <!-- footer start -->
+    @await Html.PartialAsync("SubscriberPartialView",new DTO.SubscriberDTO.NewSubscriberDTO())
 
-    
-    
-    
-        @await Html.PartialAsync("SubscriberPartialView", new DTO.SubscriberDTO.NewSubscriberDTO())
-    
-   
-    <footer class="footer-sm-space">
-        <div class="main-footer">
-            <div class="container">
-                <div class="row gy-4">
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="footer-contact">
-                            <div class="brand-logo">
-                                <a href="index.html" class="footer-logo">
-                                    <svg class="svg-icon">
-                                        <use class="fill-color" xlink:href="~assets/svg/icons.svg#logo"></use>
-                                    </svg>
-                                    <img src="~/assets/images/logo.png" class="img-fluid blur-up lazyload" alt="logo">
-                                </a>
-                            </div>
-                            <ul class="contact-lists">
-                                <li>
-                                    <span><b>phone:</b> <span class="font-light"> + 185659635</span></span>
-
-                                </li>
-                                <li>
-                                    <span>
-                                        <b>Address:</b><span class="font-light">
-                                            1418 Riverwood Drive, Suite 3245
-                                            Cottonwood, CA 96052, United States
-                                        </span>
-                                    </span>
-                                </li>
-                                <li>
-                                    <span><b>Elektron ünvan:</b><span class="font-light"> Voxo123@gmail.com</span></span>
-
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="footer-links">
-                            <div class="footer-title">
-                                <h3>Səhifələr</h3>
-                            </div>
-                            <div class="footer-content">
-                                <ul>
-                                    <li>
-                                        <a asp-controller="Home" asp-action="Index" class="font-dark">Əsas səhifə</a>
-                                    </li>
-                                    <li>
-                                        <a asp-controller="Shop" asp-action="Index" class="font-dark">Məhsullar</a>
-                                    </li>
-                                    <li>
-                                        <a asp-controller="Home" asp-action="Index" class="font-dark">Haqqımızda</a>
-                                    </li>
-                                    <li>
-                                        <a asp-controller="Home" asp-action="Faq" class="font-dark">Tez-tez verilən suallar</a>
-                                    </li>
-                                    <li>
-                                        <a asp-controller="Home" asp-action="ContactUs" class="font-dark">Bizimlə əlaqə</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="footer-links">
-                            <div class="footer-title">
-                                <h3>Kateqoriyalar</h3>
-                            </div>
-                            <div class="footer-content">
-                                <ul>
-                                    <li>
-                                        <a href="shop-left-sidebar.html" class="font-dark">Üzüklər</a>
-                                    </li>
-                                    <li>
-                                        <a href="shop-left-sidebar.html" class="font-dark">Qolbağlar</a>
-                                    </li>
-                                    <li>
-                                        <a href="shop-left-sidebar.html" class="font-dark">Boyunbağılar</a>
-                                    </li>
-                                    <li>
-                                        <a href="shop-left-sidebar.html" class="font-dark">Bilərziklər</a>
-                                    </li>
-                                    <li>
-                                        <a href="shop-left-sidebar.html" class="font-dark">Sırğalar</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="footer-links">
-                            <div class="footer-title">
-                                <h3>Sosialda bizi izləyin</h3>
-                            </div>
-                            <div class="footer-content">
-                                <ul>
-                                    <li>
-                                        <a href="shop-left-sidebar.html" class="font-dark">İnstagram</a>
-                                    </li>
-                                    <li>
-                                        <a href="shop-left-sidebar.html" class="font-dark">Facebook</a>
-                                    </li>
-                                    <li>
-                                        <a href="shop-left-sidebar.html" class="font-dark">Tik-Tok</a>
-                                    </li>
-                                    <li>
-                                        <a href="shop-left-sidebar.html" class="font-dark">You tube</a>
-                                    </li>
-                                 
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-        <div class="sub-footer">
-            <div class="container">
-                <div class="row gy-3">
-                    <div class="col-md-6">
-                        <p class="mb-0 font-dark">© 2024, Fatimah Boutique. </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    @await Component.InvokeAsync("Footer");
     <!-- footer end -->
+    <!-- Quick view modal start -->
+ 
+    <!-- Quick view modal end -->
+    <!-- Newsletter modal start -->
+    <div class="modal fade newletter-modal" id="newsletter">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
 
-    @RenderSection("modals", required: false)
-    @Html.Partial("_TapToTopStartPartial")
+                <div class="modal-body">
+                    <img src="~/voxo-ui/voxo/front-end/assets/images/newletter-icon.png" class="img-fluid blur-up lazyload" alt="">
+                    <div class="modal-title">
+                        <h2 class="tt-title">Sign up for our Newsletter!</h2>
+                        <p class="font-light">Never miss any new updates or products we reveal, stay up to date.</p>
+                        <p class="font-light">Oh, and it's free!</p>
 
-    <!-- bg overlay start -->
+                        <div class="input-group mb-3">
+                            <input placeholder="Email" class="form-control" type="text">
+                        </div>
+
+                        <div class="cancel-button text-center">
+                            <button class="btn default-theme w-100" data-bs-dismiss="modal"
+                                    type="button">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Newsletter modal end -->
+    <!-- Cart Successful Start -->
+    <div class="modal fade cart-modal" id="addtocart" tabindex="-1" role="dialog" aria-label="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="modal-contain">
+                        <div>
+                            <div class="modal-messages">
+                                <i class="fas fa-check"></i> 3-stripes full-zip hoodie successfully added to
+                                you cart.
+                            </div>
+                            <div class="modal-product">
+                                <div class="modal-contain-img">
+                                    <img src="~/voxo-ui/voxo/front-end/assets/images/fashion/instagram/4.jpg" class="img-fluid blur-up lazyload"
+                                         alt="">
+                                </div>
+                                <div class="modal-contain-details">
+                                    <h4>Premier Cropped Skinny Jean</h4>
+                                    <p class="font-light my-2">Yellow, Qty : 3</p>
+                                    <div class="product-total">
+                                        <h5>TOTAL : <span>$1,140.00</span></h5>
+                                    </div>
+                                    <div class="shop-cart-button mt-3">
+                                        <a href="shop-left-sidebar.html"
+                                           class="btn default-light-theme conti-button default-theme default-theme-2 rounded">
+                                            CONTINUE
+                                            SHOPPING
+                                        </a>
+                                        <a href="cart.html"
+                                           class="btn default-light-theme conti-button default-theme default-theme-2 rounded">
+                                            VIEW
+                                            CART
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ratio_asos mt-4">
+                        <div class="container">
+                            <div class="row m-0">
+                                <div class="col-sm-12 p-0">
+                                    <div class="product-wrapper product-style-2 slide-4 p-0 light-arrow bottom-space spacing-slider">
+                                        <div>
+                                            <div class="product-box">
+                                                <div class="img-wrapper">
+                                                    <div class="front">
+                                                        <a href="product-left-sidebar.html">
+                                                            <img src="~/voxo-ui/voxo/front-end/assets/images/fashion/product/front/1.jpg"
+                                                                 class="bg-img blur-up lazyload" alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-details text-center">
+                                                    <div class="rating-details d-block text-center">
+                                                        <span class="font-light grid-content">B&Y Jacket</span>
+                                                    </div>
+                                                    <div class="main-price mt-0 d-block text-center">
+                                                        <h3 class="theme-color">$78.00</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div class="product-box">
+                                                <div class="img-wrapper">
+                                                    <div class="front">
+                                                        <a href="product-left-sidebar.html">
+                                                            <img src="~/voxo-ui/voxo/front-end/assets/images/fashion/product/front/2.jpg"
+                                                                 class="bg-img blur-up lazyload" alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-details text-center">
+                                                    <div class="rating-details d-block text-center">
+                                                        <span class="font-light grid-content">B&Y Jacket</span>
+                                                    </div>
+                                                    <div class="main-price mt-0 d-block text-center">
+                                                        <h3 class="theme-color">$78.00</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div class="product-box">
+                                                <div class="img-wrapper">
+                                                    <div class="front">
+                                                        <a href="product-left-sidebar.html">
+                                                            <img src="~/voxo-ui/voxo/front-end/assets/images/fashion/product/front/3.jpg"
+                                                                 class="bg-img blur-up lazyload" alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-details text-center">
+                                                    <div class="rating-details d-block text-center">
+                                                        <span class="font-light grid-content">B&Y Jacket</span>
+                                                    </div>
+                                                    <div class="main-price mt-0 d-block text-center">
+                                                        <h3 class="theme-color">$78.00</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div class="product-box">
+                                                <div class="img-wrapper">
+                                                    <div class="front">
+                                                        <a href="product-left-sidebar.html">
+                                                            <img src="~/voxo-ui/voxo/front-end/assets/images/fashion/product/front/4.jpg"
+                                                                 class="bg-img blur-up lazyload" alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-details text-center">
+                                                    <div class="rating-details d-block text-center">
+                                                        <span class="font-light grid-content">B&Y Jacket</span>
+                                                    </div>
+                                                    <div class="main-price mt-0 d-block text-center">
+                                                        <h3 class="theme-color">$78.00</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Cart Successful End -->
+  
+    <!-- theme Setting Start -->
+    <div class="theme-setting">
+        <ul>
+          
+            <li class="color-picker">
+                <input type="color" class="form-control form-control-color" id="ColorPicker1" value="#e87316"
+                       title="Choose your color">
+            </li>
+        </ul>
+    </div>
+    <!-- theme Setting End -->
+    <!-- tap to top Section Start -->
+    <div class="tap-to-top">
+        <a href="#home">
+            <i class="fas fa-chevron-up"></i>
+        </a>
+    </div>
+    <!-- tap to top Section End -->
+
     <div class="bg-overlay"></div>
-   
+
+    <!-- latest jquery-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <!-- Bootstrap js-->
+    <script src="~/voxo-ui/voxo/front-end/assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- feather icon js-->
+    <script src="~/voxo-ui/voxo/front-end/assets/js/feather/feather.min.js"></script>
+
+    <!-- Add To Home js -->
+    <script src="~/voxo-ui/voxo/front-end/assets/js/pwa.js"></script>
+
+    <!-- lazyload js-->
+    <script src="~/voxo-ui/voxo/front-end/assets/js/lazysizes.min.js"></script>
+    <script src="~/voxo-ui/voxo/front-end/assets/js/price-filter.js"></script>
+
+    <script src="~/voxo-ui/voxo/front-end/assets/js/ion.rangeSlider.min.js"></script>
+    <!-- Timer Js -->
+    
+    <script src="~/voxo-ui/voxo/front-end/assets/js/timer1.js"></script>
+    <script src="~/voxo-ui/voxo/front-end/assets/js/filter.js"></script>
+    <!-- Slick js-->
+    <script src="~/voxo-ui/voxo/front-end/assets/js/slick/slick.js"></script>
+    <script src="~/voxo-ui/voxo/front-end/assets/js/slick/slick-animation.min.js"></script>
+    <script src="~/voxo-ui/voxo/front-end/assets/js/slick/custom_slick.js"></script>
+
+    <script src="~/voxo-ui/voxo/front-end/assets/js/typeahead.bundle.min.js"></script>
+    <script src="~/voxo-ui/voxo/front-end/assets/js/typeahead.jquery.min.js"></script>
+    <script src="~/voxo-ui/voxo/front-end/assets/js/ajax-custom.js"></script>
+
+    <!-- newsletter js -->
+    <script src="~/voxo-ui/voxo/front-end/assets/js/newsletter.js"></script>
+
+    <!-- add to cart modal resize -->
+    <script src="~/voxo-ui/voxo/front-end/assets/js/cart_modal_resize.js"></script>
+
+    <!-- Notify js-->
+    <script src="~/voxo-ui/voxo/front-end/assets/js/bootstrap/bootstrap-notify.min.js"></script>
+
+    <!-- script js -->
+    <script src="~/voxo-ui/voxo/front-end/assets/js/theme-setting.js"></script>
+    <script src="~/voxo-ui/voxo/front-end/assets/js/script.js"></script>
 
     <script>
         $(function () {
@@ -657,4 +864,6 @@
 
 </body>
 
+
+<!-- Mirrored from themes.pixelstrap.com/voxo/front-end/furniture-demo.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Sep 2023 18:48:04 GMT -->
 </html>

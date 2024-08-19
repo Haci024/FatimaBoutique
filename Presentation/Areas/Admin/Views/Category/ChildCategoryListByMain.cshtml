@@ -1,19 +1,21 @@
-﻿@model DTO.CategoryDTO.CategoryListDTO
+﻿@model IEnumerable<ChildCategoryListDTO>
 
 @{
     ViewData["Title"] = "ChildCategoryListByMain";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
     int num = 0;
+    ViewBag.MainCategoryName = Model.Select(x => x.MainCategoryName).FirstOrDefault();
+    
 }
 
-<div class="container-fluid">
+ <div class="container-fluid">
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
                     <div style="display:flex;justify-content:space-between;align-items:center">
                         <h2>
-                            (@Model.MainCategoryName) alt kateqoriyalar
+                            (@ViewBag.MainCategoryName) alt kateqoriyalar
                         </h2>
                         <div style="padding-right:30px">
                             <a asp-action="AddChildCategory" class="btn bg-deep-purple waves-effect ">
@@ -62,15 +64,15 @@
                                 </tr>
                             </tfoot>
                             <tbody>
-                                @foreach (var item in Model.ChildCategoryListByMain)
+                                @foreach (var item in Model)
                                 {
                                     <tr>
                                         <td>@(num = num + 1)</td>
                                         <td>        
-                                                @item.CategoryName
+                                                @item.Name
                                         </td>
                                         <td>
-                                            @if (item.Categories.Status == false)
+                                            @if (item.Status == true)
                                             {
                                                 <b style="color:#4CAF50">Aktivdir</b>
                                             }
@@ -85,12 +87,12 @@
 
                    
                                             <div style="margin-right:10px">
-                                                <a asp-action="UpdateChildCategory" asp-route-categoryId="@item.Categories.Id" class="btn bg-indigo waves-effect">
+                                                <a asp-action="UpdateChildCategory" asp-route-categoryId="@item.Id" class="btn bg-indigo waves-effect">
                                                     <i class="material-icons">edit</i>
                                                 </a>
                                             </div>
                                             <div style="margin-right:10px">
-                                                <a asp-action="BlockCategory" asp-route-categoryId="@item.Categories.Id" class="btn bg-red waves-effect">
+                                                <a asp-action="BlockCategory" asp-route-categoryId="@item.Id" class="btn bg-red waves-effect">
                                                     <i class="material-icons">delete</i>
                                                 </a>
                                             </div>
@@ -108,4 +110,4 @@
     </div>
     <!-- #END# Exportable Table -->
 </div>
-
+ 

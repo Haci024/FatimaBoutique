@@ -4,6 +4,7 @@ using DTO.ContactUsDTO;
 using DTO.FrequentlyQuestionsDTO;
 using DTO.SubscriberDTO;
 using Entity.Models;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -15,18 +16,37 @@ namespace Presentation.Controllers
         private readonly IFrequentlyQuestionService _faqService;
         private readonly IContactUsService _contactUsService;
         private readonly IEmailService _emailService;
-
+        private readonly IProductService _productService;
         private readonly Context _db;
         private readonly ISubscriberService _subscriberService; 
             
 
-        public HomeController(IContactUsService contactUs,ISubscriberService service,Context db,IEmailService emailService, IFrequentlyQuestionService faq)
+        public HomeController(IContactUsService contactUs,IProductService productService
+            ,ISubscriberService service,Context db,IEmailService emailService, IFrequentlyQuestionService faq)
         {
             _db = db;
+            _productService = productService;
             _subscriberService = service;
             _faqService = faq;  
             _contactUsService = contactUs;
             _emailService = emailService;
+        }
+        [HttpGet]
+        public IActionResult SearchBar(string query)
+        {
+            return ViewComponent("SearchBar", new { query = query });
+        }
+        [HttpGet]
+        public IActionResult SetLanguage(string culture)
+        {
+
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddDays(1) }
+            );
+
+            return RedirectToAction("Index");
         }
 
         public IActionResult Index()
@@ -67,12 +87,11 @@ namespace Presentation.Controllers
             {
             ContactUs contactUs=new ContactUs();
             contactUs.Viewed = false;
-            contactUs.Gmail = dto.Gmail;
+            contactUs.Email = dto.Email;
             contactUs.PhoneNumber = dto.PhoneNumber;
             contactUs.FullName = dto.FullName;
             contactUs.Description=dto.Description;
                 contactUs.SendingDate = DateTime.UtcNow;
-            contactUs.Title = dto.Title;
                 ViewBag.Success = true;
                 _emailService.ContactUsAvtoMessageForUser(dto);
                 _contactUsService.Create(contactUs);
@@ -94,12 +113,11 @@ namespace Presentation.Controllers
             return View();
         }
 
-        public IActionResult Faq()
+        public async Task<IActionResult> Faq()
         {
-            IEnumerable<FrequentlyQuestions> frequentlyQuestions = _faqService.GetList();
-            FrequentlyQuestionListDTO dto =new FrequentlyQuestionListDTO();
-            dto.FrequentlyQuestions = _faqService.GetList();
-            return View(dto);
+            IEnumerable<FaqListDTO> frequentlyQuestions =await  _faqService.ActiveFaqList();
+
+            return View(frequentlyQuestions);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

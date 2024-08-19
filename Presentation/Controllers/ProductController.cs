@@ -25,10 +25,10 @@ namespace Presentation.Controllers
 
         public IActionResult ProductDetail(int id)
         {
-            Blogs product = _context.Blogs
-                .Include(x => x.BlogLanguages)
-                .Include(x => x.BlogImages)
-                .Include(x => x.Categories).ThenInclude(x => x.CategoryLanguages)
+            Products product = _context.Products
+                
+                .Include(x => x.ProductsImages)
+                .Include(x => x.Categories)
                 .FirstOrDefault(x => x.Id == id);
 
             if (product == null) return View("Error");

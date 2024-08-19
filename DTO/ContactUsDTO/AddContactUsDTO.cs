@@ -10,9 +10,7 @@ namespace DTO.ContactUsDTO
     {
         public string FullName { get; set; }
 
-        public string Gmail { get; set; }
-
-        public string Title { get; set; }
+        public string Email { get; set; }
 
         public string Description { get; set; }
       

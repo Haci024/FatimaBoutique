@@ -17,9 +17,9 @@ namespace Bussiness.Manager
             _context = context;
         }
 
-        public List<Blogs> GetProducts()
+        public List<Products> GetProducts()
         {
-            return _context.Blogs.ToList();
+            return _context.Products.ToList();
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using DAL.DAL;
+using DTO.CategoryDTO.Child;
+using DTO.CategoryDTO.Main;
 using Entity.Models;
 using System;
 using System.Collections.Generic;
@@ -10,12 +12,15 @@ namespace Data.DAL
 {
     public interface ICategoryDAL:IGenericDAL<Categories>
     {
-        public IEnumerable<Categories> ActiveCategoryList();
+         Task<IEnumerable<MainCategoryListDTO>> ActiveMainCategoryList();
 
-        public IEnumerable<Categories> DeactiveCategoriesList();
+         Task<IEnumerable<ChildCategoryListDTO>> ActiveChildCategoryList();
 
-        public IEnumerable<Categories> GetBlogListByCategory(int Id);
+         Task<IEnumerable<ChildCategoryListDTO>> DeactiveChildCategoryList();
 
-        
+         IEnumerable<NavbarCategoryListDTO> NavbarCategoryList();
+
+        Task<IEnumerable<ChildCategoryListDTO>> ChildCategoryListByMain(int mainCategoryId);
+
     }
 }

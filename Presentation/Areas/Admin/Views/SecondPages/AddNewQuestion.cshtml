@@ -1,0 +1,47 @@
+﻿@model AddQuestionDTO
+@{
+    ViewData["Title"] = "AddNewQuestion";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+
+    <!-- Basic Validation -->
+    <div class="row clearfix">
+        <div class="col-lg-6 col-md-8 col-sm-8 col-xs-8">
+            <div class="card">
+                <div class="header text-center">
+                    <h2>Yeni Sual</h2>
+                </div>
+                <div class="body">
+                    <form id="form_validation" method="post">
+                        <div class="input-group">
+                            <p>
+                                <label>Sual</label>
+                            </p>
+                            <div class="form-line">
+                                <input type="text" asp-for="Question" name="Question" class="form-control" placeholder="sualı daxil edin ...">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <p>
+                                <label>Cavab</label>
+                            </p>
+                            <div class="form-line">
+                                <input type="text" asp-for="Answer" name="Answer" class="form-control" placeholder=cavabı daxil edin ...">
+                            </div>
+                        </div>
+
+
+                        <div class="font-bold col-pink" asp-validation-summary="ModelOnly"></div>
+                        <div class="text-center">
+                            <button class="btn btn-primary waves-effect" type="submit" id="submitButton">Yarat</button>
+                            <a asp-action="ActiveFaqList" class="btn btn-success">Geri</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

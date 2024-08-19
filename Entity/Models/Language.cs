@@ -8,12 +8,9 @@ namespace Entity.Models
 {
     public class Language
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Key { get; set; }
-        public List<BlogsLanguage> BlogLanguages { get; set; }
-        public List<CategoryLanguage> CategoryLanguages{ get; set; }
-        public List<OrderLanguage> OrderLanguages { get; set; } 
-        
+        public Guid Id { get; set; }
+        public string Culture { get; set; }//AZ-az//TR-tr//RU-ru
+        public string ResourceKey { get; set; }
+        public string ResourceValue { get; set; }
     }
 }

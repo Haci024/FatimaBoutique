@@ -1,5 +1,7 @@
 ﻿using Bussiness.Services;
 using Data.DAL;
+using DTO.CategoryDTO.Child;
+using DTO.CategoryDTO.Main;
 using Entity.Models;
 using System;
 using System.Collections.Generic;
@@ -18,9 +20,21 @@ namespace Bussiness.Manager
             _dal = dal;
         }
 
-        public IEnumerable<Categories> ActiveCategoryList()
+   
+
+        public async Task<IEnumerable<ChildCategoryListDTO>> ActiveChildCategoryList()
         {
-            return _dal.ActiveCategoryList();
+            return await _dal.ActiveChildCategoryList();
+        }
+
+        public async Task<IEnumerable<MainCategoryListDTO>> ActiveMainCategoryList()
+        {
+            return await _dal.ActiveMainCategoryList();
+        }
+
+        public async Task<IEnumerable<ChildCategoryListDTO>> ChildCategoryListByMain(int mainCategoryId)
+        {
+            return await _dal.ChildCategoryListByMain(mainCategoryId);
         }
 
         public void Create(Categories t)
@@ -28,29 +42,29 @@ namespace Bussiness.Manager
            _dal.Create(t);
         }
 
-        public IEnumerable<Categories> DeactiveCategoriesList()
+       
+
+        public async Task<IEnumerable<ChildCategoryListDTO>> DeactiveChildCategoryList()
         {
-            return _dal.DeactiveCategoriesList();
+            return await _dal.DeactiveChildCategoryList();
         }
 
         public void Delete(Categories t)
         {
            _dal.Delete(t);
         }
-
-        public IEnumerable<Categories> GetBlogListByCategory(int categoryId)
-        {
-            return _dal.GetBlogListByCategory(categoryId);
-        }
-
         public Categories GetById(int id)
         {
             return _dal.GetById(id);
         }
-
         public IEnumerable<Categories> GetList()
         {
             return _dal.GetList();
+        }
+
+        public IEnumerable<NavbarCategoryListDTO> NavbarCategoryList()
+        {
+            return _dal.NavbarCategoryList();
         }
 
         public void Update(Categories t)

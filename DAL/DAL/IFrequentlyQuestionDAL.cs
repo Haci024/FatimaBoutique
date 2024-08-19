@@ -1,4 +1,5 @@
 ﻿using DAL.DAL;
+using DTO.FrequentlyQuestionsDTO;
 using Entity.Models;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,8 @@ namespace Data.DAL
 {
     public interface IFrequentlyQuestionDAL:IGenericDAL<FrequentlyQuestions>
     {
-        public IEnumerable<FrequentlyQuestions> ActiveFaqList();
+         Task<IEnumerable<FaqListDTO>> ActiveFaqList();
 
-        public IEnumerable<FrequentlyQuestions> DeactiveFaqList();
+         Task<IEnumerable<FaqListDTO>> DeactiveFaqList();
     }
 }

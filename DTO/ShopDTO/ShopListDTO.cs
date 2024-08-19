@@ -9,7 +9,7 @@ namespace DTO.ShopDTO
 {
     public class ShopListDTO
     {
-        public List<Blogs> Products { get; set; } = new List<Blogs>();
+        public List<Products> Products { get; set; } = new List<Products>();
         public List<Categories> Categories { get; set; }
     }
 }

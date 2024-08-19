@@ -5,10 +5,8 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>Fatima-Boutique İdarə paneli</title>
-    
     <link rel="icon" href="../../favicon.ico" type="image/x-icon">
-
-    
+   
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
@@ -18,7 +16,7 @@
     <!-- Waves Effect Css -->
     <link href="~/admin/plugins/node-waves/waves.css" rel="stylesheet" />
 
-    <!-- Animation Css -->
+
     <link href="~/admin/plugins/animate-css/animate.css" rel="stylesheet" />
 
     <!-- JQuery DataTable Css -->
@@ -95,17 +93,10 @@
         <aside id="leftsidebar" class="sidebar">
             <!-- User Info -->
             <div class="user-info">
-              
-                <div class="info-container">
-                    <h3 class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@User.Identity.Name</h3>
-                    <div class="btn-group user-helper-dropdown">
-                        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
-                        <ul class="dropdown-menu pull-right">
-                            <li role="separator" class="divider"></li>
-                            <li><a asp-area="" asp-controller="Account" asp-action="Logout"><i class="material-icons">input</i>Hesabdan çıxış</a></li>
-                        </ul>
-                    </div>
-                </div>
+                <img src="~/admin/images/user-img-background.jpg" />
+                
+            </div>
+               
             </div>
             <!-- #User Info -->
             <!-- Menu -->
@@ -120,7 +111,7 @@
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">perm_media</i>
+                            <i class="material-icons">category</i>
                             <span>Kateqoriyalar</span>
                         </a>
                         <ul class="ml-menu">
@@ -134,24 +125,25 @@
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">pie_chart</i>
+                            <i class="material-icons">auto_awesome_motion
+</i>
                             <span>Paylaşımlar</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a asp-controller="Blogs" asp-action="NewProduct">Yeni məhsul</a>
+                                <a asp-controller="Products" asp-action="NewProduct">Yeni məhsul</a>
                             </li>
                             <li>
-                                <a asp-controller="Blogs" asp-action="SalesProductList">Endirimdə olanlar</a>
+                                <a asp-controller="Products" asp-action="SalesProductList">Endirimdə olanlar</a>
                             </li>
                             <li>
-                                <a asp-controller="Blogs" asp-action="AllProducts">Paylaşımlar</a>
+                                <a asp-controller="Products" asp-action="AllProducts">Paylaşımlar</a>
                             </li>
                             <li>
-                                <a asp-controller="Blogs" asp-action="DeactiveProductList">Deaktiv paylaşımlar</a>
+                                <a asp-controller="Products" asp-action="DeactiveProductList">Deaktiv paylaşımlar</a>
                             </li>
                             <li>
-                                <a asp-controller="Blogs" asp-action="SliderList">Başlıq paylaşımları</a>
+                                <a asp-controller="Products" asp-action="SliderList">Başlıq paylaşımları</a>
                             </li>
                           
                             
@@ -179,7 +171,21 @@
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">pie_chart</i>
+                            <i class="material-icons">shopping_basket</i>
+                            <span>Sifarişlər</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a asp-controller="Orders" asp-action="ActiveOrderList">Aktiv sifarişlər</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Orders" asp-action="RemoveOrderList">Ləğv edilmiş sifarişlər</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">mail</i>
                             <span>Gələn mesajlar</span>
                         </a>
                         <ul class="ml-menu">
@@ -195,22 +201,42 @@
 
                         </ul>
                     </li>
-                    
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">pie_chart</i>
-                            <span>Digər</span>
+                            <i class="material-icons">language</i>
+                            <span>Dillər</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a asp-controller="SecondPages" asp-action="Update">Haqqımızda</a>
+                                <a asp-controller="Translate" asp-action="AddData">Yeni çeviri</a>
                             </li>
                             <li>
-                                <a asp-controller="SecondPages" asp-action="SocialMediaUpdate">Sosial Media hesabları</a>
+                                <a asp-controller="Translate" asp-action="TurkishFormat">Türk dili</a>
                             </li>
                             <li>
-                                <a asp-controller="SecondPages" asp-action="DeactiveBlogList">Deaktiv paylaşımlar</a>
+                                <a asp-controller="Translate" asp-action="RussianFormat">Rus dili</a>
                             </li>
+                            <li>
+                                <a asp-controller="Translate" asp-action="EnglishFormat">İngilis dili</a>
+                            </li>
+
+
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">quiz</i>
+                            <span>Tez-tez verilən suallar</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a asp-controller="SecondPages" asp-action="ActiveFaqList">Aktiv suallar</a>
+                            </li>
+                            <li>
+                                <a asp-controller="SecondPages" asp-action="DeactiveFaqList">Deaktiv suallar</a>
+                            </li>
+                           
 
                         </ul>
                     </li>
