@@ -2,6 +2,7 @@
 using DAL.DbConnection;
 using DTO.ContactUsDTO;
 using DTO.FrequentlyQuestionsDTO;
+using DTO.ProductsDTO;
 using DTO.SubscriberDTO;
 using Entity.Models;
 using Microsoft.AspNetCore.Localization;
@@ -43,7 +44,8 @@ namespace Presentation.Controllers
             Response.Cookies.Append(
                 CookieRequestCultureProvider.DefaultCookieName,
                 CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
-                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddDays(1) }
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddDays(1) 
+                }
             );
 
             return RedirectToAction("Index");
@@ -108,11 +110,7 @@ namespace Presentation.Controllers
         }
 
 
-        public IActionResult Blogs()
-        {
-            return View();
-        }
-
+     
         public async Task<IActionResult> Faq()
         {
             IEnumerable<FaqListDTO> frequentlyQuestions =await  _faqService.ActiveFaqList();

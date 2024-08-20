@@ -1,27 +1,23 @@
 ﻿@model IEnumerable<SearchProductDTO>
 
 
- <ul class="custom-scroll">
-    
-        @foreach (var product in Model)
-        {
-            <li>
-                <div class="product-cart media">
+<ul class="custom-scroll">
+    @foreach (var product in Model)
+    {
+        <li style="position: relative; z-index: 1;">
+            <div class="product-cart media" style="margin:30px; position: relative; z-index: 2;">
+                <img src="@product.ImageUrl" class="img-fluid blur-up lazyload" alt="@product.ImageUrl" style="width:100px;height:100px; position: relative; z-index: 3;">
+                <div class="media-body">
                     <a asp-controller="Shop" asp-action="ProductDetail" asp-route-Id="@product.Id">
-                    <img src="@product.ImageUrl" class="img-fluid blur-up lazyload" alt="product.jpg" width="80px" height="80px">
-                    <div class="media-body">
-                        
-                            <h6 class="mb-1">@product.Name </h6>
-                        
+                        <h6 class="mb-1">@product.CategoryName</h6>
+                        <h6 class="mb-1">@product.Name </h6>
                         <p class="mb-0 mt-1">@product.Price.ToString("0.00") azn</p>
-                    </div>
                     </a>
-                
                 </div>
-            </li>
-        }
-    
-  
+            </div>
+        </li>
+    }
 </ul>
+
 
  

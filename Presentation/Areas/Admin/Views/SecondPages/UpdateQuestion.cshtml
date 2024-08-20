@@ -1,4 +1,4 @@
-﻿@model AddQuestionDTO
+﻿@model UpdateQuestionDTO
 @{
     ViewData["Title"] = "AddNewQuestion";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -11,7 +11,7 @@
         <div class="col-lg-6 col-md-8 col-sm-8 col-xs-8">
             <div class="card">
                 <div class="header text-center">
-                    <h2>Yeni Sual</h2>
+                    <h2>Sualı yenilə</h2>
                 </div>
                 <div class="body">
                     <form id="form_validation" method="post">
@@ -20,7 +20,7 @@
                                 <label>Sual</label>
                             </p>
                             <div class="form-line">
-                                <input type="text" asp-for="Question" name="Question" rows="10" class="form-control" placeholder="sualı daxil edin ...">
+                                <input type="text" asp-for="Question" name="Question" class="form-control" placeholder="sualı daxil edin ...">
                             </div>
                         </div>
                         <div class="input-group">
@@ -28,14 +28,14 @@
                                 <label>Cavab</label>
                             </p>
                             <div class="form-line">
-                                <textarea  asp-for="Answer" name="Answer" class="form-control" placeholder=cavabı daxil edin ..."></textarea>
+                                <textarea  asp-for="Answer" name="Answer" rows="10" class="form-control" placeholder=cavabı daxil edin ..."></textarea>
                             </div>
                         </div>
 
 
                         <div class="font-bold col-pink" asp-validation-summary="ModelOnly"></div>
                         <div class="text-center">
-                            <button class="btn btn-primary waves-effect" type="submit" id="submitButton">Yarat</button>
+                            <button class="btn btn-primary waves-effect" type="submit" id="submitButton">Yenilə</button>
                             <a asp-action="ActiveFaqList" class="btn btn-success">Geri</a>
                         </div>
                     </form>

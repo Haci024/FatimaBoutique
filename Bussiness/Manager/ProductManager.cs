@@ -91,13 +91,13 @@ namespace Bussiness.Manager
           
         }
 
-        public async Task<IQueryable<SearchProductDTO>> SearchProduct(string query)
+        public async Task<IEnumerable<SearchProductDTO>> SearchProduct(string query)
         {
-            IQueryable<SearchProductDTO> products=await _dal.SearchProduct(query);
+            IEnumerable<SearchProductDTO> products= await _dal.SearchProduct(query);
             foreach (var item in products)
             {
 
-                GenerateSignedUrlForFilter(item);
+               await  GenerateSignedUrlForFilter(item);
             }
             return  products;
         }

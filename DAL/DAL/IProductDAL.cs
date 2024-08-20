@@ -15,6 +15,6 @@ namespace Data.DAL
 
         Task<IQueryable<FilterProductsListDTO>> FilterProducts();
 
-        Task<IQueryable<SearchProductDTO>> SearchProduct(string query);
+        Task<IEnumerable<SearchProductDTO>> SearchProduct(string query);
     }
 }

@@ -76,9 +76,9 @@ namespace Data.Repo
             return data; 
         }
 
-        public async Task<IQueryable<SearchProductDTO>> SearchProduct(string query)
+        public async Task<IEnumerable<SearchProductDTO>> SearchProduct(string query)
         {
-            var productsQuery = _db.Products.Include(x=>x.ProductsImages).Include(x=>x.Categories).Where(p => p.Name.Contains(query) || p.Categories.Name.Contains(query) && p.Status==true).Select(p=>new SearchProductDTO
+            var productsQuery =await  _db.Products.Include(x=>x.ProductsImages).Include(x=>x.Categories).Where(p => p.Name.Contains(query) || p.Categories.Name.Contains(query) && p.Status==true).Select(p=>new SearchProductDTO
             {
                 Id = p.Id,
                 Name = p.Name,
@@ -87,8 +87,8 @@ namespace Data.Repo
                 SavedImageUrl = p.ProductsImages.FirstOrDefault().SavedImageUrl,
                 ImageUrl = p.ProductsImages.FirstOrDefault().ImageUrl,
                 Price = p.Price,
-            });
-            return productsQuery;
+            }).ToListAsync();
+            return  productsQuery;
         }
     }
 }

@@ -36,16 +36,16 @@ namespace Presentation.Areas.Admin.Controllers
  
         #region Tez-tez verilən suallar
         [HttpGet]
-        public IActionResult ActiveFaqList()
+        public async Task<IActionResult> ActiveFaqList()
         {
-           IEnumerable<FrequentlyQuestions> frequentlyQuestions=_questionService.GetList();
+           IEnumerable<FaqListDTO> frequentlyQuestions=await _questionService.ActiveFaqList();
           
             return View(frequentlyQuestions);
         }
         [HttpGet]
-        public IActionResult DeactiveFaqList()
+        public async Task<IActionResult> DeactiveFaqList()
         {
-            IEnumerable<FrequentlyQuestions> frequentlyQuestions = _questionService.GetList();
+            IEnumerable<FaqListDTO> frequentlyQuestions =await  _questionService.DeactiveFaqList();
 
             return View(frequentlyQuestions);
         }
@@ -70,7 +70,7 @@ namespace Presentation.Areas.Admin.Controllers
             FrequentlyQuestions entity= new FrequentlyQuestions();
             entity.Question = dto.Question;
             entity.Answer = dto.Answer;
-            entity.Status = false;
+            entity.Status = true;
             _questionService.Create(entity);
             return RedirectToAction("ActiveFaqList");
         }

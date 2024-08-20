@@ -13,7 +13,7 @@ namespace Bussiness.Services
     {
         Task<IEnumerable<ProductListDTO>> AllProducts();
         Task<IQueryable<FilterProductsListDTO>> FilterProductList();
-        Task<IQueryable<SearchProductDTO>> SearchProduct(string query);
+        Task<IEnumerable<SearchProductDTO>> SearchProduct(string query);
 
 
     }
