@@ -67,8 +67,8 @@ namespace Data.Repo
                 Price=x.Price,
                 CategoryName=x.Categories.Name,
                 CategoryId=x.CategoryId,
-                SavedFileUrl=x.ProductsImages.FirstOrDefault().SavedImageUrl,
-                ImageUrl=x.ProductsImages.FirstOrDefault().ImageUrl,
+                SavedFileUrl=x.ProductsImages.First().SavedImageUrl,
+                ImageUrl=x.ProductsImages.First().ImageUrl,
                 Description=x.Description
 
             }).ToListAsync();
@@ -78,23 +78,17 @@ namespace Data.Repo
 
         public async Task<IQueryable<SearchProductDTO>> SearchProduct(string query)
         {
-            var productsQuery = _db.Products.Include(x=>x.ProductsImages).Include(x=>x.Categories).AsQueryable();
-
-         
-                IQueryable<SearchProductDTO> data = productsQuery.Where(p => p.Name.Contains(query) || p.Categories.Name.Contains(query)).Select(x=>new SearchProductDTO {
-                    Id=x.Id,
-                    Name=x.Name,
-                    SalesPrice=x.SalesPrice,
-                    CategoryName=x.Categories.Name,
-                    SavedImageUrl=x.ProductsImages.Select(x=>x.SavedImageUrl).First(),
-                    ImageUrl=x.ProductsImages.Select(x => x.SavedImageUrl).First(),
-                    Price=x.Price,
-                });
-            
-            
-
-
-            return data;
+            var productsQuery = _db.Products.Include(x=>x.ProductsImages).Include(x=>x.Categories).Where(p => p.Name.Contains(query) || p.Categories.Name.Contains(query) && p.Status==true).Select(p=>new SearchProductDTO
+            {
+                Id = p.Id,
+                Name = p.Name,
+                SalesPrice = p.SalesPrice,
+                CategoryName = p.Categories.Name,
+                SavedImageUrl = p.ProductsImages.FirstOrDefault().SavedImageUrl,
+                ImageUrl = p.ProductsImages.FirstOrDefault().ImageUrl,
+                Price = p.Price,
+            });
+            return productsQuery;
         }
     }
 }

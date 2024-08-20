@@ -365,8 +365,12 @@ namespace Presentation.Controllers
         #endregion
         #region Profilim
 
-        public IActionResult Profile()
+        public IActionResult MyProfile()
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction(nameof(Login));
+            }
             return View();
         }
         #endregion

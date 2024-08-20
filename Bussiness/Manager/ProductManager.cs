@@ -97,11 +97,11 @@ namespace Bussiness.Manager
             foreach (var item in products)
             {
 
-                GenerateSignedUrl(item);
+                GenerateSignedUrlForFilter(item);
             }
             return  products;
         }
-        private async Task GenerateSignedUrl(SearchProductDTO dto)
+        private async Task GenerateSignedUrlForFilter(SearchProductDTO dto)
         {
           
                 if (!string.IsNullOrWhiteSpace(dto.ImageUrl))
@@ -109,7 +109,7 @@ namespace Bussiness.Manager
                     dto.ImageUrl = await _service.GetSignedUrl(dto.SavedImageUrl);
                 }
             
-
+                
         }
     }
 }

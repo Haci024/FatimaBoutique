@@ -59,7 +59,7 @@ namespace Presentation.Controllers
             return View();
         }
 
-        public IActionResult AboutUs()
+        public IActionResult AboutUs(string data)
         {
             return View();
         }
