@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Shop | Fatimah Boutique";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    int checkCount = 0;
 }
 
 
@@ -159,87 +161,20 @@
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body category-scroll">
                                     <ul class="category-list">
-                                        <li>
-                                            <div class="form-check ps-0 custome-form-check">
-                                                <input class="checkbox_animated check-it" type="checkbox"
-                                                       id="flexCheckDefault1">
-                                                <label class="form-check-label" for="flexCheckDefault1">Zara</label>
-                                                <p class="font-light">(25)</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check ps-0 custome-form-check">
-                                                <input class="checkbox_animated check-it" type="checkbox"
-                                                       id="flexCheckDefault2">
-                                                <label class="form-check-label" for="flexCheckDefault2">
-                                                    Allen
-                                                    Solly
-                                                </label>
-                                                <p class="font-light">(25)</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check ps-0 custome-form-check">
-                                                <input class="checkbox_animated check-it" type="checkbox"
-                                                       id="flexCheckDefault3">
-                                                <label class="form-check-label" for="flexCheckDefault3">
-                                                    Louis
-                                                    Philippe
-                                                </label>
-                                                <p class="font-light">(25)</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check ps-0 custome-form-check">
-                                                <input class="checkbox_animated check-it" type="checkbox"
-                                                       id="flexCheckDefault4">
-                                                <label class="form-check-label" for="flexCheckDefault4">
-                                                    Louis
-                                                    Philippe Sport
-                                                </label>
-                                                <p class="font-light">(25)</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check ps-0 custome-form-check">
-                                                <input class="checkbox_animated check-it" type="checkbox"
-                                                       id="flexCheckDefault5">
-                                                <label class="form-check-label" for="flexCheckDefault5">H&M</label>
-                                                <p class="font-light">(25)</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check ps-0 custome-form-check">
-                                                <input class="checkbox_animated check-it" type="checkbox"
-                                                       id="flexCheckDefault6">
-                                                <label class="form-check-label" for="flexCheckDefault6">Fila</label>
-                                                <p class="font-light">(25)</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check ps-0 custome-form-check">
-                                                <input class="checkbox_animated check-it" type="checkbox"
-                                                       id="flexCheckDefault7">
-                                                <label class="form-check-label" for="flexCheckDefault7">Puma</label>
-                                                <p class="font-light">(25)</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check ps-0 custome-form-check">
-                                                <input class="checkbox_animated check-it" type="checkbox"
-                                                       id="flexCheckDefault8">
-                                                <label class="form-check-label" for="flexCheckDefault8">Nike</label>
-                                                <p class="font-light">(25)</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check ps-0 custome-form-check">
-                                                <input class="checkbox_animated check-it" type="checkbox"
-                                                       id="flexCheckDefault9">
-                                                <label class="form-check-label" for="flexCheckDefault9">HRX</label>
-                                                <p class="font-light">(25)</p>
-                                            </div>
-                                        </li>
+                                        @foreach (var item in Model.Categories)
+                                        {
+                                            checkCount++;
+                                            <li>
+                                                <div class="form-check ps-0 custome-form-check">
+                                                    <input form="filter-form" class="checkbox_animated check-it" type="checkbox"
+                                                           id="flexCheckDefault@checkCount"
+                                                           name="categoryId"
+                                                           value="@item.Id" @(ViewBag.CategoryIds.Contains(item.Id) ? "checked" : "") />
+                                                    <label class="form-check-label" for="flexCheckDefault@checkCount">@item.Name</label>
+                                                    <p class="font-light">(@item.Products.Count)</p>
+                                                </div>
+                                            </li>
+                                        }
                                     </ul>
                                 </div>
                             </div>
@@ -374,27 +309,27 @@
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                             <li>
-                                                <a class="dropdown-item" href="@Url.Action("Index", new { sort = "AtoZ" })">
+                                                <a class="dropdown-item" href="@Url.Action("Index", new { categoryId = ViewBag.CategoryIds, minPrice = ViewBag.MinPrice, maxPrice = ViewBag.MaxPrice, sort = "AtoZ" })">
                                                     A-dan Z-yə
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item" href="@Url.Action("Index", new { sort = "ZtoA" })">
+                                                <a class="dropdown-item" href="@Url.Action("Index", new { categoryId = ViewBag.CategoryIds, minPrice = ViewBag.MinPrice, maxPrice = ViewBag.MaxPrice, sort = "ZtoA" })">
                                                     Z-dən A-ya
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item" href="@Url.Action("Index", new { sort = "LowToHigh" })">
+                                                <a class="dropdown-item" href="@Url.Action("Index", new { categoryId = ViewBag.CategoryIds, minPrice = ViewBag.MinPrice, maxPrice = ViewBag.MaxPrice, sort = "LowToHigh" })">
                                                     Artan qiymətlə
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item" href="@Url.Action("Index", new { sort = "HighToLow" })">
+                                                <a class="dropdown-item" href="@Url.Action("Index", new { categoryId = ViewBag.CategoryIds, minPrice = ViewBag.MinPrice, maxPrice = ViewBag.MaxPrice, sort = "HighToLow" })">
                                                     Azalan qiymətlə
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item" href="@Url.Action("Index", new { sort = "AddingDate" })">
+                                                <a class="dropdown-item" href="@Url.Action("Index", new { categoryId = ViewBag.CategoryIds, minPrice = ViewBag.MinPrice, maxPrice = ViewBag.MaxPrice, sort = "AddingDate" })">
                                                     Ən son paylaşılanlar
                                                 </a>
                                             </li>

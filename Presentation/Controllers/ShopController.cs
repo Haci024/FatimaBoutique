@@ -21,16 +21,19 @@ namespace Presentation.Controllers
             _context = context;
             _googleService = service;
         }
-        public IActionResult Index(double? minPrice = null, double? maxPrice = null, string sort = "AtoZ")
+        public IActionResult Index(List<int> categoryId,double? minPrice = null, double? maxPrice = null, string sort = "AtoZ")
         {
             ShopListDTO shopListDTO = new ShopListDTO
             {
-                
+                Categories = _context.Categories.Include(x=>x.Products).ToList(),
             };
 
             var query = _context.Products.Include(x => x.ProductsImages)
                                         .Include(x => x.Categories)
                                         .AsQueryable();
+
+            if (categoryId != null && categoryId.Count > 0)
+                query = query.Where(x => categoryId.Contains(x.CategoryId));
 
             if (minPrice != null && maxPrice != null)
                 query = query.Where(x => x.Price >= (decimal)minPrice && x.Price <= (decimal)maxPrice);
@@ -44,10 +47,10 @@ namespace Presentation.Controllers
                     query = query.OrderByDescending(x =>x.Name);
                     break;
                 case "LowToHigh":
-                    query = query.OrderBy(x => x.SalesPrice);
+                    query = query.OrderBy(x => x.Price);
                     break;
                 case "HighToLow":
-                    query = query.OrderByDescending(x => x.SalesPrice);
+                    query = query.OrderByDescending(x => x.Price);
                     break;
                 case "AddingDate":
                     query = query.OrderByDescending(x => x.AddingDate);
@@ -56,10 +59,11 @@ namespace Presentation.Controllers
 
             ViewBag.SortList = new List<SelectListItem>
             {
-                new SelectListItem {Value="AtoZ",Text= "A-Z",Selected=sort=="AtoZ"},
+                new SelectListItem {Value="AtoZ",Text= "A-Z", Selected = sort == "AtoZ" },
                 new SelectListItem { Value = "ZtoA", Text = "Z-A", Selected = sort == "ZtoA" },
                 new SelectListItem { Value = "LowToHigh", Text = "Lowest Price", Selected = sort == "LowToHigh" },
                 new SelectListItem { Value = "HighToLow", Text = "Highest Price", Selected = sort == "HighToLow" },
+                new SelectListItem { Value = "AddingDate", Text = "Newest First", Selected = sort == "AddingDate" },
             };
 
             shopListDTO.Products = query.ToList();
@@ -67,6 +71,9 @@ namespace Presentation.Controllers
             {
                 GenerateSignedUrl(item.ProductsImages);
             }
+
+            ViewBag.CategoryIds = categoryId;
+
             ViewBag.MaxPriceLimit = _context.Products.Max(x => x.Price);
             ViewBag.MinPrice = minPrice ?? 0;
             ViewBag.MaxPrice = maxPrice ?? ViewBag.MaxPriceLimit;

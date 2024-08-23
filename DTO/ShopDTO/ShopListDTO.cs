@@ -10,6 +10,6 @@ namespace DTO.ShopDTO
     public class ShopListDTO
     {
         public List<Products> Products { get; set; } = new List<Products>();
-        public List<Categories> Categories { get; set; }
+        public List<Categories> Categories { get; set; } = new List<Categories>();
     }
 }
