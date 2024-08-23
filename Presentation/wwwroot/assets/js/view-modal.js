@@ -16,8 +16,8 @@ modalBtns.forEach(modalBtn => {
                 }
             })
             .then(data => {
-                $(".view-modal .modal-dialog").html(data)
-                $(".view-modal").modal('show')
+                $(".quick-view-modal .modal-dialog").html(data)
+                $(".quick-view-modal").modal('show')
             })
     })
 })

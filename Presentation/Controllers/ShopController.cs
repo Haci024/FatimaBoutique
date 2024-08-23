@@ -33,7 +33,7 @@ namespace Presentation.Controllers
                                         .AsQueryable();
 
             if (minPrice != null && maxPrice != null)
-                query = query.Where(x => x.SalesPrice >= (decimal)minPrice && x.SalesPrice <= (decimal)maxPrice);
+                query = query.Where(x => x.Price >= (decimal)minPrice && x.Price <= (decimal)maxPrice);
 
             switch (sort)
             {
@@ -67,9 +67,11 @@ namespace Presentation.Controllers
             {
                 GenerateSignedUrl(item.ProductsImages);
             }
-            ViewBag.MaxPriceLimit = _context.Products.Max(x => x.SalesPrice);
+            ViewBag.MaxPriceLimit = _context.Products.Max(x => x.Price);
             ViewBag.MinPrice = minPrice ?? 0;
             ViewBag.MaxPrice = maxPrice ?? ViewBag.MaxPriceLimit;
+
+            minPrice = ViewBag.MinPrice;
 
             return View(shopListDTO);
         }

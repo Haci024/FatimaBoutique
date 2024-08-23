@@ -15,16 +15,11 @@ namespace Presentation.ViewComponents.Layout
 
         public  async Task<IViewComponentResult> InvokeAsync(string query)
         {
-            IEnumerable<SearchProductDTO> products =await  _productService.SearchProduct(query);
+            IEnumerable<SearchProductDTO> products = await  _productService.SearchProduct(query);
 
             
-           
-
-        
 
             return  View("~/Views/Shared/Components/SearchBar/_SearchPartialView.cshtml", products);
-            
-
         }
     }
 }

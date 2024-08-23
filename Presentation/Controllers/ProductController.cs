@@ -26,14 +26,13 @@ namespace Presentation.Controllers
         public IActionResult ProductDetail(int id)
         {
             Products product = _context.Products
-                
                 .Include(x => x.ProductsImages)
                 .Include(x => x.Categories)
                 .FirstOrDefault(x => x.Id == id);
 
             if (product == null) return View("Error");
 
-            return PartialView("Modals/_QuickViewPartial", product);
+            return PartialView("~/Views/Shared/Modals/_QuickViewPartial.cshtml", product);
         }
     }
 }

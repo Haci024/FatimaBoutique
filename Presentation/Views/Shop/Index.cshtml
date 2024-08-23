@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Shop | Fatimah Boutique";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    
 }
 
 
@@ -260,8 +259,8 @@
                                         <input type="text" class="js-range-slider" value="" />
                                     </div>
 
-                                    <input id="maxPriceInput" form="filter-form" type="hidden" name="maxPrice" value="50" />
-                                    <input id="minPriceInput" form="filter-form" type="hidden" name="minPrice" value="10" />
+                                    <input id="maxPriceInput" form="filter-form" type="hidden" name="maxPrice" value="" />
+                                    <input id="minPriceInput" form="filter-form" type="hidden" name="minPrice" value="" />
                                     
                                     <input type="hidden" id="jsValueMin" value="@ViewBag.MinPrice" />
                                     <input type="hidden" id="jsValueMax" value="@ViewBag.MaxPrice" />
@@ -276,7 +275,7 @@
                                         </form>
                                     </div>
 
-                                    <script>
+                                    @* <script>
                                         $(function () {
                                             var $range = $(".js-range-slider"),
                                                 $inputFrom = $("#minPriceInput"),
@@ -343,53 +342,7 @@
                                                 });
                                             });
                                         });
-                                    </script>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingFive">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseFive">
-                                    Discount Range
-                                </button>
-                            </h2>
-                            <div id="collapseFive" class="accordion-collapse collapse show"
-                                 aria-labelledby="headingFive" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <ul class="category-list">
-                                        <li>
-                                            <div class="form-check ps-0 custome-form-check">
-                                                <input class="checkbox_animated check-it" type="checkbox"
-                                                       id="flexCheckDefault15">
-                                                <label class="form-check-label" for="flexCheckDefault15">
-                                                    5% and
-                                                    above
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check ps-0 custome-form-check">
-                                                <input class="checkbox_animated check-it" type="checkbox"
-                                                       id="flexCheckDefault16">
-                                                <label class="form-check-label" for="flexCheckDefault16">
-                                                    10% and
-                                                    above
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check ps-0 custome-form-check">
-                                                <input class="checkbox_animated check-it" type="checkbox"
-                                                       id="flexCheckDefault17">
-                                                <label class="form-check-label" for="flexCheckDefault17">
-                                                    20% and
-                                                    above
-                                                </label>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                    </script> *@
                                 </div>
                             </div>
                         </div>
@@ -532,8 +485,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="javascript:void(0)" data-bs-toggle="modal"
-                                                   data-bs-target="#quick-view">
+                                                <a asp-controller="product" asp-action="productdetail" asp-route-id="@item.Id" class="quick-view-modal-btn">
                                                     <i data-feather="eye"></i>
                                                 </a>
                                             </li>
@@ -614,4 +566,17 @@
         </div>
     </div>
 </section>
-<script src="~/voxo-ui/voxo/front-end/assets/js/script.js"></script>
+<!-- Shop Section end -->
+<!-- Quick View Modal Box Start-->
+<div class="modal fade quick-view-modal" id="quick-view">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+
+    </div>
+</div>
+<!-- Quick View Modal Box End-->
+
+
+<script src="~/voxo-ui/voxo/front-end/assets/js/script.js" defer></script>
+<script src="~/assets/js/view-modal.js" defer></script>
+<script src="~/voxo-ui/voxo/front-end/assets/js/lazysizes.min.js" defer></script>
+<script src="~/assets/js/price-filter.js" defer></script>
