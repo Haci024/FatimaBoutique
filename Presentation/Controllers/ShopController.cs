@@ -31,7 +31,6 @@ namespace Presentation.Controllers
             var query = _context.Products.Include(x => x.ProductsImages)
                                         .Include(x => x.Categories)
                                         .AsQueryable();
-
             if (categoryId != null && categoryId.Count > 0)
                 query = query.Where(x => categoryId.Contains(x.CategoryId));
 

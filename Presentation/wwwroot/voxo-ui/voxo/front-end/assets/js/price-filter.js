@@ -1,4 +1,4 @@
-// Trigger
+﻿// Trigger
 
 $(function () {
     var viewBagMax = parseFloat(document.getElementById("jsValueMax").value);
@@ -20,7 +20,7 @@ $(function () {
     max: max,
     from: from,
     to: to,
-    prefix: "$ ",
+     postfix : " ₼",
     onStart: updateInputs,
     onChange: updateInputs,
     step: 1,
@@ -36,8 +36,8 @@ $(function () {
     from = data.from;
     to = data.to;
 
-    $inputFrom.prop("value", "$" + from);
-    $inputTo.prop("value", "$" + to);
+    $inputFrom.prop("value", from+" ");
+    $inputTo.prop("value",  to+" ");
 
     document.getElementById("minPriceInput").value = from;
     document.getElementById("maxPriceInput").value = to;

@@ -84,7 +84,7 @@ namespace Presentation.Controllers
                 else
                 {
                     
-                    return RedirectToAction("Profile", "Account");
+                    return RedirectToAction("MyProfile", "Account");
                 }
 
             }
@@ -367,11 +367,28 @@ namespace Presentation.Controllers
 
         public IActionResult MyProfile()
         {
-            if (!User.Identity.IsAuthenticated)
-            {
-                return RedirectToAction(nameof(Login));
-            }
+            //if (!User.Identity.IsAuthenticated)
+            //{
+            //    return RedirectToAction(nameof(Login));
+            //}
             return View();
+        }
+        #endregion
+        #region Hesabdan çıxış
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            AppUser AppUser = await _userManager.FindByNameAsync(User.Identity.Name);
+            if (AppUser==null)
+            {
+                return View("Error");
+            }
+            else
+            {
+               await _signInManager.SignOutAsync();
+                return RedirectToAction("Index", "Home");
+            }
+          
         }
         #endregion
 

@@ -66,7 +66,7 @@
 <body class="theme-color4 light ltr">
 
 
-    <header class="header-style-2 nav-down" id="home">
+    <header class="header-style-2" id="home">
         <div class="top-header">
             <div class="container-fluid-lg">
                 <div class="row">
@@ -85,11 +85,39 @@
                              <li>
                                 <img style="width:25px;height:25px" src="~/voxo-ui/voxo/front-end/assets/images/social-media icons/tiktok.png" />
                             </li>
-                             <li>
+                         @*     <li>
                                 <img style="width:25px;height:25px" src="~/voxo-ui/voxo/front-end/assets/images/social-media icons/facebook.png" />
                             </li>
                             <li>
                                 <img style="width:25px;height:25px" src="~/voxo-ui/voxo/front-end/assets/images/social-media icons/whatsapp.png" />
+                            </li> *@
+                            <li class="onhover-dropdown">
+                                <div class="cart-media">
+                                    <i data-feather="user"></i>
+                                </div>
+                                <div class="onhover-div profile-dropdown" style="height: 70px; width: 20px;">
+                                    <ul>
+                                        @if (!User.Identity.IsAuthenticated)
+                                        {
+                                            <li>
+                                                <a asp-controller="Account" asp-action="Login" class="d-block">@language.GetKey("Daxil ol")</a>
+                                            </li>
+                                            <li>
+                                                <a asp-controller="Account" asp-action="Register" class="d-block">@language.GetKey("Qeydiyyat")</a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                <a asp-controller="Account" asp-action="MyProfile" class="d-block">@language.GetKey("Profilim")</a>
+                                            </li>
+                                            <li>
+                                                <a asp-controller="Account" asp-action="Logout" class="d-block">@language.GetKey("Hesabdan çıx")</a>
+                                            </li>
+                                        }
+                                       
+                                    </ul>
+                                </div>
                             </li>
                             <li class="onhover-dropdown">
                                 <div class="cart-media">
@@ -119,8 +147,10 @@
 
 
                                 </div>
+
                                 <div class="onhover-div profile-dropdown">
                                     <ul>
+                                        
                                         <li>
                                             <div class="flags-container">
                                                 <a asp-controller="Home" asp-action="SetLanguage" asp-route-culture="az-AZ" class="d-inline-block">
@@ -137,6 +167,7 @@
                                                 </a>
                                             </div>
                                         </li>
+
                                        
 
 
@@ -219,22 +250,8 @@
                                 
                           
                                     </li>
-                                    <li class="onhover-dropdown">
-                                        <div class="cart-media">
-                                            <i data-feather="user"></i>
-                                        </div>
-                                        <div class="onhover-div profile-dropdown">
-                                            <ul>
-                                                <li>
-                                                    <a asp-controller="Account" asp-action="Login" class="d-block">@language.GetKey("Daxil ol")</a>
-                                                </li>
-                                                <li>
-                                                    <a asp-controller="Account" asp-action="Register" class="d-block">@language.GetKey("Qeydiyyat")</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="onhover-dropdown wislist-dropdown">
+                             
+                                   @*  <li class="onhover-dropdown wislist-dropdown">
                                         <div class="cart-media">
                                             <a href="wishlist.html">
                                                 <i data-feather="heart"></i>
@@ -250,11 +267,11 @@
                                                 </div>
                                             </a>
                                         </div>
-                                    </li>
+                                    </li> *@
                                     <li class="onhover-dropdown cart-dropdown">
                                         <button type="button" class="btn btn-solid-default btn-spacing">
                                             <i data-feather="shopping-cart" class="pe-2"></i>
-                                            <span>122.50 azn</span>
+                                            <span>122.50 ₼</span>
                                         </button>
                                     </li>
                                 </ul>
