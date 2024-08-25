@@ -16,8 +16,8 @@ namespace DAL.DbConnection
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             {
             //optionsBuilder.UseSqlServer("server=77.245.159.27\\MSSQLSERVER2019;initial catalog=FatimahBoutique;user=FatimahAdmin;password=6!3dRpp48;TrustServerCertificate=True");
-             optionsBuilder.UseSqlServer("server=.;database=FatimaBoutique;integrated security=true;TrustServerCertificate=True;MultipleActiveResultSets=True;");//Database ilə əlaqə
-            // optionsBuilder.UseSqlServer("server=MSI\\SQLEXPRESS;database=FatimaBoutique;integrated security=true;TrustServerCertificate=True;MultipleActiveResultSets=True;");//Database ilə əlaqə
+             //optionsBuilder.UseSqlServer("server=.;database=FatimaBoutique;integrated security=true;TrustServerCertificate=True;MultipleActiveResultSets=True;");//Database ilə əlaqə
+             optionsBuilder.UseSqlServer("server=MSI\\SQLEXPRESS;database=FatimaBoutique;integrated security=true;TrustServerCertificate=True;MultipleActiveResultSets=True;");//Database ilə əlaqə
             optionsBuilder.EnableSensitiveDataLogging();
 
 
@@ -38,7 +38,7 @@ namespace DAL.DbConnection
 
         public DbSet<ProductsImages> ProductImages { get; set; }
 
-        //public DbSet<Basket> Basket { get; set; }
+        public DbSet<BasketItem> BasketItem { get; set; }
 
         //public DbSet<Orders> Orders { get; set; }
 

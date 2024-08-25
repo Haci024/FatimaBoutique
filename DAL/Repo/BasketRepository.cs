@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Data.Repo
 {
-    public class BasketRepository:GenericRepository<Basket>,IBasketDAL
+    public class BasketRepository:GenericRepository<BasketItem>,IBasketDAL
     {
     }
 }

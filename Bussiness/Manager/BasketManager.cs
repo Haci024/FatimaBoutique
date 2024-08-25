@@ -17,27 +17,27 @@ namespace Bussiness.Manager
             _dal= dal;
         }
 
-        public void Create(Basket t)
+        public void Create(BasketItem t)
         {
             _dal.Create(t); 
         }
 
-        public void Delete(Basket t)
+        public void Delete(BasketItem t)
         {
             _dal.Delete(t);
         }
 
-        public Basket GetById(int id)
+        public BasketItem GetById(int id)
         {
             return _dal.GetById(id);
         }
 
-        public IEnumerable<Basket> GetList()
+        public IEnumerable<BasketItem> GetList()
         {
             return _dal.GetList();
         }
 
-        public void Update(Basket t)
+        public void Update(BasketItem t)
         {
             _dal.Update(t);
         }

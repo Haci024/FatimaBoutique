@@ -414,8 +414,7 @@
                                     <div class="cart-wrap">
                                         <ul>
                                             <li>
-                                                <a href="javascript:void(0)" class="addtocart-btn"
-                                                   data-bs-toggle="modal" data-bs-target="#addtocart">
+                                                <a asp-action="addtobasket" asp-controller="product" asp-route-id="@item.Id" class="addtocart-btn addtobasket">
                                                     <i data-feather="shopping-bag"></i>
                                                 </a>
                                             </li>

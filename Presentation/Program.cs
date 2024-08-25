@@ -34,6 +34,7 @@ builder.Services.AddScoped<LanguageManager>();
 builder.Services.AddScoped<ILanguagesService, LanguagesManager>();
 builder.Services.AddScoped<ILanguageDAL, LanguageRepository>();
 
+builder.Services.AddScoped<LayoutService>();
 
 builder.Services.AddScoped<IOrdersService, OrderManager>();
 builder.Services.AddScoped<IOrderDAL, OrderRepository>();

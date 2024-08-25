@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Bussiness.Services
 {
-    public interface IBasketService:IGenericService<Basket>
+    public interface IBasketService:IGenericService<BasketItem>
     {
 
     }

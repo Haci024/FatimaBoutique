@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Data.DAL
 {
-    public interface IBasketDAL:IGenericDAL<Basket>
+    public interface IBasketDAL:IGenericDAL<BasketItem>
     {
         
     }

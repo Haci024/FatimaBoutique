@@ -213,7 +213,8 @@
     /*=====================
        8. Add to cart
        ==========================*/
-    $(".product-box .cart-wrap li .addtocart-btn").on("click", function () {
+    $(".product-box .cart-wrap li .addtocart-btn").off("click").on("click", function (e) {
+        e.preventDefault(); // Prevents the default link action
         $.notify({
             icon: "fa fa-check",
             title: "Success!",
@@ -718,3 +719,22 @@ $('.dropdown .dropdown-menu li').click(function () {
     $(this).parents('.dropdown').find('span').text($(this).text());
     $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
 });
+
+
+/*=====================
+    25. add to basket js
+ ==========================*/
+$(document).on("click", ".addtobasket", function (e) {
+    e.preventDefault();
+    let url = $(this).attr("href");
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                alert("xeta bas verdi")
+            }
+            return response.text()
+        })
+        .then(data => {
+            $(".cart-block").html(data)
+        })
+})
